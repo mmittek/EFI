@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP SR1100
+D Schottky barrier Rectifier Diode 
+F http://www.farnell.com/datasheets/1334739.pdf
+$ENDCMP
+#
+#End Doc Library
