@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:Design-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -85,25 +86,6 @@ LIBS:ESD_Protection
 LIBS:Altera
 LIBS:microchip_dspic33dsc
 LIBS:pspice
-LIBS:phoenix
-LIBS:cvra
-LIBS:_wireless
-LIBS:_transceiver
-LIBS:_stm32
-LIBS:_sensors
-LIBS:_power
-LIBS:_motor_drivers
-LIBS:_linear-regulators
-LIBS:_ic
-LIBS:_div
-LIBS:_connectors
-LIBS:_charge-pump-regulators
-LIBS:_audio
-LIBS:_antenna
-LIBS:National
-LIBS:Mec
-LIBS:IRF
-LIBS:Comp2014
 LIBS:logo
 LIBS:Design-cache
 EELAYER 25 0
@@ -272,7 +254,7 @@ Wire Wire Line
 Wire Wire Line
 	2250 2150 2250 1950
 $Comp
-L GND #PWR02
+L GND-RESCUE-Design #PWR02
 U 1 1 57075378
 P 2250 2150
 F 0 "#PWR02" H 2250 2150 30  0001 C CNN
