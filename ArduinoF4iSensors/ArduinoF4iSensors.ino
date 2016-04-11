@@ -22,7 +22,7 @@
 // These constants won't change.  They're used to give names
 // to the pins used:
 const int analogInPin = A1;  // Analog input pin that the potentiometer is attached to
-const int analogOutPin = 13; // Analog output pin that the LED is attached to
+const int LED_pin = 13; // Analog output pin that the LED is attached to
 
 const int MAP_pin = A3;
 int MAP_raw = 0;
@@ -44,6 +44,8 @@ float RS = 0;
 float tempF = 0;
 float tempC = 0;
 
+int LED_state = 0;
+
 void setup() {
   // initialize serial communications at 9600 bps:
   Serial.begin(9600); 
@@ -51,6 +53,8 @@ void setup() {
   pinMode( analogInPin, INPUT );
   pinMode( TPS_pin, INPUT );
   pinMode( MAP_pin, INPUT );
+  
+  pinMode(LED_pin, OUTPUT);
 }
 
 void loop() {
@@ -105,5 +109,8 @@ Serial.print(tempC);
   // wait 2 milliseconds before the next loop
   // for the analog-to-digital converter to settle
   // after the last reading:
-  delay(100);                     
+  LED_state = !LED_state;
+  
+  digitalWrite(LED_pin, LED_state);
+  delay(1000);                     
 }
