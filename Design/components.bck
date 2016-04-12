@@ -1,7 +1,9 @@
 EESchema-DOCLIB  Version 2.0
 #
-$CMP SR1100
-D Diode schottky
+$CMP PSMN022-30PL
+D 200V Vds, N-Channel MOSFET, TO-92
+K N-Channel MOSFET
+F http://www.vishay.com/docs/70215/70215.pdf
 $ENDCMP
 #
 #End Doc Library

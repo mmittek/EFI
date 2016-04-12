@@ -1,8 +1,9 @@
 EESchema-DOCLIB  Version 2.0
 #
-$CMP SR1100
-D Schottky barrier Rectifier Diode 
-F http://www.farnell.com/datasheets/1334739.pdf
+$CMP PSMN022-30PL
+D 30 Vds, N-Channel MOSFET, TO-220AB
+K N-Channel MOSFET
+F http://www.farnell.com/datasheets/655077.pdf
 $ENDCMP
 #
 #End Doc Library
