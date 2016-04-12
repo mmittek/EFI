@@ -1,23 +1,4 @@
-/*
-  Analog input, analog output, serial output
- 
- Reads an analog input pin, maps the result to a range from 0 to 255
- and uses the result to set the pulsewidth modulation (PWM) of an output pin.
- Also prints the results to the serial monitor.
- 
- The circuit:
- * potentiometer connected to analog pin 0.
-   Center pin of the potentiometer goes to the analog pin.
-   side pins of the potentiometer go to +5V and ground
- * LED connected from digital pin 9 to ground
- 
- created 29 Dec. 2008
- modified 9 Apr 2012
- by Tom Igoe
- 
- This example code is in the public domain.
- 
- */
+
 
 // These constants won't change.  They're used to give names
 // to the pins used:
@@ -34,6 +15,13 @@ int TPS_raw = 0;
 int TPS_min = 90;
 int TPS_max = 900;
 int TPS_val = 0;
+
+int ECT_pin = A1;
+float ECT_raw = 0;
+float ECT_R = 0;
+float ECT_volts = 0;
+float ECT_tempF = 0;
+float ECT_tempC = 0;
 
 int sensorValue = 0;        // value read from the pot
 int outputValue = 0;        // value output to the PWM (analog out)
@@ -53,6 +41,7 @@ void setup() {
   pinMode( analogInPin, INPUT );
   pinMode( TPS_pin, INPUT );
   pinMode( MAP_pin, INPUT );
+  pinMode(ECT_pin, INPUT);
   
   pinMode(LED_pin, OUTPUT);
 }
@@ -66,6 +55,10 @@ void loop() {
   tempC = (tempF-32.0)/1.8;
   // map it to the range of the analog out:
   outputValue = sensorValue;//map(sensorValue, 0, 1023, 0, 255);  
+
+  ECT_raw = analogRead( ECT_pin );
+  ECT_R = R1*ECT_raw/(1023.0f-ECT_raw);
+  ECT_tempF = 143.7f*exp(-0.0002789f*ECT_R) + 155.8f*exp( -0.003714f*ECT_R );
   
   TPS_raw = analogRead(TPS_pin);
   TPS_val = 1000.0f*((float)(TPS_raw-TPS_min))/((float)(TPS_max-TPS_min));
@@ -102,8 +95,17 @@ Serial.print("kpa, ");
 Serial.print(MAP_volts);
 Serial.print("V");
 
+Serial.print(", IAT_R [ohm]: ");
+Serial.print(RS);
 Serial.print(", IAT [C]: ");
 Serial.print(tempC);
+
+
+Serial.print(", ECT_R [ohm]: ");
+Serial.print(ECT_R);
+Serial.print(", ECT [F]: ");
+Serial.print(ECT_tempF);
+
   Serial.println(outputValue);   
 
   // wait 2 milliseconds before the next loop
