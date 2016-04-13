@@ -86,25 +86,6 @@ LIBS:ESD_Protection
 LIBS:Altera
 LIBS:microchip_dspic33dsc
 LIBS:pspice
-LIBS:phoenix
-LIBS:cvra
-LIBS:_wireless
-LIBS:_transceiver
-LIBS:_stm32
-LIBS:_sensors
-LIBS:_power
-LIBS:_motor_drivers
-LIBS:_linear-regulators
-LIBS:_ic
-LIBS:_div
-LIBS:_connectors
-LIBS:_charge-pump-regulators
-LIBS:_audio
-LIBS:_antenna
-LIBS:National
-LIBS:Mec
-LIBS:IRF
-LIBS:Comp2014
 LIBS:logo
 LIBS:Design-cache
 EELAYER 25 0
@@ -155,9 +136,9 @@ F 3 "" H 2250 1500 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 1750 900  0    60   Input ~ 0
-VSR_CAM_PIN_1
+VSR_GR
 Text GLabel 1850 1650 0    60   Input ~ 0
-VSR_CAM_PIN_2
+VSR_WY
 $Comp
 L SR1100 D2
 U 1 1 57072985
@@ -174,7 +155,7 @@ Wire Wire Line
 	2000 600  3600 600 
 Connection ~ 2250 1650
 Wire Wire Line
-	1750 900  3000 900 
+	1750 900  2900 900 
 Wire Wire Line
 	2250 600  2250 1350
 $Comp
@@ -193,14 +174,12 @@ Wire Wire Line
 Connection ~ 2000 900 
 Wire Wire Line
 	1850 1650 2250 1650
-Wire Wire Line
-	3000 900  3000 1450
 $Comp
 L R R4
 U 1 1 570732CC
 P 2600 1800
 F 0 "R4" V 2680 1800 50  0000 C CNN
-F 1 "5.1k" V 2600 1800 50  0000 C CNN
+F 1 "3k" V 2600 1800 50  0000 C CNN
 F 2 "" V 2530 1800 50  0000 C CNN
 F 3 "" H 2600 1800 50  0000 C CNN
 	1    2600 1800
@@ -211,7 +190,7 @@ L R R3
 U 1 1 57073370
 P 2600 1400
 F 0 "R3" V 2680 1400 50  0000 C CNN
-F 1 "4.7k" V 2600 1400 50  0000 C CNN
+F 1 "2k" V 2600 1400 50  0000 C CNN
 F 2 "" V 2530 1400 50  0000 C CNN
 F 3 "" H 2600 1400 50  0000 C CNN
 	1    2600 1400
@@ -222,8 +201,6 @@ Wire Wire Line
 Wire Wire Line
 	2600 1550 2600 1650
 Connection ~ 2600 1650
-Wire Wire Line
-	2600 1650 3000 1650
 Wire Wire Line
 	3200 2000 3200 1850
 Connection ~ 2600 2000
@@ -257,7 +234,7 @@ Connection ~ 2250 2000
 Wire Wire Line
 	2600 1950 2600 2000
 Wire Wire Line
-	2250 2150 2250 1950
+	2250 1950 2250 2150
 $Comp
 L GND-RESCUE-Design #PWR2
 U 1 1 57075378
@@ -314,7 +291,7 @@ F 3 "" H 2400 3850 50  0000 L CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR4
+L GND-RESCUE-Design #PWR4
 U 1 1 570C1BBD
 P 2500 4250
 F 0 "#PWR4" H 2500 4250 30  0001 C CNN
@@ -498,7 +475,7 @@ $EndComp
 Wire Wire Line
 	5300 2750 5300 2900
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 570DCAC8
 P 5300 3400
 F 0 "#PWR?" H 5300 3400 30  0001 C CNN
@@ -526,4 +503,14 @@ F 3 "" H 6800 2800 50  0000 C CNN
 	1    6800 2800
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	3000 1450 2800 1450
+Wire Wire Line
+	2800 1450 2800 1650
+Wire Wire Line
+	2800 1650 2600 1650
+Wire Wire Line
+	3000 1650 2900 1650
+Wire Wire Line
+	2900 1650 2900 900 
 $EndSCHEMATC
