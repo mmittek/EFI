@@ -1,0 +1,27 @@
+  /*!
+
+\page page_pinalloc Pins allocation 
+\page page_memorymap Memory map 
+<table>
+  <tr><td colspan="2" class="ttitle1">Processor Memory Map</td></tr>
+  <tr><td class="ttitle2">Address</td><td class="ttitle2">Type</td></tr>
+  <tr><td>0xF7FFFFFF<br>0x00000000</td><td class="memtypeReserved"></td>
+  <tr><td>0xFFFFFFFF<br>0xF8000000</td><td class="memtypeIO">I/O</td>
+  <tr><td>0xF0003FFF<br>0xF0003000</td><td class="memtypeIO">I/O</td>
+  <tr><td>0xF0002FFF<br>0xF0002000</td><td class="memtypeIO">I/O</td>
+  <tr><td>0xE00FFFFF<br>0xE0000000</td><td class="memtypeIO">I/O</td>
+  <tr><td>0x5FFFFFFF<br>0x44000000</td><td class="memtypeIO">I/O</td>
+  <tr><td>0x400FFFFF<br>0x400FF000</td><td class="memtypeIO">I/O</td>
+  <tr><td>0x4007FFFF<br>0x40000000</td><td class="memtypeIO">I/O</td>
+  <tr><td>0x20000BFF<br>0x20000000</td><td class="memtypeRAM">RAM</td>
+  <tr><td>0x1FFFFFFF<br>0x1FFFFC00</td><td class="memtypeRAM">RAM</td>
+  <tr><td>0x100000FF<br>0x10000000</td><td class="memtypeFLASH">EEPROM</td>
+  <tr><td>0x0000FFFF<br>0x00000410</td><td class="memtypeFLASH">FLASH</td>
+  <tr><td>0x0000040F<br>0x00000400</td><td class="memtypeRAM">FLASH_CONFIG</td>
+  <tr><td>0x000003FF<br>0x00000000</td><td class="memtypeFLASH">FLASH</td>
+</table>
+<br/>
+
+*/
+
+
