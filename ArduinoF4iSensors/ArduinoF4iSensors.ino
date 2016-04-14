@@ -19,6 +19,8 @@ int TPS_min = 90;
 int TPS_max = 900;
 int TPS_val = 0;
 
+const int VRS_CRANK_pin = 2;
+
 int ECT_pin = A1;
 float ECT_raw = 0;
 float ECT_R = 0;
@@ -37,6 +39,13 @@ float tempC = 0;
 
 //int LED_state = 0;
 
+unsigned long crank_counter = 0;
+
+void VRS_CRANK_ISR() {
+  crank_counter++;
+}
+
+
 void setup() {
   // initialize serial communications at 9600 bps:
   Serial.begin(9600); 
@@ -46,11 +55,15 @@ void setup() {
   pinMode( MAP_pin, INPUT );
   pinMode(ECT_pin, INPUT);
   
+  pinMode(VRS_CRANK_pin, INPUT);
+  attachInterrupt(0, VRS_CRANK_ISR, RISING);
+  
   //pinMode(LED_pin, OUTPUT);
   
   pinMode(COIL_pin, OUTPUT);
   digitalWrite(COIL_pin, 0);
 }
+
 
 void loop() {
   // read the analog in value:
@@ -105,6 +118,8 @@ Serial.print(", IAT_R [ohm]: ");
 Serial.print(RS);
 Serial.print(", IAT [C]: ");
 Serial.print(tempC);
+Serial.print(", IAT [F]: ");
+Serial.print(tempF);
 
 
 Serial.print(", ECT_R [ohm]: ");
@@ -114,6 +129,8 @@ Serial.print(ECT_tempF);
 
   Serial.println(outputValue);   
 
+Serial.print("Crank counter: ");
+  Serial.println(crank_counter);
   
   // COIL TEST
   for (int i=0; i<10; i++) {
