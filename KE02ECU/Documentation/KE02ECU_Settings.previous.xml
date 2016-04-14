@@ -6,7 +6,7 @@
     <Enabled v="Y" />
     <Properties>
       <Component_name v="Cpu" />
-      <CPU_type v="MKE02Z64VQH2" />
+      <CPU_type v="MKE02Z64VLH2" />
       <Initialization_priority v="interrupts enabled" />
       <Watchdog_disable v="yes" />
       <group name="Internal peripherals">
@@ -102,87 +102,5 @@ PE_DEBUGHALT();
       </boolgroup>
     </CompilerProperties>
   </CPU_Bean>
-  <Bean name="AC1" type="AnalogComp_LDD">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="AC1" />
-      <Analog_comparator v="ACMP0" />
-      <boolgroup name="Interrupt service/event" v="Disabled" />
-      <list name="Positive inputs" v="1">
-        <group name="Positive input 0">
-          <Pin v="PTA1/KBI0_P1/FTM0_CH1/ACMP0_IN1/ADC0_SE1" />
-          <boolgroup name="Source component" v="external" />
-        </group>
-      </list>
-      <list name="Negative inputs" v="1">
-        <group name="Negative input 0">
-          <Pin v="DAC6b0_Output" />
-          <boolgroup name="Source component " v="internal">
-            <Component v="DA1" />
-          </boolgroup>
-        </group>
-      </list>
-      <boolgroup name="Comparator output" v="Disabled" />
-      <Analog_comp__mode v="falling or rising edge" />
-      <Hysteresis v="0" />
-      <group name="Initialization">
-        <Enabled_in_init__code v="yes" />
-        <Positive_input v="Positive input 0" />
-        <Negative_input v="Negative input 0" />
-        <group name="Event mask">
-          <OnCompare v="Disabled" />
-        </group>
-      </group>
-    </Properties>
-    <Methods>
-      <Init v="generate code" />
-      <Deinit v="don&amp;apos;t generate code" />
-      <Enable v="don&amp;apos;t generate code" />
-      <Disable v="don&amp;apos;t generate code" />
-      <SetEventMask v="don&amp;apos;t generate code" />
-      <GetEventMask v="don&amp;apos;t generate code" />
-      <SetComparatorMode v="don&amp;apos;t generate code" />
-      <GetOutputValue v="don&amp;apos;t generate code" />
-      <SelectPositiveInput v="don&amp;apos;t generate code" />
-      <SelectNegativeInput v="don&amp;apos;t generate code" />
-      <GetCompareStatus v="don&amp;apos;t generate code" />
-      <ConnectPin v="don&amp;apos;t generate code" />
-      <SetOperationMode v="don&amp;apos;t generate code" />
-      <GetDriverState v="don&amp;apos;t generate code" />
-    </Methods>
-    <Events>
-      <Event_module_name v="Events" />
-      <event name="OnCompare" v="don&amp;apos;t generate code" />
-    </Events>
-  </Bean>
-  <Bean name="DA1" type="DAC_LDD">
-    <Enabled v="Y" />
-    <Properties>
-      <Component_name v="DA1" />
-      <D_A_converter v="DAC6b0" />
-      <boolgroup name="Output pin" v="no" />
-      <Init_value v="0" />
-      <D_A_resolution v="6 bits" />
-      <Data_mode v="unsigned 16 bits, right justified" />
-      <Voltage_reference_source v="external" />
-      <group name="Initialization">
-        <Enabled_in_init__code v="yes" />
-      </group>
-    </Properties>
-    <Methods>
-      <Init v="generate code" />
-      <Deinit v="don&amp;apos;t generate code" />
-      <Enable v="don&amp;apos;t generate code" />
-      <Disable v="don&amp;apos;t generate code" />
-      <SetValue v="generate code" />
-      <ConnectPin v="don&amp;apos;t generate code" />
-      <SetOperationMode v="don&amp;apos;t generate code" />
-      <GetDriverState v="don&amp;apos;t generate code" />
-      <GetError v="don&amp;apos;t generate code" />
-    </Methods>
-    <Events>
-      <Event_module_name v="Events" />
-    </Events>
-  </Bean>
 </PE_PROJECT_SETTINGS_DOCUMENTATION>
 

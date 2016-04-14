@@ -1,0 +1,237 @@
+/*!
+  \page AC1 AC1 (AnalogComp_LDD)
+**         This component "AnalogComp_LDD" encapsulates Analog Comparator
+**         peripheral supported on Freescale CPUs.
+**         This component allows to select inputs to compare,
+**         get the value of the comparator and specify when to generate
+**         the compare event. If available for selected CPU, component
+**         supports filtering and windowing functions.
+
+
+**
+
+- \subpage AC1_settings
+- \subpage AC1_regs_overview  
+- \subpage AC1_regs_details
+- \ref AC1_module "Component documentation" 
+\page AC1_regs_overview Registers Initialization Overview
+This page contains the initialization values for the registers of the peripheral(s) configured
+by the component. 
+<table>
+<tr><td colspan="4" class="ttitle1">AC1 Initialization</td></tr>
+<tr><td class="ttitle2">Address</td><td class="ttitle2">Register</td><td class="ttitle2">Register Value</td><td class="ttitle2">Register Description</td></tr>
+<tr><td>0x4004800C</td><td>SIM_SCGC</td>
+<td class="regNotResetVal">0x40003000</td>
+ <td>SIM_SCGC register, peripheral AC1.</td></tr>
+<tr><td>0x40073000</td><td>ACMP0_CS</td>
+<td class="regNotResetVal">0x00000083</td>
+ <td>ACMP0_CS register, peripheral AC1.</td></tr>
+<tr><td>0x40073001</td><td>ACMP0_C0</td>
+<td class="regNotResetVal">0x00000013</td>
+ <td>ACMP0_C0 register, peripheral AC1.</td></tr>
+<tr><td>0x40073003</td><td>ACMP0_C2</td>
+<td class="regNotResetVal">0x00000002</td>
+ <td>ACMP0_C2 register, peripheral AC1.</td></tr>
+</table>
+Color Denotes Reset Value
+<br/>
+\page AC1_regs_details Register Initialization Details
+This page contains detailed description of initialization values for the 
+registers of the peripheral(s) configured by the component. 
+
+<div class="reghdr1">SIM_SCGC</div>
+<div class="regdiag">
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>31</td><td>30</td><td>29</td><td>28</td><td>27</td><td>26</td><td>25</td><td>24</td><td>23</td>
+<td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">ACMP1</td><td colspan="1" rowspan="2">ACMP0</td>
+<td colspan="1" rowspan="2">ADC</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">IRQ</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">KBI1</td><td colspan="1" rowspan="2">KBI0</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">UART2</td><td colspan="1" rowspan="2">UART1</td>
+<td colspan="1" rowspan="2">UART0</td><td colspan="1" rowspan="2">SPI1</td><td colspan="1" rowspan="2">SPI0</td>
+<td colspan="1" rowspan="2">I2C</td><td colspan="1" rowspan="2">-</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td>
+<td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">SWD</td>
+<td colspan="1" rowspan="2">FLASH</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">CRC</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">FTM2</td>
+<td colspan="1" rowspan="2">FTM1</td><td colspan="1" rowspan="2">FTM0</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">PIT</td>
+<td colspan="1" rowspan="2">RTC</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+        
+</div>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x4004800C</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x40003000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00003000</td></tr>
+<tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
+<tr><td>31</td><td>ACMP1</td><td>0x00</td><td>ACMP1 Clock Gate Control</td>
+<tr><td>30</td><td>ACMP0</td><td>0x01</td><td>ACMP0 Clock Gate Control</td>
+<tr><td>29</td><td>ADC</td><td>0x00</td><td>ADC Clock Gate Control</td>
+<tr><td>27</td><td>IRQ</td><td>0x00</td><td>IRQ Clock Gate Control</td>
+<tr><td>25</td><td>KBI1</td><td>0x00</td><td>KBI1 Clock Gate Control</td>
+<tr><td>24</td><td>KBI0</td><td>0x00</td><td>KBI0 Clock Gate Control</td>
+<tr><td>22</td><td>UART2</td><td>0x00</td><td>UART2 Clock Gate Control</td>
+<tr><td>21</td><td>UART1</td><td>0x00</td><td>UART1 Clock Gate Control</td>
+<tr><td>20</td><td>UART0</td><td>0x00</td><td>UART0 Clock Gate Control</td>
+<tr><td>19</td><td>SPI1</td><td>0x00</td><td>SPI1 Clock Gate Control</td>
+<tr><td>18</td><td>SPI0</td><td>0x00</td><td>SPI0 Clock Gate Control</td>
+<tr><td>17</td><td>I2C</td><td>0x00</td><td>I2C Clock Gate Control</td>
+<tr><td>13</td><td>SWD</td><td>0x01</td><td>SWD (single wire debugger) Clock Gate Control</td>
+<tr><td>12</td><td>FLASH</td><td>0x01</td><td>Flash Clock Gate Control</td>
+<tr><td>10</td><td>CRC</td><td>0x00</td><td>CRC Clock Gate Control</td>
+<tr><td>7</td><td>FTM2</td><td>0x00</td><td>FTM2 Clock Gate Control</td>
+<tr><td>6</td><td>FTM1</td><td>0x00</td><td>FTM1 Clock Gate Control</td>
+<tr><td>5</td><td>FTM0</td><td>0x00</td><td>FTM0 Clock Gate Control</td>
+<tr><td>1</td><td>PIT</td><td>0x00</td><td>PIT Clock Gate Control</td>
+<tr><td>0</td><td>RTC</td><td>0x00</td><td>RTC Clock Gate Control</td>
+</tr></table>
+<div class="reghdr1">ACMP0_CS</div>
+<div class="regdiag">
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">ACE</td><td colspan="1" rowspan="2">HYST</td>
+<td colspan="1" rowspan="2">ACF</td><td colspan="1" rowspan="2">ACIE</td><td colspan="1" rowspan="1">ACO</td>
+<td colspan="1" rowspan="2">ACOPE</td><td colspan="2" rowspan="2">ACMOD</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+<td colspan="1"></td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+        
+</div>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40073000</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000083</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
+<tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
+<tr><td>7</td><td>ACE</td><td>0x01</td><td>Analog Comparator Enable</td>
+<tr><td>6</td><td>HYST</td><td>0x00</td><td>Analog Comparator Hysterisis Selection</td>
+<tr><td>5</td><td>ACF</td><td>0x00</td><td>ACMP Interrupt Flag Bit</td>
+<tr><td>4</td><td>ACIE</td><td>0x00</td><td>ACMP Interrupt Enable</td>
+<tr><td>3</td><td>ACO</td><td>0x00</td><td>ACMP Output</td>
+<tr><td>2</td><td>ACOPE</td><td>0x00</td><td>ACMP Output Pin Enable</td>
+<tr><td>0 - 1</td><td>ACMOD</td><td>0x02</td><td>ACMP MOD</td>
+</tr></table>
+<div class="reghdr1">ACMP0_C0</div>
+<div class="regdiag">
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+<td colspan="2" rowspan="2">ACPSEL</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+<td colspan="2" rowspan="2">ACNSEL</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+        
+</div>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40073001</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000013</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
+<tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
+<tr><td>4 - 5</td><td>ACPSEL</td><td>0x00</td><td>ACMP Positive Input Select</td>
+<tr><td>0 - 1</td><td>ACNSEL</td><td>0x02</td><td>ACMP Negative Input Select</td>
+</tr></table>
+<div class="reghdr1">ACMP0_C2</div>
+<div class="regdiag">
+<table class="regtbl">
+<tr class="trd1r">
+<td class="trd1c">Bit</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td>
+</tr>
+<tr>
+<td class="trd1c">R</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td>
+<td colspan="1" rowspan="2">-</td><td colspan="1" rowspan="2">-</td><td colspan="3" rowspan="2">ACIPE</td>
+</tr>
+<tr>
+<td class="trd1c">W</td>
+</tr>
+<tr class="trd1r">
+<td class="trd1c">Reset</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+        
+</div>
+<table class="regtbl2"><tr><td class="trowtit" colspan="2">Address</td><td colspan="2">0x40073003</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">Initial value</td><td colspan="2">0x00000002</td></tr>
+<tr class="trowtit"><td  class="trowtit" colspan="2">After-reset value</td><td colspan="2">0x00000000</td></tr>
+<tr><td class="ttitle2">Bit</td><td class="ttitle2">Field</td><td class="ttitle2">Value</td><td class="ttitle2">Description</td></tr>
+<tr><td>0 - 2</td><td>ACIPE</td><td>0x00</td><td>ACMP Input Pin Enable</td>
+</tr></table>
+*/
+/*!
+\page AC1_settings Component Settings
+\code
+**          Component name                                 : AC1
+**          Analog comparator                              : ACMP0
+**          Interrupt service/event                        : Disabled
+**          Positive inputs                                : 1
+**            Positive input 0                             : 
+**              Pin                                        : PTA1/KBI0_P1/FTM0_CH1/ACMP0_IN1/ADC0_SE1
+**              Signal                                     : 
+**              Source component                           : external
+**          Negative inputs                                : 1
+**            Negative input 0                             : 
+**              Pin                                        : DAC6b0_Output
+**              Signal                                     : 
+**              Source component                           : internal
+**                Component                                : DA1
+**          Comparator output                              : Disabled
+**          Analog comp. mode                              : falling or rising edge
+**          Hysteresis                                     : 0
+**          Initialization                                 : 
+**            Enabled in init. code                        : yes
+**            Auto initialization                          : no
+**            Positive input                               : Positive input 0
+**            Negative input                               : Negative input 0
+**            Event mask                                   : 
+**              OnCompare                                  : Disabled
+**          CPU clock/configuration selection              : 
+**            Clock configuration 0                        : This component enabled
+**            Clock configuration 1                        : This component disabled
+**            Clock configuration 2                        : This component disabled
+**            Clock configuration 3                        : This component disabled
+**            Clock configuration 4                        : This component disabled
+**            Clock configuration 5                        : This component disabled
+**            Clock configuration 6                        : This component disabled
+**            Clock configuration 7                        : This component disabled
+<h1>
+\endcode
+*/

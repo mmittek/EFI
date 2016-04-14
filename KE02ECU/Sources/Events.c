@@ -1,7 +1,7 @@
 /* ###################################################################
 **     Filename    : Events.c
 **     Project     : KE02ECU
-**     Processor   : MKE02Z64VLH2
+**     Processor   : MKE02Z64VQH2
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler

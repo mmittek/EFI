@@ -1,5 +1,11 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP IRF840
+D 500V Vds, 8A Id, N-Channel Power MOSFET, TO-220AB
+K N-Channel Power MOSFET
+F http://www.vishay.com/docs/91070/91070.pdf
+$ENDCMP
+#
 $CMP PSMN022-30PL
 D 30 Vds, N-Channel MOSFET, TO-220AB
 K N-Channel MOSFET

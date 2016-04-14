@@ -1,7 +1,7 @@
 /* ###################################################################
 **     Filename    : Events.h
 **     Project     : KE02ECU
-**     Processor   : MKE02Z64VLH2
+**     Processor   : MKE02Z64VQH2
 **     Component   : Events
 **     Version     : Driver 01.00
 **     Compiler    : GNU C Compiler
@@ -33,6 +33,8 @@
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
+#include "AC1.h"
+#include "DA1.h"
 
 #ifdef __cplusplus
 extern "C" {

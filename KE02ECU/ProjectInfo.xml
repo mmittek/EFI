@@ -50,7 +50,9 @@
   </PATHS>
   <FILES>
     <GeneratedCs>
+      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/AC1.c</PathName>
       <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/Cpu.c</PathName>
+      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/DA1.c</PathName>
       <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/PE_LDD.c</PathName>
       <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/Vectors.c</PathName>
       <PathName>/home/mmittek/EFI/KE02ECU/Project_Settings/Startup_Code/startup.c</PathName>
@@ -58,7 +60,9 @@
       <PathName>/home/mmittek/EFI/KE02ECU/Sources/main.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
+      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/AC1.h</PathName>
       <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/Cpu.h</PathName>
+      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/DA1.h</PathName>
       <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/IO_Map.h</PathName>
       <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/PE_Const.h</PathName>
       <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/PE_Error.h</PathName>
