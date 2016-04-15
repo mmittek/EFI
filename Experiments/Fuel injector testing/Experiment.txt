@@ -1,0 +1,3 @@
+- made fixture to attach pump and injectors rail
+- captured data when controlling the injector using IRF840 (low side) from Arduino (project attached)
+- Results presented in the table
