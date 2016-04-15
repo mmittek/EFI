@@ -8,7 +8,7 @@
 **     Repository  : Kinetis
 **     Datasheet   : MKE02Z64M20SF0RM, Rev.2.1, Apr-23 2013; KEAZ64RM, Rev.1, Sep 2013
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-04-13, 16:10, # CodeGen: 1
+**     Date/Time   : 2016-04-14, 22:26, # CodeGen: 8
 **     Abstract    :
 **
 **     Settings    :
@@ -178,8 +178,14 @@
 /* MODULE Cpu. */
 
 /* {Default RTOS Adapter} No RTOS includes */
-#include "AC1.h"
-#include "DA1.h"
+#include "Cap1.h"
+#include "CaptureLdd1.h"
+#include "TU1.h"
+#include "Cap2.h"
+#include "CaptureLdd2.h"
+#include "TI1.h"
+#include "TimerIntLdd1.h"
+#include "TU2.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -326,6 +332,13 @@ void PE_low_level_init(void)
              ));
   /* NVIC_IPR1: PRI_6=0 */
   NVIC_IPR1 &= (uint32_t)~(uint32_t)(NVIC_IP_PRI_6(0xFF));
+  /* ### Capture_LDD "CaptureLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)CaptureLdd1_Init(NULL);
+  /* ### Capture_LDD "CaptureLdd2" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)CaptureLdd2_Init(NULL);
+  /* ### TimerInt_LDD "TimerIntLdd1" component auto initialization. Auto initialization feature can be disabled by component property "Auto initialization". */
+  (void)TimerIntLdd1_Init(NULL);
+  /* ### TimerInt "TI1" init code ... */
   __EI();
 }
   /* Flash configuration field */

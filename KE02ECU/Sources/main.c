@@ -30,14 +30,22 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
-#include "AC1.h"
-#include "DA1.h"
+#include "Cap1.h"
+#include "CaptureLdd1.h"
+#include "TU1.h"
+#include "Cap2.h"
+#include "CaptureLdd2.h"
+#include "TI1.h"
+#include "TimerIntLdd1.h"
+#include "TU2.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
 /* User includes (#include below this line is not maintained by Processor Expert) */
+
+#include "ECU.h"
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
@@ -51,8 +59,16 @@ int main(void)
 
   /* Write your code here */
   /* For example: for(;;) { } */
+  int i=0;
   while(1) {
-	  printf("---- TEST \n");
+	  if(SysTick_us %1000000 == 0){
+		  printf("---- TEST %d\n", i);
+		  	  printf("VRS0: %d\n", VRS0_capture);
+		  	  printf("VRS1: %d\n", VRS1_capture);
+
+
+		  i++;
+	  }
   }
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/

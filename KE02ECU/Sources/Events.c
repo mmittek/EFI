@@ -33,8 +33,11 @@
 extern "C" {
 #endif 
 
+unsigned long SysTick_us = 0;
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+
+#include "ECU.h"
 
 /*
 ** ===================================================================
@@ -52,6 +55,68 @@ extern "C" {
 void Cpu_OnNMIINT(void)
 {
   /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  Cap1_OnCapture (module Events)
+**
+**     Component   :  Cap1 [Capture]
+**     Description :
+**         This event is called on capturing of Timer/Counter actual
+**         value (only when the component is enabled - <Enable> and the
+**         events are enabled - <EnableEvent>.This event is available
+**         only if a <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void Cap1_OnCapture(void)
+{
+  /* Write your code here ... */
+	Cap1_GetCaptureValue(VRS0_capture);
+
+}
+
+/*
+** ===================================================================
+**     Event       :  Cap2_OnCapture (module Events)
+**
+**     Component   :  Cap2 [Capture]
+**     Description :
+**         This event is called on capturing of Timer/Counter actual
+**         value (only when the component is enabled - <Enable> and the
+**         events are enabled - <EnableEvent>.This event is available
+**         only if a <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void Cap2_OnCapture(void)
+{
+  /* Write your code here ... */
+	//VRS1_capture = Cap2_TCapturedValue;
+	Cap2_GetCaptureValue(VRS1_capture);
+}
+
+/*
+** ===================================================================
+**     Event       :  TI1_OnInterrupt (module Events)
+**
+**     Component   :  TI1 [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void TI1_OnInterrupt(void)
+{
+  /* Write your code here ... */
+	SysTick_us++;
 }
 
 /* END Events */

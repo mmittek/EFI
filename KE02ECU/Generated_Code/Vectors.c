@@ -6,7 +6,7 @@
 **     Version     : Component 01.044, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-04-13, 16:10, # CodeGen: 1
+**     Date/Time   : 2016-04-14, 22:26, # CodeGen: 8
 **     Abstract    :
 **
 **     Settings    :
@@ -55,8 +55,14 @@
 */         
 
   #include "Cpu.h"
-  #include "AC1.h"
-  #include "DA1.h"
+  #include "Cap1.h"
+  #include "CaptureLdd1.h"
+  #include "TU1.h"
+  #include "Cap2.h"
+  #include "CaptureLdd2.h"
+  #include "TI1.h"
+  #include "TimerIntLdd1.h"
+  #include "TU2.h"
   #include "Events.h"
 
 
@@ -91,7 +97,7 @@
     (tIsrFunc)&Cpu_Interrupt,          /* 0x0C  0x00000030   -   ivINT_Reserved12              unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x0D  0x00000034   -   ivINT_Reserved13              unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x0E  0x00000038   -   ivINT_PendableSrvReq          unused by PE */
-    (tIsrFunc)&Cpu_Interrupt,          /* 0x0F  0x0000003C   -   ivINT_SysTick                 unused by PE */
+    (tIsrFunc)&TU2_Interrupt,          /* 0x0F  0x0000003C   2   ivINT_SysTick                 used by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x10  0x00000040   -   ivINT_Reserved16              unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x11  0x00000044   -   ivINT_Reserved17              unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x12  0x00000048   -   ivINT_Reserved18              unused by PE */
@@ -111,7 +117,7 @@
     (tIsrFunc)&Cpu_Interrupt,          /* 0x20  0x00000080   -   ivINT_ACMP0                   unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x21  0x00000084   -   ivINT_FTM0                    unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x22  0x00000088   -   ivINT_FTM1                    unused by PE */
-    (tIsrFunc)&Cpu_Interrupt,          /* 0x23  0x0000008C   -   ivINT_FTM2                    unused by PE */
+    (tIsrFunc)&TU1_Interrupt,          /* 0x23  0x0000008C   2   ivINT_FTM2                    used by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x24  0x00000090   -   ivINT_RTC                     unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x25  0x00000094   -   ivINT_ACMP1                   unused by PE */
     (tIsrFunc)&Cpu_Interrupt,          /* 0x26  0x00000098   -   ivINT_PIT_CH0                 unused by PE */

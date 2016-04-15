@@ -35,61 +35,75 @@
     <FLASHsize>64k</FLASHsize>
   </PROCESSOR>
   <PATHS>
-    <LinkerCommandFile>/home/mmittek/EFI/KE02ECU/Project_Settings/Linker_Files/ProcessorExpert.ld</LinkerCommandFile>
+    <LinkerCommandFile>/Users/mmittek/EFI/KE02ECU/Project_Settings/Linker_Files/ProcessorExpert.ld</LinkerCommandFile>
     <IncludePaths>
-      <Path>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/</Path>
-      <Path>/home/mmittek/EFI/KE02ECU/Static_Code/IO_Map/</Path>
-      <Path>/home/mmittek/EFI/KE02ECU/Sources/</Path>
-      <Path>/home/mmittek/EFI/KE02ECU/Generated_Code/</Path>
+      <Path>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/</Path>
+      <Path>/Users/mmittek/EFI/KE02ECU/Static_Code/IO_Map/</Path>
+      <Path>/Users/mmittek/EFI/KE02ECU/Sources/</Path>
+      <Path>/Users/mmittek/EFI/KE02ECU/Generated_Code/</Path>
     </IncludePaths>
     <SourceCodePaths>
-      <Path>/home/mmittek/EFI/KE02ECU/Generated_Code/</Path>
-      <Path>/home/mmittek/EFI/KE02ECU/Project_Settings/Startup_Code/</Path>
-      <Path>/home/mmittek/EFI/KE02ECU/Sources/</Path>
+      <Path>/Users/mmittek/EFI/KE02ECU/Generated_Code/</Path>
+      <Path>/Users/mmittek/EFI/KE02ECU/Project_Settings/Startup_Code/</Path>
+      <Path>/Users/mmittek/EFI/KE02ECU/Sources/</Path>
     </SourceCodePaths>
   </PATHS>
   <FILES>
     <GeneratedCs>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/AC1.c</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/Cpu.c</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/DA1.c</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/PE_LDD.c</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/Vectors.c</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Project_Settings/Startup_Code/startup.c</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Sources/Events.c</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Sources/main.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/Cap1.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/Cap2.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/CaptureLdd1.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/CaptureLdd2.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/Cpu.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/PE_LDD.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/TI1.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/TU1.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/TU2.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/TimerIntLdd1.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/Vectors.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Project_Settings/Startup_Code/startup.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Sources/ECU.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Sources/Events.c</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Sources/main.c</PathName>
     </GeneratedCs>
     <GeneratedHs>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/AC1.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/Cpu.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/DA1.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/IO_Map.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/PE_Const.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/PE_Error.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/PE_LDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Generated_Code/PE_Types.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Sources/Events.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/IO_Map/MKE02Z2.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/ADC_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/CMP_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/CRC_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/FTMRH_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/FTM_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/GPIO_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/I2C_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/IRQ_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/KBI_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/MCM_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/PDD_Types.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/PIT_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/PMC_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/PORT_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/RTC0_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/SIM_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/SPI_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/SysTick_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/UART_PDD.h</PathName>
-      <PathName>/home/mmittek/EFI/KE02ECU/Static_Code/PDD/WDOG_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/Cap1.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/Cap2.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/CaptureLdd1.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/CaptureLdd2.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/Cpu.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/IO_Map.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/PE_Const.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/PE_Error.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/PE_LDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/PE_Types.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/TI1.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/TU1.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/TU2.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Generated_Code/TimerIntLdd1.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Sources/ECU.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Sources/Events.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/IO_Map/MKE02Z2.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/ADC_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/CMP_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/CRC_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/FTMRH_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/FTM_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/GPIO_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/I2C_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/IRQ_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/KBI_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/MCM_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/PDD_Types.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/PIT_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/PMC_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/PORT_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/RTC0_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/SIM_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/SPI_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/SysTick_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/UART_PDD.h</PathName>
+      <PathName>/Users/mmittek/EFI/KE02ECU/Static_Code/PDD/WDOG_PDD.h</PathName>
     </GeneratedHs>
   </FILES>
   <OPTIONS>

@@ -23,8 +23,11 @@
 <br/>
 
 \page page_components Components 
-- \subpage DA1
-- \subpage AC1
+- \subpage TU1
+- \subpage CaptureLdd1
+- \subpage CaptureLdd2
+- \subpage TU2
+- \subpage TimerIntLdd1
 
 */
 

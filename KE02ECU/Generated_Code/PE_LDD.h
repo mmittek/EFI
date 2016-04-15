@@ -6,7 +6,7 @@
 **     Version     : Component 01.044, Driver 01.04, CPU db: 3.00.000
 **     Repository  : Kinetis
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-04-13, 16:10, # CodeGen: 1
+**     Date/Time   : 2016-04-14, 22:26, # CodeGen: 8
 **     Abstract    :
 **
 **     Settings    :
@@ -61,8 +61,14 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
-#include "AC1.h"
-#include "DA1.h"
+#include "Cap1.h"
+#include "CaptureLdd1.h"
+#include "TU1.h"
+#include "Cap2.h"
+#include "CaptureLdd2.h"
+#include "TI1.h"
+#include "TimerIntLdd1.h"
+#include "TU2.h"
 
 
 /*
