@@ -86,25 +86,6 @@ LIBS:ESD_Protection
 LIBS:Altera
 LIBS:microchip_dspic33dsc
 LIBS:pspice
-LIBS:phoenix
-LIBS:cvra
-LIBS:_wireless
-LIBS:_transceiver
-LIBS:_stm32
-LIBS:_sensors
-LIBS:_power
-LIBS:_motor_drivers
-LIBS:_linear-regulators
-LIBS:_ic
-LIBS:_div
-LIBS:_connectors
-LIBS:_charge-pump-regulators
-LIBS:_audio
-LIBS:_antenna
-LIBS:National
-LIBS:Mec
-LIBS:IRF
-LIBS:Comp2014
 LIBS:logo
 LIBS:Design-cache
 EELAYER 25 0
@@ -370,7 +351,7 @@ VRS_TH
 Wire Wire Line
 	1100 1100 900  1100
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 570FFE0E
 P 900 1400
 F 0 "#PWR?" H 900 1400 30  0001 C CNN
@@ -406,7 +387,7 @@ F 3 "" H 3000 1400 50  0000 C CNN
 $EndComp
 Connection ~ 3000 1250
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 57101C04
 P 3000 1550
 F 0 "#PWR?" H 3000 1550 30  0001 C CNN
@@ -438,7 +419,7 @@ Wire Wire Line
 Wire Wire Line
 	1500 1800 1200 1800
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 5710466B
 P 1500 1850
 F 0 "#PWR?" H 1500 1850 30  0001 C CNN
@@ -454,7 +435,7 @@ VRS0_HIGH
 Wire Wire Line
 	2800 1250 3750 1250
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 57109002
 P 3950 1650
 F 0 "#PWR?" H 3950 1650 30  0001 C CNN
@@ -530,7 +511,7 @@ F 3 "" H 3000 2350 50  0000 C CNN
 $EndComp
 Connection ~ 3000 2200
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 5710CE0E
 P 3000 2500
 F 0 "#PWR?" H 3000 2500 30  0001 C CNN
@@ -556,7 +537,7 @@ VRS1_HIGH
 Wire Wire Line
 	2800 2200 3750 2200
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 5710CE1C
 P 3950 2600
 F 0 "#PWR?" H 3950 2600 30  0001 C CNN
@@ -651,4 +632,40 @@ F 3 "" H 2500 2700 60  0000 C CNN
 $EndComp
 Text Notes 4500 750  2    60   ~ 0
 VRS conditioning as a half-cycle rectifiers\nused for zero crossing detection
+$Comp
+L C 0.01pF
+U 1 1 57118ACC
+P 6750 2350
+F 0 "0.01pF" H 6775 2450 50  0000 L CNN
+F 1 "C" H 6775 2250 50  0000 L CNN
+F 2 "" H 6788 2200 50  0000 C CNN
+F 3 "" H 6750 2350 50  0000 C CNN
+	1    6750 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L R 10k
+U 1 1 57118BBF
+P 6600 2200
+F 0 "10k" V 6680 2200 50  0000 C CNN
+F 1 "R" V 6600 2200 50  0000 C CNN
+F 2 "" V 6530 2200 50  0000 C CNN
+F 3 "" H 6600 2200 50  0000 C CNN
+	1    6600 2200
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 57118D68
+P 6750 2500
+F 0 "#PWR?" H 6750 2250 50  0001 C CNN
+F 1 "GND" H 6750 2350 50  0000 C CNN
+F 2 "" H 6750 2500 50  0000 C CNN
+F 3 "" H 6750 2500 50  0000 C CNN
+	1    6750 2500
+	1    0    0    -1  
+$EndComp
+Text GLabel 6450 2200 0    60   Input ~ 0
+VRS_OUT
+Connection ~ 6750 2200
 $EndSCHEMATC

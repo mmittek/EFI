@@ -6,11 +6,6 @@
 const int VRS0_pin = 2;
 const int VRS1_pin = 3;
 
-const int IND0_pin = 11;
-int IND0_state = 0;
-const int IND1_pin = 12;
-int IND1_state = 0;
-
 volatile unsigned int VRS0_events = 0;
 volatile unsigned int VRS1_events = 0;
 
@@ -93,45 +88,33 @@ void VRS1_isr() {
 
 int ledstate = 0;
 
+const int ECU_coilDwellMs = 2;
+// 1 2 4 3
+uint16_t ECU_ignitionTiming[] = {90, 270, 630, 450};
+uint8_t ECU_coilPins[] = {9, 10, 11, 12};
+const int ECU_cylinders = 4;
+
 ISR (TIMER2_COMPA_vect) {
   //long diff;
+  uint8_t i;
   ECU_cycleTimeMs++;
-  ledstate = !ledstate;
-  digitalWrite(11,ledstate);
   
   
-  if(ECU_cycleTimeMs == ((90*ECU_msPerRotation)/360)-2) {
-    digitalWrite(12,1);
+  for(i=0; i<ECU_cylinders; i++) {
+    // Coil dwelling
+    if(ECU_cycleTimeMs == ((ECU_ignitionTiming[i]*ECU_msPerRotation)/360)-ECU_coilDwellMs)  {
+      digitalWrite(ECU_coilPins[i],1);
+    }
+    
+    // Coil dwell stop - discharge BANG!
+    if(ECU_cycleTimeMs == ((ECU_ignitionTiming[i]*ECU_msPerRotation)/360))  {
+      digitalWrite(ECU_coilPins[i],0);
+    }
+    
   }
-
-  if(ECU_cycleTimeMs == (90*ECU_msPerRotation)/360) {
-    digitalWrite(12,0);
-  }
-
   
-  if(ECU_cycleTimeMs == ((270*ECU_msPerRotation)/360)-2) {
-    digitalWrite(12,1);
-  }
 
-  if(ECU_cycleTimeMs == (270*ECU_msPerRotation)/360) {
-    digitalWrite(12,0);
-  }
 
-  if(ECU_cycleTimeMs == ((450*ECU_msPerRotation)/360)-2) {
-    digitalWrite(12,1);
-  }
-
-  if(ECU_cycleTimeMs == (450*ECU_msPerRotation)/360) {
-    digitalWrite(12,0);
-  }
-
-  if(ECU_cycleTimeMs == ((630*ECU_msPerRotation)/360)-2) {
-    digitalWrite(12,1);
-  }
-
-  if(ECU_cycleTimeMs == (630*ECU_msPerRotation)/360) {
-    digitalWrite(12,0);
-  }
   
   
 }
@@ -142,12 +125,12 @@ void setup() {
   pinMode(VRS0_pin, INPUT);
   pinMode(VRS1_pin, INPUT);
 
-pinMode(11, OUTPUT);
 
-  pinMode(IND0_pin, OUTPUT);
-  digitalWrite(IND0_pin, 0);
-  pinMode(IND1_pin, OUTPUT);
-  digitalWrite(IND1_pin, 0);
+  
+  for(int i=0; i<ECU_cylinders; i++) {
+    pinMode( ECU_coilPins[i], OUTPUT );
+    digitalWrite( ECU_coilPins[i], 0 );
+  }
   
   attachInterrupt( 0, VRS0_isr, FALLING );
   attachInterrupt( 1, VRS1_isr, RISING);
