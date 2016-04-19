@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Copyright : 2012 Freescale, Inc. All Rights Reserved.
+
+  This configuration file is a standard interchange file that's format is maintained
+  by Freescale, Inc. The configuration file is a derivative work
+  of the Processor Expert Software technology licensed for use by customers
+  as defined as SOFTWARE in the product's End User License Agreement. This file
+  and format are free to use and distribute for read-only purposes. You do not have
+  the right to create these files or modify this format or use for any purposes other
+  than interchange with the Processor Expert Software technology.
+
+  THIS SOFTWARE IS PROVIDED "AS IS".
+
+  NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT
+  LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+  PURPOSE APPLY TO THIS SOFTWARE. IN NO EVENT WILL FREESCALE BE LIABLE, WHETHER
+  IN CONTRACT, TORT, OR OTHERWISE, FOR ANY INCIDENTAL, SPECIAL, INDIRECT,
+  CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR
+  ANY LOSS OF USE, LOSS OF TIME, INCONVENIENCE, COMMERCIAL LOSS, OR LOST PROFITS,
+  SAVINGS, OR REVENUES TO THE FULL EXTENT SUCH MAY BE DISCLAIMED BY LAW.
+
+-->
+<export xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProjectInfoDescription.xsd">
+  <PROCESSOR>
+    <DeviceID>MK02FN128xxx10</DeviceID>
+    <CoreNum>1</CoreNum>
+    <Cores>
+      <Core>
+        <CoreSet>Cortex-M4</CoreSet>
+      </Core>
+    </Cores>
+    <SRAMsize>16k</SRAMsize>
+    <FLASHsize>128k</FLASHsize>
+  </PROCESSOR>
+  <PATHS>
+    <LinkerCommandFile>/Users/mmittek/EFI/MK02ECU/Project_Settings/Linker_Files/ProcessorExpert.ld</LinkerCommandFile>
+    <IncludePaths>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/inc/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/sim/MK02F12810/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/clock/MK02F12810/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/inc/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/osa/inc/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/drivers/inc/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/CMSIS/Include/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/include/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/utilities/src/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/utilities/inc/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/startup/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/Generated_Code/SDK/platform/devices/MK02F12810/startup/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/Sources/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/Generated_Code/</Path>
+    </IncludePaths>
+    <SourceCodePaths>
+      <Path>/Users/mmittek/EFI/MK02ECU/Generated_Code/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/startup/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/drivers/src/gpio/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/drivers/src/pit/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/gpio/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/mcg/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/osc/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/pit/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/port/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/sim/MK02F12810/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/uart/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/osa/src/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/clock/MK02F12810/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/clock/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/hwtimer/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/interrupt/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/utilities/src/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/Sources/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/Static_Code/System/</Path>
+      <Path>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/startup/gcc/</Path>
+    </SourceCodePaths>
+  </PATHS>
+  <FILES>
+    <GeneratedCs>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/Cpu.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/clockMan1.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/gpio1.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/hardware_init.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/hwTim1.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/osa1.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/pin_mux.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/startup/system_MK02F12810.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/startup.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/drivers/src/gpio/fsl_gpio_common.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/drivers/src/gpio/fsl_gpio_driver.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/drivers/src/pit/fsl_pit_common.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/gpio/fsl_gpio_hal.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/mcg/fsl_mcg_hal.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/mcg/fsl_mcg_hal_modes.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/osc/fsl_osc_hal.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/pit/fsl_pit_hal.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/port/fsl_port_hal.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/sim/MK02F12810/fsl_sim_hal_MK02F12810.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/uart/fsl_uart_hal.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/osa/src/fsl_os_abstraction_bm.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/clock/MK02F12810/fsl_clock_MK02F12810.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/clock/fsl_clock_manager.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/clock/fsl_clock_manager_common.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/hwtimer/fsl_hwtimer.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/hwtimer/fsl_hwtimer_pit.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/interrupt/fsl_interrupt_manager.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/utilities/src/fsl_debug_console.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/utilities/src/fsl_misc_utilities.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/utilities/src/print_scan.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Sources/Events.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Sources/main.c</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Static_Code/System/PE_low_level_init.c</PathName>
+    </GeneratedCs>
+    <GeneratedHs>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/Cpu.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/PE_low_level_init.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/SDK/platform/devices/MK02F12810/startup/system_MK02F12810.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/board.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/clockMan1.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/gpio1.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/hwTim1.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/osa1.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Generated_Code/pin_mux.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/CMSIS/Include/arm_common_tables.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/CMSIS/Include/arm_const_structs.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/CMSIS/Include/arm_math.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/CMSIS/Include/core_cm4.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/CMSIS/Include/core_cmFunc.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/CMSIS/Include/core_cmInstr.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/CMSIS/Include/core_cmSimd.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/include/MK02F12810.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/include/MK02F12810_extension.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/include/MK02F12810_features.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/include/fsl_bitaccess.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/fsl_device_registers.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/startup.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/drivers/inc/fsl_gpio_driver.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/inc/fsl_gpio_hal.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/inc/fsl_mcg_hal.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/inc/fsl_mcg_hal_modes.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/inc/fsl_osc_hal.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/inc/fsl_pit_hal.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/inc/fsl_port_hal.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/inc/fsl_sim_hal.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/inc/fsl_uart_hal.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/hal/src/sim/MK02F12810/fsl_sim_hal_MK02F12810.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/osa/inc/fsl_os_abstraction.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/osa/inc/fsl_os_abstraction_bm.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/inc/fsl_clock_manager.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/inc/fsl_hwtimer.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/inc/fsl_hwtimer_pit.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/inc/fsl_interrupt_manager.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/system/src/clock/MK02F12810/fsl_clock_MK02F12810.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/utilities/inc/fsl_debug_console.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/utilities/inc/fsl_misc_utilities.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/utilities/src/print_scan.h</PathName>
+      <PathName>/Users/mmittek/EFI/MK02ECU/Sources/Events.h</PathName>
+    </GeneratedHs>
+    <GeneratedASMs>
+      <PathName>/Users/mmittek/EFI/MK02ECU/SDK/platform/devices/MK02F12810/startup/gcc/startup_MK02F12810.S</PathName>
+    </GeneratedASMs>
+  </FILES>
+  <OPTIONS>
+    <BuildOptions>
+      <CCoptList>
+        <Option>-D CPU_MK02FN128VLF10</Option>
+        <Option>-D FSL_OSA_BM_TIMER_CONFIG=2</Option>  
+      </CCoptList>
+    </BuildOptions>
+  </OPTIONS>
+</export>
