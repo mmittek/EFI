@@ -8,7 +8,7 @@
 **     Repository  : KSDK 1.3.0
 **     Datasheet   : K02P64M100SFARM, Rev. 0, February 14, 2014
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-04-19, 14:03, # CodeGen: 1
+**     Date/Time   : 2016-04-19, 15:18, # CodeGen: 3
 **     Abstract    :
 **
 **     Settings    :
@@ -107,16 +107,16 @@ void Common_Init(void)
 void Components_Init(void)
 {
 
-  /*! hwTim1 Auto initialization start */
-  HWTIMER_SYS_Init(&hwTim1_Handle, &FSL_HWTIM1_LL_DEVIF, FSL_HWTIM1_LL_ID, NULL);  
-  HWTIMER_SYS_SetPeriod(&hwTim1_Handle, FSL_HWTIM1_PERIOD_CNF0);                
-  HWTIMER_SYS_RegisterCallback(&hwTim1_Handle, &hwTim1_OnTimeOut, FSL_HWTIM1_LL_CALLBACK_DATA);
-  HWTIMER_SYS_Start(&hwTim1_Handle);
-  /*! hwTim1 Auto initialization end */
+  /*! tim100us Auto initialization start */
+  HWTIMER_SYS_Init(&tim100us_Handle, &FSL_TIM100US_LL_DEVIF, FSL_TIM100US_LL_ID, NULL);  
+  HWTIMER_SYS_SetPeriod(&tim100us_Handle, FSL_TIM100US_PERIOD_CNF0);                
+  HWTIMER_SYS_RegisterCallback(&tim100us_Handle, &tim100us_OnTimeOut, FSL_TIM100US_LL_CALLBACK_DATA);
+  HWTIMER_SYS_Start(&tim100us_Handle);
+  /*! tim100us Auto initialization end */
   
-  /*! gpio1 Auto initialization start */
-  GPIO_DRV_Init(gpio1_InpConfig0,gpio1_OutConfig0);
-  /*! gpio1 Auto initialization end */
+  /*! gpio Auto initialization start */
+  GPIO_DRV_Init(gpio_InpConfig0,gpio_OutConfig0);
+  /*! gpio Auto initialization end */
   
 }
 #endif /* CPU_COMPONENTS_INIT */

@@ -197,36 +197,36 @@ Module "intMan1"   (component fsl_interrupt_manager)
    - intMan1_INT_SYS_EnableIRQGlobal -Enables system interrupt.
    - intMan1_INT_SYS_DisableIRQGlobal -Disable system interrupt.
 
-Module "hwTim1"    (component fsl_hwtimer)
-   - hwTim1_HWTIMER_SYS_Init -Initializes a caller allocated structure according to given parameters.
-   - hwTim1_HWTIMER_SYS_Deinit -Deinitializes the HwTimer.
-   - hwTim1_HWTIMER_SYS_SetPeriod -Sets the period of the HwTimer.
-   - hwTim1_HWTIMER_SYS_GetPeriod -Gets the period of the HwTimer.
-   - hwTim1_HWTIMER_SYS_Start -Enables the timer and leaves it running.
-   - hwTim1_HWTIMER_SYS_Stop -The timer stops counting after this function is called.
-   - hwTim1_HWTIMER_SYS_GetModulo -The function returns period of the timer in sub-ticks.
-   - hwTim1_HWTIMER_SYS_GetTime -The function reads the current value of the HwTimer.
-   - hwTim1_HWTIMER_SYS_GetTicks -The function reads the current value of the HwTimer.
-   - hwTim1_HWTIMER_SYS_RegisterCallback -Registers function to be called when the timer expires.
-   - hwTim1_HWTIMER_SYS_BlockCallback -The function is used to block callbacks in circumstances when execution of the callback 
-                function is undesired.
-   - hwTim1_HWTIMER_SYS_UnblockCallback -The function is used to unblock previously blocked callbacks.
-   - hwTim1_HWTIMER_SYS_CancelCallback -The function cancels pending callback, if any.
+Module "tim100us"  (component fsl_hwtimer)
+   - tim100us_HWTIMER_SYS_Init -Initializes a caller allocated structure according to given parameters.
+   - tim100us_HWTIMER_SYS_Deinit -Deinitializes the HwTimer.
+   - tim100us_HWTIMER_SYS_SetPeriod -Sets the period of the HwTimer.
+   - tim100us_HWTIMER_SYS_GetPeriod -Gets the period of the HwTimer.
+   - tim100us_HWTIMER_SYS_Start -Enables the timer and leaves it running.
+   - tim100us_HWTIMER_SYS_Stop -The timer stops counting after this function is called.
+   - tim100us_HWTIMER_SYS_GetModulo -The function returns period of the timer in sub-ticks.
+   - tim100us_HWTIMER_SYS_GetTime -The function reads the current value of the HwTimer.
+   - tim100us_HWTIMER_SYS_GetTicks -The function reads the current value of the HwTimer.
+   - tim100us_HWTIMER_SYS_RegisterCallback -Registers function to be called when the timer expires.
+   - tim100us_HWTIMER_SYS_BlockCallback -The function is used to block callbacks in circumstances when execution of the 
+                callback function is undesired.
+   - tim100us_HWTIMER_SYS_UnblockCallback -The function is used to unblock previously blocked callbacks.
+   - tim100us_HWTIMER_SYS_CancelCallback -The function cancels pending callback, if any.
 
-Module "gpio1"     (component fsl_gpio)
-   - gpio1_GPIO_DRV_Init -Initializes all GPIO pins used by the board.
-   - gpio1_GPIO_DRV_InputPinInit -Initializes one GPIO input pin used by the board.
-   - gpio1_GPIO_DRV_OutputPinInit -Initializes one GPIO output pin used by the board.
-   - gpio1_GPIO_DRV_GetPinDir -Gets the current direction of the individual GPIO pin.
-   - gpio1_GPIO_DRV_SetPinDir -Sets the current direction of the individual GPIO pin.
-   - gpio1_GPIO_DRV_WritePinOutput -Sets the output level of the individual GPIO pin to the logic 1 or 0.
-   - gpio1_GPIO_DRV_SetPinOutput -Sets the output level of the individual GPIO pin to the logic 1.
-   - gpio1_GPIO_DRV_ClearPinOutput -Sets the output level of the individual GPIO pin to the logic 0.
-   - gpio1_GPIO_DRV_TogglePinOutput -Reverses current output logic of the individual GPIO pin.
-   - gpio1_GPIO_DRV_ReadPinInput -Reads the current input value of the individual GPIO pin.
-   - gpio1_GPIO_DRV_SetDigitalFilterCmd -Enables or disables the digital filter in a single port.
-   - gpio1_GPIO_DRV_IsPinIntPending -Reads the individual pin-interrupt status flag.
-   - gpio1_GPIO_DRV_ClearPinIntFlag -Clears the individual GPIO pin interrupt status flag.
+Module "gpio"      (component fsl_gpio)
+   - gpio_GPIO_DRV_Init -Initializes all GPIO pins used by the board.
+   - gpio_GPIO_DRV_InputPinInit -Initializes one GPIO input pin used by the board.
+   - gpio_GPIO_DRV_OutputPinInit -Initializes one GPIO output pin used by the board.
+   - gpio_GPIO_DRV_GetPinDir -Gets the current direction of the individual GPIO pin.
+   - gpio_GPIO_DRV_SetPinDir -Sets the current direction of the individual GPIO pin.
+   - gpio_GPIO_DRV_WritePinOutput -Sets the output level of the individual GPIO pin to the logic 1 or 0.
+   - gpio_GPIO_DRV_SetPinOutput -Sets the output level of the individual GPIO pin to the logic 1.
+   - gpio_GPIO_DRV_ClearPinOutput -Sets the output level of the individual GPIO pin to the logic 0.
+   - gpio_GPIO_DRV_TogglePinOutput -Reverses current output logic of the individual GPIO pin.
+   - gpio_GPIO_DRV_ReadPinInput -Reads the current input value of the individual GPIO pin.
+   - gpio_GPIO_DRV_SetDigitalFilterCmd -Enables or disables the digital filter in a single port.
+   - gpio_GPIO_DRV_IsPinIntPending -Reads the individual pin-interrupt status flag.
+   - gpio_GPIO_DRV_ClearPinIntFlag -Clears the individual GPIO pin interrupt status flag.
 
 Module "Cpu"       (component MK02FN128LF10)
    - Cpu_SystemInit -This method configures the oscillator (PLL) that is part of the microcontroller device. SystemInit is 

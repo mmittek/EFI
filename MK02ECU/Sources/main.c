@@ -33,8 +33,8 @@
 #include "clockMan1.h"
 #include "pin_mux.h"
 #include "osa1.h"
-#include "hwTim1.h"
-#include "gpio1.h"
+#include "tim100us.h"
+#include "gpio.h"
 #if CPU_INIT_CONFIG
   #include "Init_Config.h"
 #endif

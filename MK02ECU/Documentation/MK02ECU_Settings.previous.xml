@@ -25,7 +25,6 @@
         <Stack_size v="1024" />
         <Heap_size v="0" />
         <Set_memory_segments_to_default v="Click to set default &amp;gt;" />
-        <Vector_table_copy_in_RAM v="yes" />
         <Default_memory_for_interrupts v="INTERNAL RAM" />
         <Default_memory_for_code v="INTERNAL RAM" />
         <Default_memory_for_data v="INTERNAL RAM" />
@@ -74,11 +73,11 @@
       </boolgroup>
     </CompilerProperties>
   </CPU_Bean>
-  <CPU_Bean name="Cpu" type="MK02FN128LH10">
+  <CPU_Bean name="Cpu" type="MK02FN128LF10">
     <Enabled v="Y" />
     <Properties>
       <Component_name v="Cpu" />
-      <CPU_type v="MK02FN128VLH10" />
+      <CPU_type v="MK02FN128VLF10" />
       <fsl_clock_manager v="clockMan1" />
       <group name="Watchdog settings">
         <Watchdog_disable v="yes" />
@@ -165,7 +164,7 @@
     <Properties>
       <Component_name v="pin_mux" />
       <PinSettings_IP_Block v="PinSettings" />
-      <Processor v="MK02FN128LH10" />
+      <Processor v="MK02FN128LF10" />
       <group name="Settings">
         <enumgroup name="Clock gates initialization mode" v="SIM HAL (fsl_sim_hal component)">
           <EmptySection_DummyValue />
@@ -240,6 +239,34 @@
     <Enabled v="Y" />
     <Properties>
       <Component_name v="intMan1" />
+      <Component_version v="1.3.0" />
+    </Properties>
+    <Methods>
+      <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="tim100us" type="fsl_hwtimer">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="tim100us" />
+      <Device v="PIT" />
+      <Counter v="PIT_CVAL0" />
+      <Component_version v="1.3.0" />
+    </Properties>
+    <Methods>
+      <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="gpio1" type="fsl_gpio">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="gpio1" />
       <Component_version v="1.3.0" />
     </Properties>
     <Methods>

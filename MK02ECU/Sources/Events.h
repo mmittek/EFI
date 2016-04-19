@@ -34,8 +34,8 @@
 #include "clockMan1.h"
 #include "pin_mux.h"
 #include "osa1.h"
-#include "hwTim1.h"
-#include "gpio1.h"
+#include "tim100us.h"
+#include "gpio.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,14 +44,14 @@ extern "C" {
 
 /*
 ** ===================================================================
-**     Callback    : hwTim1_OnTimeOut
+**     Callback    : tim100us_OnTimeOut
 **     Description : This callback is called when the timer expires.
 **     Parameters  :
 **       data - User parameter for the callback function.
 **     Returns : Nothing
 ** ===================================================================
 */
-void hwTim1_OnTimeOut(void* data);
+void tim100us_OnTimeOut(void* data);
 
 /* END Events */
 
