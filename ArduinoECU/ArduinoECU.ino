@@ -88,7 +88,7 @@ void VRS1_isr() {
 
 int ledstate = 0;
 
-const int ECU_coilDwellMs = 2;
+const int ECU_coilDwellMs = 1;
 // 1 2 4 3
 uint16_t ECU_ignitionTiming[] = {90, 270, 630, 450};
 uint8_t ECU_coilPins[] = {9, 10, 11, 12};

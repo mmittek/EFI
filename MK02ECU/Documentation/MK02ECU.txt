@@ -143,6 +143,14 @@ Module "pin_mux"   (component PinSettings)
                 enabled only if any pin of corresponding peripheral type is selected. Selected pins are either user selected 
                 pins or pins selected in pin items in components. Call this method code to un-route desired pins into JTAG 
                 peripheral.
+   - pin_mux_init_llwu_pins -LLWU method configures registers according to settings  of routing and electrical features. This 
+                method is enabled only if any pin of corresponding peripheral type is selected. Selected pins are either user 
+                selected pins or pins selected in pin items in components. Call this method code to route desired pins into 
+                LLWU peripheral.
+   - pin_mux_deinit_llwu_pins -LLWU method de-configures muxing registers according to settings of routing. This method is 
+                enabled only if any pin of corresponding peripheral type is selected. Selected pins are either user selected 
+                pins or pins selected in pin items in components. Call this method code to un-route desired pins into LLWU 
+                peripheral.
    - pin_mux_init_tpiu_pins -TPIU method configures registers according to settings  of routing and electrical features. This 
                 method is enabled only if any pin of corresponding peripheral type is selected. Selected pins are either user 
                 selected pins or pins selected in pin items in components. Call this method code to route desired pins into 
@@ -197,22 +205,6 @@ Module "intMan1"   (component fsl_interrupt_manager)
    - intMan1_INT_SYS_EnableIRQGlobal -Enables system interrupt.
    - intMan1_INT_SYS_DisableIRQGlobal -Disable system interrupt.
 
-Module "tim100us"  (component fsl_hwtimer)
-   - tim100us_HWTIMER_SYS_Init -Initializes a caller allocated structure according to given parameters.
-   - tim100us_HWTIMER_SYS_Deinit -Deinitializes the HwTimer.
-   - tim100us_HWTIMER_SYS_SetPeriod -Sets the period of the HwTimer.
-   - tim100us_HWTIMER_SYS_GetPeriod -Gets the period of the HwTimer.
-   - tim100us_HWTIMER_SYS_Start -Enables the timer and leaves it running.
-   - tim100us_HWTIMER_SYS_Stop -The timer stops counting after this function is called.
-   - tim100us_HWTIMER_SYS_GetModulo -The function returns period of the timer in sub-ticks.
-   - tim100us_HWTIMER_SYS_GetTime -The function reads the current value of the HwTimer.
-   - tim100us_HWTIMER_SYS_GetTicks -The function reads the current value of the HwTimer.
-   - tim100us_HWTIMER_SYS_RegisterCallback -Registers function to be called when the timer expires.
-   - tim100us_HWTIMER_SYS_BlockCallback -The function is used to block callbacks in circumstances when execution of the 
-                callback function is undesired.
-   - tim100us_HWTIMER_SYS_UnblockCallback -The function is used to unblock previously blocked callbacks.
-   - tim100us_HWTIMER_SYS_CancelCallback -The function cancels pending callback, if any.
-
 Module "gpio"      (component fsl_gpio)
    - gpio_GPIO_DRV_Init -Initializes all GPIO pins used by the board.
    - gpio_GPIO_DRV_InputPinInit -Initializes one GPIO input pin used by the board.
@@ -227,6 +219,24 @@ Module "gpio"      (component fsl_gpio)
    - gpio_GPIO_DRV_SetDigitalFilterCmd -Enables or disables the digital filter in a single port.
    - gpio_GPIO_DRV_IsPinIntPending -Reads the individual pin-interrupt status flag.
    - gpio_GPIO_DRV_ClearPinIntFlag -Clears the individual GPIO pin interrupt status flag.
+
+Module "pitTimer1" (component fsl_pit)
+   - pitTimer1_PIT_DRV_Init -Initializes the PIT module.
+   - pitTimer1_PIT_DRV_Deinit -Disables the PIT module and gate control.
+   - pitTimer1_PIT_DRV_InitChannel -Initializes the PIT channel.
+   - pitTimer1_PIT_DRV_StartTimer -Starts the timer counting.
+   - pitTimer1_PIT_DRV_StopTimer -Stops the timer counting.
+   - pitTimer1_PIT_DRV_SetTimerPeriodByUs -Sets the timer period in microseconds.
+   - pitTimer1_PIT_DRV_GetTimerPeriodByUs -Gets the timer period in microseconds for a single channel.
+   - pitTimer1_PIT_DRV_ReadTimerUs -Reads the current timer value in microseconds.
+   - pitTimer1_PIT_DRV_SetTimerPeriodByCount -Sets the timer period in units of count.
+   - pitTimer1_PIT_DRV_GetTimerPeriodByCount -Returns the current timer period in units of count.
+   - pitTimer1_PIT_DRV_ReadTimerCount -Reads the current timer counting value.
+   - pitTimer1_PIT_DRV_InitUs -Initializes two PIT channels to serve as a microseconds unit.
+   - pitTimer1_PIT_DRV_GetUs -Gets an absolute time stamp.
+   - pitTimer1_PIT_DRV_DelayUs -Delays the specific microseconds.
+   - pitTimer1_PIT_DRV_ClearIntFlag -Clears the timer interrupt flag.
+   - pitTimer1_PIT_DRV_IsIntPending -Reads the current timer timeout flag.
 
 Module "Cpu"       (component MK02FN128LF10)
    - Cpu_SystemInit -This method configures the oscillator (PLL) that is part of the microcontroller device. SystemInit is 

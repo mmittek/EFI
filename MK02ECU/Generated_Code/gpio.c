@@ -7,7 +7,7 @@
 **     Version     : Component 1.3.0, Driver 01.00, CPU db: 3.00.000
 **     Repository  : KSDK 1.3.0
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-04-19, 15:18, # CodeGen: 3
+**     Date/Time   : 2016-04-19, 21:08, # CodeGen: 29
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -51,6 +51,7 @@
 
 /* MODULE gpio. */
 
+#include "Events.h"
 #include "gpio.h"
 #include <stdbool.h>
 
@@ -64,17 +65,40 @@ const gpio_input_pin_user_config_t gpio_InpConfig0[] = {
     .config.interrupt = kPortIntDisabled
   },
   {
+    .pinName = VRS0,
+    .config.isPullEnable = true, 
+    .config.pullSelect = kPortPullUp,
+    .config.isPassiveFilterEnabled = true,
+    .config.isDigitalFilterEnabled = true,
+    .config.interrupt = kPortIntFallingEdge
+  },
+  {
+    .pinName = VRS1,
+    .config.isPullEnable = true, 
+    .config.pullSelect = kPortPullUp,
+    .config.isPassiveFilterEnabled = true,
+    .config.isDigitalFilterEnabled = true,
+    .config.interrupt = kPortIntRisingEdge
+  },
+  {
     .pinName = GPIO_PINS_OUT_OF_RANGE,
   }
 };
       
 const gpio_output_pin_user_config_t gpio_OutConfig0[] = {
   {
-    .pinName = PTE19,
+    .pinName = PTE24,
     .config.outputLogic = 0,
-    .config.slewRate = kPortSlowSlewRate,
+    .config.slewRate = kPortFastSlewRate,
+    .config.isOpenDrainEnabled = false,
+    .config.driveStrength = kPortHighDriveStrength,
+  },
+  {
+    .pinName = COIL1,
+    .config.outputLogic = 0,
+    .config.slewRate = kPortFastSlewRate,
     .config.isOpenDrainEnabled = true,
-    .config.driveStrength = kPortLowDriveStrength,
+    .config.driveStrength = kPortHighDriveStrength,
   },
   {
     .pinName = GPIO_PINS_OUT_OF_RANGE,

@@ -34,24 +34,49 @@
 #include "clockMan1.h"
 #include "pin_mux.h"
 #include "osa1.h"
-#include "tim100us.h"
 #include "gpio.h"
+#include "pitTimer1.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif 
 
 
+
+#ifdef pitTimer1_IDX
 /*
 ** ===================================================================
-**     Callback    : tim100us_OnTimeOut
-**     Description : This callback is called when the timer expires.
-**     Parameters  :
-**       data - User parameter for the callback function.
-**     Returns : Nothing
+**     Interrupt handler : PIT0_IRQHandler
+**
+**     Description :
+**         User interrupt service routine. 
+**     Parameters  : None
+**     Returns     : Nothing
 ** ===================================================================
 */
-void tim100us_OnTimeOut(void* data);
+void PIT0_IRQHandler(void);
+#else
+  /* This IRQ handler is not used by pitTimer1 component. The purpose may be
+   * that the component has been removed or disabled. It is recommended to 
+   * remove this handler because Processor Expert cannot modify it according to 
+   * possible new request (e.g. in case that another component uses this
+   * interrupt vector). */
+  #warning This IRQ handler is not used by pitTimer1 component.\
+           It is recommended to remove this because Processor Expert cannot\
+           modify it according to possible new request.
+#endif
+
+/*
+** ===================================================================
+**     Interrupt handler : PORTC_IRQHandler
+**
+**     Description :
+**         User interrupt service routine. 
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void PORTC_IRQHandler(void);
 
 /* END Events */
 

@@ -7,7 +7,7 @@
 **     Version     : Component 1.2.0, Driver 1.4, CPU db: 3.00.000
 **     Repository  : KSDK 1.3.0
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-04-19, 14:03, # CodeGen: 1
+**     Date/Time   : 2016-04-19, 21:08, # CodeGen: 29
 **     Abstract    :
 **
 **     Settings    :
@@ -756,11 +756,25 @@ void init_gpio_pins(uint32_t instance)
       PORT_HAL_SetMuxMode(PORTB,3UL,kPortMuxAsGpio);
       PORT_HAL_SetPullCmd(PORTB,3UL,true);
       break;
+    case PORTC_IDX:                     /* PORTC_IDX */
+      /* Affects PORTC_PCR2 register */
+      PORT_HAL_SetMuxMode(PORTC,2UL,kPortMuxAsGpio);
+      PORT_HAL_SetPullMode(PORTC,2UL,kPortPullUp);
+      PORT_HAL_SetPullCmd(PORTC,2UL,true);
+      /* Affects PORTC_PCR3 register */
+      PORT_HAL_SetMuxMode(PORTC,3UL,kPortMuxAsGpio);
+      PORT_HAL_SetPullMode(PORTC,3UL,kPortPullUp);
+      PORT_HAL_SetPullCmd(PORTC,3UL,true);
+      /* Affects PORTC_PCR5 register */
+      PORT_HAL_SetSlewRateMode(PORTC,5UL,kPortFastSlewRate);
+      PORT_HAL_SetMuxMode(PORTC,5UL,kPortMuxAsGpio);
+      PORT_HAL_SetOpenDrainCmd(PORTC,5UL,true);
+      break;
     case PORTE_IDX:                     /* PORTE_IDX */
-      /* Affects PORTE_PCR19 register */
-      PORT_HAL_SetMuxMode(PORTE,19UL,kPortMuxAsGpio);
-      PORT_HAL_SetSlewRateMode(PORTE,19UL,kPortSlowSlewRate);
-      PORT_HAL_SetOpenDrainCmd(PORTE,19UL,true);
+      /* Affects PORTE_PCR24 register */
+      PORT_HAL_SetSlewRateMode(PORTE,24UL,kPortFastSlewRate);
+      PORT_HAL_SetOpenDrainCmd(PORTE,24UL,false);
+      PORT_HAL_SetMuxMode(PORTE,24UL,kPortMuxAsGpio);
       break;
     default:
       break;
@@ -778,8 +792,13 @@ void deinit_gpio_pins(uint32_t instance)
     case PORTB_IDX:                     /* PORTB_IDX */
       PORT_HAL_SetMuxMode(PORTB,3UL,kPortPinDisabled);
       break;
+    case PORTC_IDX:                     /* PORTC_IDX */
+      PORT_HAL_SetMuxMode(PORTC,2UL,kPortPinDisabled);
+      PORT_HAL_SetMuxMode(PORTC,3UL,kPortPinDisabled);
+      PORT_HAL_SetMuxMode(PORTC,5UL,kPortPinDisabled);
+      break;
     case PORTE_IDX:                     /* PORTE_IDX */
-      PORT_HAL_SetMuxMode(PORTE,19UL,kPortPinDisabled);
+      PORT_HAL_SetMuxMode(PORTE,24UL,kPortPinDisabled);
       break;
     default:
       break;
@@ -815,6 +834,35 @@ void deinit_jtag_pins(uint32_t instance)
   PORT_HAL_SetMuxMode(PORTA,1UL,kPortPinDisabled);
   PORT_HAL_SetMuxMode(PORTA,2UL,kPortPinDisabled);
   PORT_HAL_SetMuxMode(PORTA,3UL,kPortPinDisabled);
+}
+
+/*FUNCTION**********************************************************************
+*
+* Function Name : init_llwu_pins
+* Description   : LLWU method sets registers according routing settings.
+* Call this method code to route desired pins.
+*END**************************************************************************/
+void init_llwu_pins(uint32_t instance)
+{
+  /* Affects PORTC_PCR3 register */
+  PORT_HAL_SetMuxMode(PORTC,3UL,kPortMuxAsGpio);
+  PORT_HAL_SetPullMode(PORTC,3UL,kPortPullUp);
+  PORT_HAL_SetPullCmd(PORTC,3UL,true);
+  /* Affects PORTC_PCR5 register */
+  PORT_HAL_SetSlewRateMode(PORTC,5UL,kPortFastSlewRate);
+  PORT_HAL_SetMuxMode(PORTC,5UL,kPortMuxAsGpio);
+  PORT_HAL_SetOpenDrainCmd(PORTC,5UL,true);
+}
+/*FUNCTION**********************************************************************
+*
+* Function Name : deinit_llwu_pins
+* Description   : LLWU method sets registers according routing settings.
+* Call this method code to disable routing of desired pins.
+*END**************************************************************************/
+void deinit_llwu_pins(uint32_t instance)
+{
+  PORT_HAL_SetMuxMode(PORTC,3UL,kPortPinDisabled);
+  PORT_HAL_SetMuxMode(PORTC,5UL,kPortPinDisabled);
 }
 
 /*FUNCTION**********************************************************************

@@ -36,20 +36,66 @@ extern "C" {
 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "ECU.h"
+
+#ifdef pitTimer1_IDX
+/*
+** ===================================================================
+**     Interrupt handler : PIT0_IRQHandler
+**
+**     Description :
+**         User interrupt service routine. 
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void PIT0_IRQHandler(void)
+{
+  /* Clear interrupt flag.*/
+  PIT_HAL_ClearIntFlag(g_pitBase[pitTimer1_IDX], pitTimer1_CHANNEL);
+  /* Write your code here ... */
+//	GPIO_DRV_TogglePinOutput( PTE24 );
+  ECU_Timer_Event();
+
+}
+#else
+  /* This IRQ handler is not used by pitTimer1 component. The purpose may be
+   * that the component has been removed or disabled. It is recommended to 
+   * remove this handler because Processor Expert cannot modify it according to 
+   * possible new request (e.g. in case that another component uses this
+   * interrupt vector). */
+  #warning This IRQ handler is not used by pitTimer1 component.\
+           It is recommended to remove this because Processor Expert cannot\
+           modify it according to possible new request.
+#endif
 
 /*
 ** ===================================================================
-**     Callback    : tim100us_OnTimeOut
-**     Description : This callback is called when the timer expires.
-**     Parameters  :
-**       data - User parameter for the callback function.
-**     Returns : Nothing
+**     Interrupt handler : PORTC_IRQHandler
+**
+**     Description :
+**         User interrupt service routine. 
+**     Parameters  : None
+**     Returns     : Nothing
 ** ===================================================================
 */
-void tim100us_OnTimeOut(void* data)
+void PORTC_IRQHandler(void)
 {
+	if (GPIO_DRV_IsPinIntPending(VRS0)) {
+			//GPIO_DRV_ClearPinOutput(PTE24);
+			ECU_VRS0_Event();
+	}
+
+	if(GPIO_DRV_IsPinIntPending(VRS1)) {
+		//GPIO_DRV_SetPinOutput(PTE24);
+//		  GPIO_DRV_TogglePinOutput( PTE24 );
+		ECU_VRS1_Event();
+
+	}
+
+	/* Clear interrupt flag.*/
+  PORT_HAL_ClearPortIntFlag(PORTC_BASE_PTR);
   /* Write your code here ... */
-	GPIO_DRV_TogglePinOutput( PTE19 );
 }
 
 /* END Events */

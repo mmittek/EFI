@@ -8,7 +8,7 @@
 **     Repository  : KSDK 1.3.0
 **     Datasheet   : K02P64M100SFARM, Rev. 0, February 14, 2014
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-04-19, 14:03, # CodeGen: 1
+**     Date/Time   : 2016-04-19, 19:05, # CodeGen: 17
 **     Abstract    :
 **
 **     Settings    :
@@ -77,10 +77,10 @@
 #include "fsl_interrupt_manager.h"
 #include "fsl_os_abstraction.h"
 #include "osa1.h"
-#include "fsl_pit_hal.h"
-#include "fsl_hwtimer.h"
 #include "fsl_gpio_hal.h"
 #include "fsl_gpio_driver.h"
+#include "fsl_pit_hal.h"
+#include "fsl_pit_driver.h"
 #include <assert.h>
 
 #ifdef __cplusplus
