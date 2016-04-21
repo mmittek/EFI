@@ -136,9 +136,7 @@ F 3 "" H 2500 4250 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2500 4050 2500 4200
-Wire Wire Line
-	2500 4200 2500 4250
+	2500 4050 2500 4250
 $Comp
 L R R6
 U 1 1 570C2D4E
@@ -151,9 +149,7 @@ F 3 "" H 2200 4050 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2200 4200 2500 4200
-Wire Wire Line
-	2500 4200 3400 4200
+	2200 4200 3400 4200
 Connection ~ 2500 4200
 $Comp
 L SR1100 D3
@@ -171,9 +167,7 @@ Wire Wire Line
 Wire Wire Line
 	3400 3650 3400 3800
 Wire Wire Line
-	2500 3600 2500 3650
-Wire Wire Line
-	2500 3650 2500 3700
+	2500 3600 2500 3700
 Connection ~ 2500 3650
 Text Notes 2750 3000 0    60   ~ 0
 Coil / injector driver
@@ -218,20 +212,11 @@ F 3 "" H 6550 1300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6550 1050 6550 1100
-Wire Wire Line
-	6550 1100 6550 1200
-Connection ~ 6550 1100
-Wire Wire Line
 	6550 1400 6550 1500
 Wire Wire Line
-	6550 1500 6950 1500
+	6200 1500 7350 1500
 Wire Wire Line
-	6950 1500 7350 1500
-Wire Wire Line
-	6950 1400 6950 1500
-Wire Wire Line
-	6950 1500 6950 1600
+	6950 1400 6950 1600
 Connection ~ 6950 1500
 $Comp
 L C_Small C2
@@ -245,9 +230,7 @@ F 3 "" H 7350 1300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7350 1050 7350 1100
-Wire Wire Line
-	7350 1100 7350 1200
+	7350 1050 7350 1200
 Wire Wire Line
 	7350 1500 7350 1400
 Connection ~ 7350 1100
@@ -285,9 +268,7 @@ F 3 "" H 8900 1650 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8900 1950 8900 2050
-Wire Wire Line
-	8900 2050 8900 2100
+	8900 1950 8900 2100
 $Comp
 L GND-RESCUE-Design #PWR05
 U 1 1 570DCAC8
@@ -420,9 +401,7 @@ VRS0_LOW
 Wire Wire Line
 	1200 1650 1500 1650
 Wire Wire Line
-	1500 1650 1500 1800
-Wire Wire Line
-	1500 1800 1500 1850
+	1500 1650 1500 1850
 Wire Wire Line
 	1500 1800 1200 1800
 $Comp
@@ -440,9 +419,7 @@ Connection ~ 1500 1800
 Text GLabel 2800 1250 0    60   Input ~ 0
 VRS0_HIGH
 Wire Wire Line
-	2800 1250 3000 1250
-Wire Wire Line
-	3000 1250 3750 1250
+	2800 1250 3750 1250
 $Comp
 L GND-RESCUE-Design #PWR010
 U 1 1 57109002
@@ -544,9 +521,7 @@ $EndComp
 Text GLabel 2800 2200 0    60   Input ~ 0
 VRS1_HIGH
 Wire Wire Line
-	2800 2200 3000 2200
-Wire Wire Line
-	3000 2200 3750 2200
+	2800 2200 3750 2200
 $Comp
 L GND-RESCUE-Design #PWR014
 U 1 1 5710CE1C
@@ -611,12 +586,12 @@ Connection ~ 4350 2300
 $Comp
 L +BATT #PWR017
 U 1 1 571183A3
-P 6550 1050
-F 0 "#PWR017" H 6550 1000 20  0001 C CNN
-F 1 "+BATT" H 6550 1150 30  0000 C CNN
-F 2 "" H 6550 1050 60  0000 C CNN
-F 3 "" H 6550 1050 60  0000 C CNN
-	1    6550 1050
+P 6200 1100
+F 0 "#PWR017" H 6200 1050 20  0001 C CNN
+F 1 "+BATT" H 6200 1200 30  0000 C CNN
+F 2 "" H 6200 1100 60  0000 C CNN
+F 3 "" H 6200 1100 60  0000 C CNN
+	1    6200 1100
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -701,4 +676,35 @@ F 3 "" H 5800 2100 60  0000 C CNN
 	1    5400 3500
 	1    0    0    -1  
 $EndComp
+$Comp
+L ZENERsmall D?
+U 1 1 5718A5FC
+P 2750 5400
+F 0 "D?" H 2750 5500 50  0000 C CNN
+F 1 "5.1V" H 2750 5300 50  0000 C CNN
+F 2 "" H 2750 5400 50  0000 C CNN
+F 3 "" H 2750 5400 50  0000 C CNN
+	1    2750 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L ZENERsmall 18V
+U 1 1 571883F8
+P 6200 1200
+F 0 "18V" H 6200 1300 50  0000 C CNN
+F 1 "D?" H 6200 1100 50  0000 C CNN
+F 2 "" H 6200 1200 50  0000 C CNN
+F 3 "" H 6200 1200 50  0000 C CNN
+	1    6200 1200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6200 1500 6200 1300
+Connection ~ 6550 1500
+Wire Wire Line
+	6200 1100 6550 1100
+Wire Wire Line
+	6550 1100 6550 1200
+Connection ~ 6550 1100
+Connection ~ 6200 1100
 $EndSCHEMATC

@@ -1,5 +1,10 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP 1N4733
+D 5.1V Zener Diode
+F http://www.vishay.com/docs/85816/1n4728a.pdf
+$ENDCMP
+#
 $CMP IRF840
 D 500V Vds, 8A Id, N-Channel Power MOSFET, TO-220AB
 K N-Channel Power MOSFET
