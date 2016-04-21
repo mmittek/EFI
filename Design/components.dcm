@@ -6,6 +6,16 @@ K N-Channel Power MOSFET
 F http://www.vishay.com/docs/91070/91070.pdf
 $ENDCMP
 #
+$CMP MKE06Z128VLD4
+D NXP MKE06Z128VLD4 32 Bit Microcontroller, Kinetis E Series, ARM Cortex-M0+, 48 MHz, 128 KB, 16 KB, 44 Pins, LQFP
+F http://www.farnell.com/datasheets/1899947.pdf
+$ENDCMP
+#
+$CMP MKE06Z128VQH4
+D NXP MKE06Z128VLD4 32 Bit Microcontroller, Kinetis E Series, ARM Cortex-M0+, 48 MHz, 128 KB, 16 KB, 44 Pins, LQFP
+F http://www.farnell.com/datasheets/1899947.pdf
+$ENDCMP
+#
 $CMP PSMN022-30PL
 D 30 Vds, N-Channel MOSFET, TO-220AB
 K N-Channel MOSFET
