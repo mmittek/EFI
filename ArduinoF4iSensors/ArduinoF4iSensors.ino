@@ -15,8 +15,8 @@ int MAP_kpa = 0;
 
 const int TPS_pin = A2;
 int TPS_raw = 0;
-int TPS_min = 90;
-int TPS_max = 900;
+int TPS_min = 95;
+int TPS_max = 910;
 int TPS_val = 0;
 
 const int VRS_CRANK_pin = 2;
@@ -31,6 +31,7 @@ float ECT_tempC = 0;
 int sensorValue = 0;        // value read from the pot
 int outputValue = 0;        // value output to the PWM (analog out)
 
+float IAT_V;
 float ratio;
 float R1 = 997;
 float RS = 0;
@@ -67,8 +68,8 @@ void setup() {
 
 void loop() {
   // read the analog in value:
-  sensorValue = analogRead(analogInPin);            
-  ratio = ((float)sensorValue)/1023.0;
+  sensorValue = analogRead(analogInPin);    
+  IAT_V =5.0f*sensorValue/1024.0f; 
   RS = R1*sensorValue/(1023-sensorValue);
   tempF = 1047.0*pow( RS, -0.1693 ) - 222.7;
   tempC = (tempF-32.0)/1.8;
@@ -84,7 +85,8 @@ void loop() {
   
   MAP_raw = analogRead(MAP_pin);
   MAP_volts = 5.1f*((float)MAP_raw)/1023.0f;
-  MAP_kpa =  8+ 40.0f*5.1f*((float)MAP_raw)/1023.0f;
+  //MAP_kpa =  8+ 40.0f*5.1f*((float)MAP_raw)/1023.0f;
+  MAP_kpa = 36.06f*5.1f*(((float)MAP_raw)/1023.0f) - 0.2645f;
   /*
   if(TPS_raw < TPS_min) TPS_min = TPS_raw;
   if(TPS_raw > TPS_max) TPS_max = TPS_raw;
@@ -103,7 +105,9 @@ Serial.print(RS);
 Serial.print(", Temp [F]: ");
 Serial.print(tempF);
 */
-Serial.print("TPS: ");
+Serial.print("TPS raw: ");
+Serial.print(TPS_raw);
+Serial.print(", TPS: ");
 Serial.print(TPS_val);
 
 Serial.print(", MAP: ");
@@ -114,6 +118,8 @@ Serial.print("kpa, ");
 Serial.print(MAP_volts);
 Serial.print("V");
 
+Serial.print(", IAT [V]: ");
+Serial.print(IAT_V);
 Serial.print(", IAT_R [ohm]: ");
 Serial.print(RS);
 Serial.print(", IAT [C]: ");
