@@ -15,7 +15,7 @@ int MAP_kpa = 0;
 
 const int TPS_pin = A2;
 int TPS_raw = 0;
-int TPS_min = 95;
+int TPS_min = 90;
 int TPS_max = 910;
 int TPS_val = 0;
 
