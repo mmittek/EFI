@@ -29,7 +29,7 @@ void USART_Transmit( unsigned char data )
 	UDR0 = data;
 }
 
-void USART_print(char *s) {
+void USART_Print(char *s) {
 	uint16_t i=0;
 	while(s[i] != 0) {
 		USART_Transmit(s[i]);

@@ -6,7 +6,7 @@
 
 void USART_Init();
 void USART_Transmit( unsigned char data );
-void USART_print(char *s);
+void USART_Print(char *s);
 
 
 #endif // _HAVE_USART_H_
