@@ -12,7 +12,7 @@ ISR(ADC_vect) {
 void ADC_Init() {
 	ADMUX = (1<<REFS0);	 // set the reference to vcc
 	ADCSRA = (1<<ADEN);	// enable the ADC
-	ADCSRA |=  (1<<ADPS2) | (1<<ADIE) |(1<<ADPS1) | (1<<ADPS0);	//  clk/128
+	ADCSRA |=   (1<<ADIE) |(1<<ADPS1) | (1<<ADPS2) ;//| (1<<ADPS0);	//  clk/128
 	ADCSRB = 0;	// free running
 	DIDR0 = 0;	// all enabled?
 }
