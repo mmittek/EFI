@@ -1,0 +1,422 @@
+Archive member included to satisfy reference by file (symbol)
+
+/Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                              /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o (exit)
+/Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                              ./USART.o (__do_copy_data)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800100
+LOAD /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
+LOAD ./USART.o
+LOAD ./main.o
+START GROUP
+LOAD /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a
+LOAD /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libm.a
+LOAD /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a
+END GROUP
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0x160
+ *(.vectors)
+ .vectors       0x00000000       0x68 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+                0x00000068                . = ALIGN (0x2)
+                0x00000068                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000068        0x0 linker stubs
+ *(.trampolines*)
+                0x00000068                __trampolines_end = .
+ *(.progmem*)
+                0x00000068                . = ALIGN (0x2)
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000068                __ctors_start = .
+ *(.ctors)
+                0x00000068                __ctors_end = .
+                0x00000068                __dtors_start = .
+ *(.dtors)
+                0x00000068                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000068        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
+                0x00000068                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000068        0xc /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000074       0x16 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                0x00000074                __do_copy_data
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x0000008a        0x8 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
+ *(.init9)
+ *(.text)
+ .text          0x00000092        0x4 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
+                0x00000092                __vector_20
+                0x00000092                __vector_1
+                0x00000092                __vector_24
+                0x00000092                __vector_12
+                0x00000092                __bad_interrupt
+                0x00000092                __vector_6
+                0x00000092                __vector_3
+                0x00000092                __vector_23
+                0x00000092                __vector_25
+                0x00000092                __vector_17
+                0x00000092                __vector_19
+                0x00000092                __vector_7
+                0x00000092                __vector_5
+                0x00000092                __vector_4
+                0x00000092                __vector_9
+                0x00000092                __vector_2
+                0x00000092                __vector_21
+                0x00000092                __vector_15
+                0x00000092                __vector_8
+                0x00000092                __vector_14
+                0x00000092                __vector_10
+                0x00000092                __vector_18
+                0x00000092                __vector_22
+ .text          0x00000096        0x0 ./USART.o
+ .text          0x00000096        0x0 ./main.o
+ .text          0x00000096        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text          0x00000096        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                0x00000096                . = ALIGN (0x2)
+ *(.text.*)
+ .text.USART_Init
+                0x00000096       0x18 ./USART.o
+                0x00000096                USART_Init
+ .text.USART_Transmit
+                0x000000ae        0xe ./USART.o
+                0x000000ae                USART_Transmit
+ .text.USART_print
+                0x000000bc       0x18 ./USART.o
+                0x000000bc                USART_print
+ .text.__vector_16
+                0x000000d4       0x14 ./main.o
+                0x000000d4                __vector_16
+ .text.__vector_13
+                0x000000e8       0x14 ./main.o
+                0x000000e8                __vector_13
+ .text.__vector_11
+                0x000000fc       0x2c ./main.o
+                0x000000fc                __vector_11
+ .text.startup.main
+                0x00000128       0x34 ./main.o
+                0x00000128                main
+ .text.libgcc.mul
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.div
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.prologue
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.builtins
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.fmul
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.fixed
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.div
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.prologue
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.builtins
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.fmul
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.fixed
+                0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                0x0000015c                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x0000015c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x0000015c                exit
+                0x0000015c                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x0000015c        0x4 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ *(.fini0)
+                0x00000160                _etext = .
+
+.data           0x00800100        0x2 load address 0x00000160
+                0x00800100                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
+ .data          0x00800100        0x0 ./USART.o
+ .data          0x00800100        0x0 ./main.o
+ .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ .rodata.USART_MYUBRR
+                0x00800100        0x2 ./USART.o
+                0x00800100                USART_MYUBRR
+ *(.gnu.linkonce.d*)
+                0x00800102                . = ALIGN (0x2)
+                0x00800102                _edata = .
+                0x00800102                PROVIDE (__data_end, .)
+
+.bss            0x00800102        0x0
+                0x00800102                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800102        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
+ .bss           0x00800102        0x0 ./USART.o
+ .bss           0x00800102        0x0 ./main.o
+ .bss           0x00800102        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .bss           0x00800102        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ *(.bss*)
+ *(COMMON)
+                0x00800102                PROVIDE (__bss_end, .)
+                0x00000160                __data_load_start = LOADADDR (.data)
+                0x00000162                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800102        0x0
+                0x00800102                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800102                PROVIDE (__noinit_end, .)
+                0x00800102                _end = .
+                0x00800102                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x11
+ *(.comment)
+ .comment       0x00000000       0x11 ./USART.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000011       0x12 ./main.o
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line .debug_line.* .debug_line_end)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.debug_macro
+ *(.debug_macro)
+OUTPUT(myAVR.elf elf32-avr)
+LOAD linker stubs

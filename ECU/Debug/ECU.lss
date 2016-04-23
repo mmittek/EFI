@@ -1,0 +1,420 @@
+
+ECU.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000002  00800100  0000028a  000002fe  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000028a  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .stab         0000099c  00000000  00000000  00000300  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000cef  00000000  00000000  00000c9c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .comment      00000011  00000000  00000000  0000198b  2**0
+                  CONTENTS, READONLY
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 d3 00 	jmp	0x1a6	; 0x1a6 <__vector_11>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 c1 00 	jmp	0x182	; 0x182 <__vector_13>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 af 00 	jmp	0x15e	; 0x15e <__vector_16>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ea e8       	ldi	r30, 0x8A	; 138
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a2 30       	cpi	r26, 0x02	; 2
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+  8a:	0e 94 03 01 	call	0x206	; 0x206 <main>
+  8e:	0c 94 43 01 	jmp	0x286	; 0x286 <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <USART_Init>:
+#include "USART.h"
+
+const unsigned int USART_MYUBRR =USART_FOSC/16/USART_BAUD-1;
+
+void USART_Init( )
+{
+  96:	cf 93       	push	r28
+  98:	df 93       	push	r29
+  9a:	cd b7       	in	r28, 0x3d	; 61
+  9c:	de b7       	in	r29, 0x3e	; 62
+	/*Set baud rate */
+	UBRR0H = (unsigned char)(USART_MYUBRR>>8);
+  9e:	85 ec       	ldi	r24, 0xC5	; 197
+  a0:	90 e0       	ldi	r25, 0x00	; 0
+  a2:	20 e1       	ldi	r18, 0x10	; 16
+  a4:	30 e0       	ldi	r19, 0x00	; 0
+  a6:	23 2f       	mov	r18, r19
+  a8:	33 27       	eor	r19, r19
+  aa:	fc 01       	movw	r30, r24
+  ac:	20 83       	st	Z, r18
+	UBRR0L = (unsigned char)USART_MYUBRR;
+  ae:	84 ec       	ldi	r24, 0xC4	; 196
+  b0:	90 e0       	ldi	r25, 0x00	; 0
+  b2:	20 e1       	ldi	r18, 0x10	; 16
+  b4:	30 e0       	ldi	r19, 0x00	; 0
+  b6:	fc 01       	movw	r30, r24
+  b8:	20 83       	st	Z, r18
+	//Enable receiver and transmitter */
+	UCSR0B = (1<<RXEN0)|(1<<TXEN0);
+  ba:	81 ec       	ldi	r24, 0xC1	; 193
+  bc:	90 e0       	ldi	r25, 0x00	; 0
+  be:	28 e1       	ldi	r18, 0x18	; 24
+  c0:	fc 01       	movw	r30, r24
+  c2:	20 83       	st	Z, r18
+	/* Set frame format: 8data, 2stop bit */
+	UCSR0C = (3<<UCSZ00);
+  c4:	82 ec       	ldi	r24, 0xC2	; 194
+  c6:	90 e0       	ldi	r25, 0x00	; 0
+  c8:	26 e0       	ldi	r18, 0x06	; 6
+  ca:	fc 01       	movw	r30, r24
+  cc:	20 83       	st	Z, r18
+}
+  ce:	df 91       	pop	r29
+  d0:	cf 91       	pop	r28
+  d2:	08 95       	ret
+
+000000d4 <USART_Transmit>:
+
+
+
+
+void USART_Transmit( unsigned char data )
+{
+  d4:	cf 93       	push	r28
+  d6:	df 93       	push	r29
+  d8:	1f 92       	push	r1
+  da:	cd b7       	in	r28, 0x3d	; 61
+  dc:	de b7       	in	r29, 0x3e	; 62
+  de:	89 83       	std	Y+1, r24	; 0x01
+	/* Wait for empty transmit buffer */
+	while ( !( UCSR0A & (1<<UDRE0)) )
+  e0:	00 00       	nop
+  e2:	80 ec       	ldi	r24, 0xC0	; 192
+  e4:	90 e0       	ldi	r25, 0x00	; 0
+  e6:	fc 01       	movw	r30, r24
+  e8:	80 81       	ld	r24, Z
+  ea:	88 2f       	mov	r24, r24
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	80 72       	andi	r24, 0x20	; 32
+  f0:	99 27       	eor	r25, r25
+  f2:	00 97       	sbiw	r24, 0x00	; 0
+  f4:	b1 f3       	breq	.-20     	; 0xe2 <USART_Transmit+0xe>
+	;
+	/* Put data into buffer, sends the data */
+	UDR0 = data;
+  f6:	86 ec       	ldi	r24, 0xC6	; 198
+  f8:	90 e0       	ldi	r25, 0x00	; 0
+  fa:	29 81       	ldd	r18, Y+1	; 0x01
+  fc:	fc 01       	movw	r30, r24
+  fe:	20 83       	st	Z, r18
+}
+ 100:	0f 90       	pop	r0
+ 102:	df 91       	pop	r29
+ 104:	cf 91       	pop	r28
+ 106:	08 95       	ret
+
+00000108 <USART_print>:
+
+void USART_print(char *s) {
+ 108:	cf 93       	push	r28
+ 10a:	df 93       	push	r29
+ 10c:	00 d0       	rcall	.+0      	; 0x10e <USART_print+0x6>
+ 10e:	00 d0       	rcall	.+0      	; 0x110 <USART_print+0x8>
+ 110:	cd b7       	in	r28, 0x3d	; 61
+ 112:	de b7       	in	r29, 0x3e	; 62
+ 114:	9c 83       	std	Y+4, r25	; 0x04
+ 116:	8b 83       	std	Y+3, r24	; 0x03
+	uint16_t i=0;
+ 118:	1a 82       	std	Y+2, r1	; 0x02
+ 11a:	19 82       	std	Y+1, r1	; 0x01
+	while(s[i] != 0) {
+ 11c:	0f c0       	rjmp	.+30     	; 0x13c <USART_print+0x34>
+		USART_Transmit(s[i]);
+ 11e:	2b 81       	ldd	r18, Y+3	; 0x03
+ 120:	3c 81       	ldd	r19, Y+4	; 0x04
+ 122:	89 81       	ldd	r24, Y+1	; 0x01
+ 124:	9a 81       	ldd	r25, Y+2	; 0x02
+ 126:	82 0f       	add	r24, r18
+ 128:	93 1f       	adc	r25, r19
+ 12a:	fc 01       	movw	r30, r24
+ 12c:	80 81       	ld	r24, Z
+ 12e:	0e 94 6a 00 	call	0xd4	; 0xd4 <USART_Transmit>
+		i++;
+ 132:	89 81       	ldd	r24, Y+1	; 0x01
+ 134:	9a 81       	ldd	r25, Y+2	; 0x02
+ 136:	01 96       	adiw	r24, 0x01	; 1
+ 138:	9a 83       	std	Y+2, r25	; 0x02
+ 13a:	89 83       	std	Y+1, r24	; 0x01
+	UDR0 = data;
+}
+
+void USART_print(char *s) {
+	uint16_t i=0;
+	while(s[i] != 0) {
+ 13c:	2b 81       	ldd	r18, Y+3	; 0x03
+ 13e:	3c 81       	ldd	r19, Y+4	; 0x04
+ 140:	89 81       	ldd	r24, Y+1	; 0x01
+ 142:	9a 81       	ldd	r25, Y+2	; 0x02
+ 144:	82 0f       	add	r24, r18
+ 146:	93 1f       	adc	r25, r19
+ 148:	fc 01       	movw	r30, r24
+ 14a:	80 81       	ld	r24, Z
+ 14c:	88 23       	and	r24, r24
+ 14e:	39 f7       	brne	.-50     	; 0x11e <USART_print+0x16>
+		USART_Transmit(s[i]);
+		i++;
+	}
+}
+ 150:	0f 90       	pop	r0
+ 152:	0f 90       	pop	r0
+ 154:	0f 90       	pop	r0
+ 156:	0f 90       	pop	r0
+ 158:	df 91       	pop	r29
+ 15a:	cf 91       	pop	r28
+ 15c:	08 95       	ret
+
+0000015e <__vector_16>:
+
+#include <avr/interrupt.h>
+#include "USART.h"
+
+
+ISR(TIMER0_OVF_vect) {
+ 15e:	1f 92       	push	r1
+ 160:	0f 92       	push	r0
+ 162:	00 90 5f 00 	lds	r0, 0x005F
+ 166:	0f 92       	push	r0
+ 168:	11 24       	eor	r1, r1
+ 16a:	cf 93       	push	r28
+ 16c:	df 93       	push	r29
+ 16e:	cd b7       	in	r28, 0x3d	; 61
+ 170:	de b7       	in	r29, 0x3e	; 62
+//	reti();
+}
+ 172:	df 91       	pop	r29
+ 174:	cf 91       	pop	r28
+ 176:	0f 90       	pop	r0
+ 178:	00 92 5f 00 	sts	0x005F, r0
+ 17c:	0f 90       	pop	r0
+ 17e:	1f 90       	pop	r1
+ 180:	18 95       	reti
+
+00000182 <__vector_13>:
+
+ISR(TIMER1_OVF_vect) {
+ 182:	1f 92       	push	r1
+ 184:	0f 92       	push	r0
+ 186:	00 90 5f 00 	lds	r0, 0x005F
+ 18a:	0f 92       	push	r0
+ 18c:	11 24       	eor	r1, r1
+ 18e:	cf 93       	push	r28
+ 190:	df 93       	push	r29
+ 192:	cd b7       	in	r28, 0x3d	; 61
+ 194:	de b7       	in	r29, 0x3e	; 62
+//	TIFR1 &=~(1<<TOV1);
+//	reti();
+}
+ 196:	df 91       	pop	r29
+ 198:	cf 91       	pop	r28
+ 19a:	0f 90       	pop	r0
+ 19c:	00 92 5f 00 	sts	0x005F, r0
+ 1a0:	0f 90       	pop	r0
+ 1a2:	1f 90       	pop	r1
+ 1a4:	18 95       	reti
+
+000001a6 <__vector_11>:
+
+ISR(TIMER1_COMPA_vect) {
+ 1a6:	1f 92       	push	r1
+ 1a8:	0f 92       	push	r0
+ 1aa:	00 90 5f 00 	lds	r0, 0x005F
+ 1ae:	0f 92       	push	r0
+ 1b0:	11 24       	eor	r1, r1
+ 1b2:	2f 93       	push	r18
+ 1b4:	3f 93       	push	r19
+ 1b6:	8f 93       	push	r24
+ 1b8:	9f 93       	push	r25
+ 1ba:	ef 93       	push	r30
+ 1bc:	ff 93       	push	r31
+ 1be:	cf 93       	push	r28
+ 1c0:	df 93       	push	r29
+ 1c2:	cd b7       	in	r28, 0x3d	; 61
+ 1c4:	de b7       	in	r29, 0x3e	; 62
+	PORTB ^=(1<<5);
+ 1c6:	85 e2       	ldi	r24, 0x25	; 37
+ 1c8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ca:	25 e2       	ldi	r18, 0x25	; 37
+ 1cc:	30 e0       	ldi	r19, 0x00	; 0
+ 1ce:	f9 01       	movw	r30, r18
+ 1d0:	30 81       	ld	r19, Z
+ 1d2:	20 e2       	ldi	r18, 0x20	; 32
+ 1d4:	23 27       	eor	r18, r19
+ 1d6:	fc 01       	movw	r30, r24
+ 1d8:	20 83       	st	Z, r18
+	TCNT1H = 0;
+ 1da:	85 e8       	ldi	r24, 0x85	; 133
+ 1dc:	90 e0       	ldi	r25, 0x00	; 0
+ 1de:	fc 01       	movw	r30, r24
+ 1e0:	10 82       	st	Z, r1
+	TCNT1L = 0;
+ 1e2:	84 e8       	ldi	r24, 0x84	; 132
+ 1e4:	90 e0       	ldi	r25, 0x00	; 0
+ 1e6:	fc 01       	movw	r30, r24
+ 1e8:	10 82       	st	Z, r1
+}
+ 1ea:	df 91       	pop	r29
+ 1ec:	cf 91       	pop	r28
+ 1ee:	ff 91       	pop	r31
+ 1f0:	ef 91       	pop	r30
+ 1f2:	9f 91       	pop	r25
+ 1f4:	8f 91       	pop	r24
+ 1f6:	3f 91       	pop	r19
+ 1f8:	2f 91       	pop	r18
+ 1fa:	0f 90       	pop	r0
+ 1fc:	00 92 5f 00 	sts	0x005F, r0
+ 200:	0f 90       	pop	r0
+ 202:	1f 90       	pop	r1
+ 204:	18 95       	reti
+
+00000206 <main>:
+
+
+int main() {
+ 206:	cf 93       	push	r28
+ 208:	df 93       	push	r29
+ 20a:	cd b7       	in	r28, 0x3d	; 61
+ 20c:	de b7       	in	r29, 0x3e	; 62
+
+	USART_Init();
+ 20e:	0e 94 4b 00 	call	0x96	; 0x96 <USART_Init>
+
+	cli();
+ 212:	f8 94       	cli
+	DDRB |= (1<<5);
+ 214:	84 e2       	ldi	r24, 0x24	; 36
+ 216:	90 e0       	ldi	r25, 0x00	; 0
+ 218:	24 e2       	ldi	r18, 0x24	; 36
+ 21a:	30 e0       	ldi	r19, 0x00	; 0
+ 21c:	f9 01       	movw	r30, r18
+ 21e:	20 81       	ld	r18, Z
+ 220:	20 62       	ori	r18, 0x20	; 32
+ 222:	fc 01       	movw	r30, r24
+ 224:	20 83       	st	Z, r18
+	PORTB |= (1<<5);
+ 226:	85 e2       	ldi	r24, 0x25	; 37
+ 228:	90 e0       	ldi	r25, 0x00	; 0
+ 22a:	25 e2       	ldi	r18, 0x25	; 37
+ 22c:	30 e0       	ldi	r19, 0x00	; 0
+ 22e:	f9 01       	movw	r30, r18
+ 230:	20 81       	ld	r18, Z
+ 232:	20 62       	ori	r18, 0x20	; 32
+ 234:	fc 01       	movw	r30, r24
+ 236:	20 83       	st	Z, r18
+
+
+	TCCR0A = 0;
+ 238:	84 e4       	ldi	r24, 0x44	; 68
+ 23a:	90 e0       	ldi	r25, 0x00	; 0
+ 23c:	fc 01       	movw	r30, r24
+ 23e:	10 82       	st	Z, r1
+	TIMSK0 = 1<<TOIE1;
+ 240:	8e e6       	ldi	r24, 0x6E	; 110
+ 242:	90 e0       	ldi	r25, 0x00	; 0
+ 244:	21 e0       	ldi	r18, 0x01	; 1
+ 246:	fc 01       	movw	r30, r24
+ 248:	20 83       	st	Z, r18
+	TCCR0B = (1<<CS02) ;//| (1<<CS00);
+ 24a:	85 e4       	ldi	r24, 0x45	; 69
+ 24c:	90 e0       	ldi	r25, 0x00	; 0
+ 24e:	24 e0       	ldi	r18, 0x04	; 4
+ 250:	fc 01       	movw	r30, r24
+ 252:	20 83       	st	Z, r18
+
+
+	TCCR1A = 0;	// normal mode
+ 254:	80 e8       	ldi	r24, 0x80	; 128
+ 256:	90 e0       	ldi	r25, 0x00	; 0
+ 258:	fc 01       	movw	r30, r24
+ 25a:	10 82       	st	Z, r1
+
+	OCR1AH = 0;
+ 25c:	89 e8       	ldi	r24, 0x89	; 137
+ 25e:	90 e0       	ldi	r25, 0x00	; 0
+ 260:	fc 01       	movw	r30, r24
+ 262:	10 82       	st	Z, r1
+	OCR1AL = 195;
+ 264:	88 e8       	ldi	r24, 0x88	; 136
+ 266:	90 e0       	ldi	r25, 0x00	; 0
+ 268:	23 ec       	ldi	r18, 0xC3	; 195
+ 26a:	fc 01       	movw	r30, r24
+ 26c:	20 83       	st	Z, r18
+
+	TIMSK1 = (1<<TOIE1) | (1<<OCIE1A);	// on overflow and compare
+ 26e:	8f e6       	ldi	r24, 0x6F	; 111
+ 270:	90 e0       	ldi	r25, 0x00	; 0
+ 272:	23 e0       	ldi	r18, 0x03	; 3
+ 274:	fc 01       	movw	r30, r24
+ 276:	20 83       	st	Z, r18
+	TCCR1B = (1<<WGM12) | (1<<CS11);
+ 278:	81 e8       	ldi	r24, 0x81	; 129
+ 27a:	90 e0       	ldi	r25, 0x00	; 0
+ 27c:	2a e0       	ldi	r18, 0x0A	; 10
+ 27e:	fc 01       	movw	r30, r24
+ 280:	20 83       	st	Z, r18
+	sei();
+ 282:	78 94       	sei
+
+
+	while(1) {
+	}
+ 284:	ff cf       	rjmp	.-2      	; 0x284 <main+0x7e>
+
+00000286 <_exit>:
+ 286:	f8 94       	cli
+
+00000288 <__stop_program>:
+ 288:	ff cf       	rjmp	.-2      	; 0x288 <__stop_program>
