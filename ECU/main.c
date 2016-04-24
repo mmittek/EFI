@@ -49,7 +49,7 @@ volatile uint8_t crankEventsArri = 0;
 
 
 ISR(TIMER0_OVF_vect) {
-	running = 0;
+//	running = 0;
 }
 
 volatile uint32_t ref = 0;
@@ -58,18 +58,13 @@ volatile uint32_t ref = 0;
 // 10th of millisecond (100us)
 ISR(TIMER0_COMPA_vect) {
 
-	cycleTime++;
-	uint32_t angle = 90;
-	ref = (( (uint32_t)ticksPerRotation/25)*angle)/90;
+//	cycleTime++;
+//	uint32_t angle = 90;
+//	ref = (( (uint32_t)ticksPerRotation/25)*angle)/90;
 
-	if(!running) return;
-	if(cycleTime == ref-10) {
-		PORTB |=(1<<5);
-	}
+	PORTB &=~(1<<5);
+	TIMSK0 &= ~(1<<OCIE0A);
 
-	if(cycleTime == ref) {
-		PORTB &=~(1<<5);
-	}
 
 
 }
@@ -95,7 +90,7 @@ inline uint16_t convertToT(uint16_t in) {
 }
 
 
-// Crank events
+// Crank events on the RISING edge
 ISR(PCINT0_vect) {
 	uint16_t now;
 	uint16_t diff;
@@ -109,13 +104,29 @@ ISR(PCINT0_vect) {
 		ticksPerRotation = diff*12;
 		rpm = 60000/((2*ticksPerRotation)/125);
 		prevCrankEvent = now;
+
+
+
+		// Cylinder 1 dwell 1 tooth before?
+		if(cycleCrankEvents == 3) {
+			PORTB |=(1<<5);
+			TCNT0 = 0;
+			OCR0A = 100;	// 2ms
+			TIMSK0 |= (1<<OCIE0A);
+
+		}
+
+
 	}
 }
 
+// Cam events
 // Port D interrupt handler
 ISR(PCINT2_vect) {
-	// Checking if I am on the rising edge PD2
-	if(PIND & (1<<2)) {
+	// Checking if I am on the falling edge PD2
+	// Falling edge would be the zero-crossing
+
+	if(!(PIND & (1<<2))) {
 		crankEventsArr[crankEventsArri] = syncCrankEvents;
 		crankEventsArri=(crankEventsArri+1)%5;
 		switch(syncCrankEvents) {
@@ -127,6 +138,7 @@ ISR(PCINT2_vect) {
 				running = 1;
 				cycleTime = 0;
 				cycleCrankEvents = 0;
+
 			break;
 		}
 		syncCrankEvents = 0;
@@ -183,7 +195,7 @@ int main() {
 	TCCR0B = (1<<CS02);	// /256
 	TCNT0 = 0;
 	OCR0A = 5;
-	TIMSK0 = (1<<OCIE0A) | (1<<TOIE0);	// compare and overflow
+	TIMSK0 = (1<<TOIE0);	// compare and overflow
 
 	sei();
 
