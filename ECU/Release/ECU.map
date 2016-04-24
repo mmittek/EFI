@@ -1,15 +1,23 @@
 Archive member included to satisfy reference by file (symbol)
 
+/Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                              ./main.o (__udivmodhi4)
 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
                               ./main.o (__divmodhi4)
+/Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
+                              ./main.o (__udivmodsi4)
+/Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
+                              ./main.o (__divmodsi4)
+/Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
+                              /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o) (__negsi2)
 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
                               /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o (exit)
 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
                               ./USART.o (__do_copy_data)
 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
                               ./ADC.o (__do_clear_bss)
-/Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
-                              /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o) (__udivmodhi4)
+/Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
+                              ./main.o (__umulhisi3)
 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(sprintf.o)
                               ./main.o (sprintf)
 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
@@ -30,7 +38,7 @@ Archive member included to satisfy reference by file (symbol)
 Allocating common symbols
 Common symbol       size              file
 
-crankEvents         0x5               ./main.o
+crankEventsArr      0x5               ./main.o
 meas                0x2               ./main.o
 
 Memory Configuration
@@ -147,7 +155,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x8fa
+.text           0x00000000      0xc6a
  *(.vectors)
  .vectors       0x00000000       0x68 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -207,12 +215,11 @@ END GROUP
                 0x000000a2                __vector_20
                 0x000000a2                __vector_1
                 0x000000a2                __vector_24
-                0x000000a2                __vector_12
                 0x000000a2                __bad_interrupt
                 0x000000a2                __vector_6
-                0x000000a2                __vector_3
                 0x000000a2                __vector_23
                 0x000000a2                __vector_25
+                0x000000a2                __vector_11
                 0x000000a2                __vector_17
                 0x000000a2                __vector_19
                 0x000000a2                __vector_7
@@ -221,18 +228,21 @@ END GROUP
                 0x000000a2                __vector_2
                 0x000000a2                __vector_15
                 0x000000a2                __vector_8
-                0x000000a2                __vector_14
                 0x000000a2                __vector_10
                 0x000000a2                __vector_18
                 0x000000a2                __vector_22
  .text          0x000000a6        0x0 ./ADC.o
  .text          0x000000a6        0x0 ./USART.o
  .text          0x000000a6        0x0 ./main.o
+ .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+ .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
+ .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
+ .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
  .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
  .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
  .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
- .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+ .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
  .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(sprintf.o)
  .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
  .text          0x000000a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
@@ -261,140 +271,205 @@ END GROUP
  .text.USART_Print
                 0x0000015a       0x18 ./USART.o
                 0x0000015a                USART_Print
- .text.__vector_16
-                0x00000172       0x14 ./main.o
-                0x00000172                __vector_16
  .text.__vector_13
-                0x00000186       0x14 ./main.o
-                0x00000186                __vector_13
- .text.__vector_11
-                0x0000019a       0x1c ./main.o
-                0x0000019a                __vector_11
+                0x00000172       0x1c ./main.o
+                0x00000172                __vector_13
+ .text.__vector_16
+                0x0000018e       0x18 ./main.o
+                0x0000018e                __vector_16
+ .text.__vector_14
+                0x000001a6       0xea ./main.o
+                0x000001a6                __vector_14
+ .text.__vector_12
+                0x00000290       0x14 ./main.o
+                0x00000290                __vector_12
+ .text.getNowTicks
+                0x000002a4        0xe ./main.o
+                0x000002a4                getNowTicks
+ .text.__vector_3
+                0x000002b2       0xcc ./main.o
+                0x000002b2                __vector_3
  .text.__vector_5
-                0x000001b6       0x60 ./main.o
-                0x000001b6                __vector_5
+                0x0000037e       0x7e ./main.o
+                0x0000037e                __vector_5
  .text.startup.main
-                0x00000216       0xee ./main.o
-                0x00000216                main
+                0x000003fc      0x1d8 ./main.o
+                0x000003fc                main
  .text.libgcc.mul
-                0x00000304        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+                0x000005d4        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.div
-                0x00000304       0x28 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
-                0x00000304                __divmodhi4
-                0x00000304                _div
- .text.libgcc   0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+                0x000005d4       0x28 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x000005d4                __udivmodhi4
+ .text.libgcc   0x000005fc        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.prologue
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+                0x000005fc        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.builtins
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+                0x000005fc        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.fmul
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+                0x000005fc        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.fixed
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+                0x000005fc        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .text.libgcc.mul
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x000005fc        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.div
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
- .text.libgcc   0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x000005fc       0x28 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+                0x000005fc                __divmodhi4
+                0x000005fc                _div
+ .text.libgcc   0x00000624        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.prologue
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x00000624        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.builtins
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x00000624        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.fmul
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x00000624        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.fixed
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x00000624        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
  .text.libgcc.mul
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                0x00000624        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
  .text.libgcc.div
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
- .text.libgcc   0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                0x00000624       0x44 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
+                0x00000624                __udivmodsi4
+ .text.libgcc   0x00000668        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
  .text.libgcc.prologue
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                0x00000668        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
  .text.libgcc.builtins
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                0x00000668        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
  .text.libgcc.fmul
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                0x00000668        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
  .text.libgcc.fixed
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+                0x00000668        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
  .text.libgcc.mul
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+                0x00000668        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
  .text.libgcc.div
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
- .text.libgcc   0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+                0x00000668       0x2e /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
+                0x00000668                __divmodsi4
+ .text.libgcc   0x00000696        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
  .text.libgcc.prologue
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+                0x00000696        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
  .text.libgcc.builtins
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+                0x00000696        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
  .text.libgcc.fmul
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+                0x00000696        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
  .text.libgcc.fixed
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+                0x00000696        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
  .text.libgcc.mul
-                0x0000032c        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x00000696        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
  .text.libgcc.div
-                0x0000032c       0x28 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
-                0x0000032c                __udivmodhi4
- .text.libgcc   0x00000354        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x00000696       0x10 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
+                0x00000696                __negsi2
+ .text.libgcc   0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
  .text.libgcc.prologue
-                0x00000354        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
  .text.libgcc.builtins
-                0x00000354        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
  .text.libgcc.fmul
-                0x00000354        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
  .text.libgcc.fixed
-                0x00000354        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
+ .text.libgcc.mul
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.div
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc   0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.prologue
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.builtins
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.fmul
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.fixed
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.div
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc   0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.prologue
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.builtins
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.fmul
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.fixed
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .text.libgcc.mul
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc   0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x000006a6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x000006a6       0x1e /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
+                0x000006a6                __umulhisi3
+ .text.libgcc.div
+                0x000006c4        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc   0x000006c4        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.prologue
+                0x000006c4        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.builtins
+                0x000006c4        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.fmul
+                0x000006c4        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
+ .text.libgcc.fixed
+                0x000006c4        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
  .text.avr-libc
-                0x00000354       0x44 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(sprintf.o)
-                0x00000354                sprintf
+                0x000006c4       0x44 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(sprintf.o)
+                0x000006c4                sprintf
  .text.avr-libc
-                0x00000398      0x3a4 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
-                0x00000398                vfprintf
+                0x00000708      0x3a4 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+                0x00000708                vfprintf
  .text.avr-libc
-                0x0000073c       0x16 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
-                0x0000073c                strnlen_P
+                0x00000aac       0x16 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+                0x00000aac                strnlen_P
  .text.avr-libc
-                0x00000752       0x16 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen.o)
-                0x00000752                strnlen
+                0x00000ac2       0x16 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen.o)
+                0x00000ac2                strnlen
  .text.avr-libc
-                0x00000768       0x64 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(fputc.o)
-                0x00000768                fputc
+                0x00000ad8       0x64 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(fputc.o)
+                0x00000ad8                fputc
  .text.avr-libc
-                0x000007cc       0xbc /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(ultoa_invert.o)
-                0x000007cc                __ultoa_invert
+                0x00000b3c       0xbc /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(ultoa_invert.o)
+                0x00000b3c                __ultoa_invert
  .text.libgcc.mul
-                0x00000888        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
+                0x00000bf8        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
  .text.libgcc.div
-                0x00000888        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
- .text.libgcc   0x00000888        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
+                0x00000bf8        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
+ .text.libgcc   0x00000bf8        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
  .text.libgcc.prologue
-                0x00000888       0x38 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
-                0x00000888                __prologue_saves__
+                0x00000bf8       0x38 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
+                0x00000bf8                __prologue_saves__
  .text.libgcc.builtins
-                0x000008c0        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
+                0x00000c30        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
  .text.libgcc.fmul
-                0x000008c0        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
+                0x00000c30        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
  .text.libgcc.fixed
-                0x000008c0        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
+                0x00000c30        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
  .text.libgcc.mul
-                0x000008c0        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
+                0x00000c30        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
  .text.libgcc.div
-                0x000008c0        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
- .text.libgcc   0x000008c0        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
+                0x00000c30        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
+ .text.libgcc   0x00000c30        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
  .text.libgcc.prologue
-                0x000008c0       0x36 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
-                0x000008c0                __epilogue_restores__
+                0x00000c30       0x36 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
+                0x00000c30                __epilogue_restores__
  .text.libgcc.builtins
-                0x000008f6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
+                0x00000c66        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
  .text.libgcc.fmul
-                0x000008f6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
+                0x00000c66        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
  .text.libgcc.fixed
-                0x000008f6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
-                0x000008f6                . = ALIGN (0x2)
+                0x00000c66        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
+                0x00000c66                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000008f6        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
-                0x000008f6                exit
-                0x000008f6                _exit
+ .fini9         0x00000c66        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+                0x00000c66                exit
+                0x00000c66                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -413,22 +488,26 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000008f6        0x4 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .fini0         0x00000c66        0x4 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
  *(.fini0)
-                0x000008fa                _etext = .
+                0x00000c6a                _etext = .
 
-.data           0x00800100       0x14 load address 0x000008fa
+.data           0x00800100       0x6e load address 0x00000c6a
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
  .data          0x00800100        0x0 ./ADC.o
  .data          0x00800100        0x0 ./USART.o
  .data          0x00800100        0x0 ./main.o
+ .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+ .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
+ .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
+ .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
- .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+ .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(sprintf.o)
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
@@ -438,63 +517,110 @@ END GROUP
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
  .data          0x00800100        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
  *(.data*)
+ .data.ignitionTeeth
+                0x00800100        0x4 ./main.o
+                0x00800100                ignitionTeeth
+ .data.ignitionAngles
+                0x00800104        0x8 ./main.o
+                0x00800104                ignitionAngles
  *(.rodata)
  *(.rodata*)
  .rodata.USART_MYUBRR
-                0x00800100        0x2 ./USART.o
-                0x00800100                USART_MYUBRR
+                0x0080010c        0x2 ./USART.o
+                0x0080010c                USART_MYUBRR
  .rodata.str1.1
-                0x00800102       0x11 ./main.o
+                0x0080010e       0x5f ./main.o
  *(.gnu.linkonce.d*)
-                0x00800114                . = ALIGN (0x2)
- *fill*         0x00800113        0x1 
-                0x00800114                _edata = .
-                0x00800114                PROVIDE (__data_end, .)
+                0x0080016e                . = ALIGN (0x2)
+ *fill*         0x0080016d        0x1 
+                0x0080016e                _edata = .
+                0x0080016e                PROVIDE (__data_end, .)
 
-.bss            0x00800114        0xb
-                0x00800114                PROVIDE (__bss_start, .)
+.bss            0x0080016e       0x27
+                0x0080016e                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
- .bss           0x00800114        0x0 ./ADC.o
- .bss           0x00800114        0x0 ./USART.o
- .bss           0x00800114        0x0 ./main.o
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(sprintf.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(fputc.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(ultoa_invert.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
- .bss           0x00800114        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
+ .bss           0x0080016e        0x0 ./ADC.o
+ .bss           0x0080016e        0x0 ./USART.o
+ .bss           0x0080016e        0x0 ./main.o
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodhi4.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodhi4.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_udivmodsi4.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_divmodsi4.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_negsi2.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_exit.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_copy_data.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_clear_bss.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_umulhisi3.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(sprintf.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(vfprintf_std.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen_P.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(strnlen.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(fputc.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/libc.a(ultoa_invert.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_prologue.o)
+ .bss           0x0080016e        0x0 /Users/mmittek/ArduinoGutts/Java/hardware/tools/avr/bin/../lib/gcc/avr/4.8.1/avr5/libgcc.a(_epilogue.o)
  *(.bss*)
  .bss.ADC_Measurement
-                0x00800114        0x2 ./ADC.o
-                0x00800114                ADC_Measurement
+                0x0080016e        0x2 ./ADC.o
+                0x0080016e                ADC_Measurement
  .bss.ADC_ConversionDone
-                0x00800116        0x1 ./ADC.o
-                0x00800116                ADC_ConversionDone
- .bss.crankEventsi
-                0x00800117        0x1 ./main.o
-                0x00800117                crankEventsi
+                0x00800170        0x1 ./ADC.o
+                0x00800170                ADC_ConversionDone
+ .bss.ref       0x00800171        0x4 ./main.o
+                0x00800171                ref
+ .bss.crankEventsArri
+                0x00800175        0x1 ./main.o
+                0x00800175                crankEventsArri
+ .bss.crankEvents
+                0x00800176        0x1 ./main.o
+                0x00800176                crankEvents
+ .bss.syncCrankEvents
+                0x00800177        0x1 ./main.o
+                0x00800177                syncCrankEvents
+ .bss.cycleCrankEvents
+                0x00800178        0x1 ./main.o
+                0x00800178                cycleCrankEvents
+ .bss.ticksPerRotation
+                0x00800179        0x2 ./main.o
+                0x00800179                ticksPerRotation
+ .bss.prevCrankEvent
+                0x0080017b        0x2 ./main.o
+                0x0080017b                prevCrankEvent
+ .bss.cycleAngle
+                0x0080017d        0x2 ./main.o
+                0x0080017d                cycleAngle
+ .bss.cycleTime
+                0x0080017f        0x2 ./main.o
+                0x0080017f                cycleTime
+ .bss.running   0x00800181        0x1 ./main.o
+                0x00800181                running
+ .bss.rpm       0x00800182        0x2 ./main.o
+                0x00800182                rpm
+ .bss.now       0x00800184        0x2 ./main.o
+                0x00800184                now
+ .bss.nextEventAt
+                0x00800186        0x2 ./main.o
+                0x00800186                nextEventAt
+ .bss.ticksPerDegree
+                0x00800188        0x2 ./main.o
+                0x00800188                ticksPerDegree
+ .bss.ticks     0x0080018a        0x4 ./main.o
+                0x0080018a                ticks
  *(COMMON)
- COMMON         0x00800118        0x7 ./main.o
-                0x00800118                crankEvents
-                0x0080011d                meas
-                0x0080011f                PROVIDE (__bss_end, .)
-                0x000008fa                __data_load_start = LOADADDR (.data)
-                0x0000090e                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080018e        0x7 ./main.o
+                0x0080018e                crankEventsArr
+                0x00800193                meas
+                0x00800195                PROVIDE (__bss_end, .)
+                0x00000c6a                __data_load_start = LOADADDR (.data)
+                0x00000cd8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080011f        0x0
-                0x0080011f                PROVIDE (__noinit_start, .)
+.noinit         0x00800195        0x0
+                0x00800195                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0080011f                PROVIDE (__noinit_end, .)
-                0x0080011f                _end = .
-                0x0080011f                PROVIDE (__heap_start, .)
+                0x00800195                PROVIDE (__noinit_end, .)
+                0x00800195                _end = .
+                0x00800195                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)

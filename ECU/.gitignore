@@ -1,3 +1,3 @@
 # Binary files produced during compilation
-Release/*
-Debug/*
+./Release
+./Debug
