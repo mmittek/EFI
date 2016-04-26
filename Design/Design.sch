@@ -135,8 +135,6 @@ F 3 "" H 2500 4250 60  0000 C CNN
 	1    2500 4250
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2500 4050 2500 4250
 $Comp
 L R R6
 U 1 1 570C2D4E
@@ -148,9 +146,6 @@ F 3 "" H 2200 4050 50  0000 C CNN
 	1    2200 4050
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2200 4200 3400 4200
-Connection ~ 2500 4200
 $Comp
 L SR1100 D3
 U 1 1 570C37AE
@@ -162,22 +157,10 @@ F 3 "" H 3400 3950 50  0000 C CNN
 	1    3400 3950
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	3400 4200 3400 4100
-Wire Wire Line
-	3400 3650 3400 3800
-Wire Wire Line
-	2500 3600 2500 3700
-Connection ~ 2500 3650
 Text Notes 2750 3000 0    60   ~ 0
 Coil / injector driver
 Text GLabel 1800 3900 0    60   Input ~ 0
 TRIG
-Wire Wire Line
-	2200 3900 1800 3900
-Connection ~ 2200 3900
-Wire Wire Line
-	3400 3650 2500 3650
 $Comp
 L LM7805 U3
 U 1 1 570D39C8
@@ -211,13 +194,6 @@ F 3 "" H 6550 1300 50  0000 C CNN
 	1    6550 1300
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6550 1400 6550 1500
-Wire Wire Line
-	6200 1500 7350 1500
-Wire Wire Line
-	6950 1400 6950 1600
-Connection ~ 6950 1500
 $Comp
 L C_Small C2
 U 1 1 570D70D9
@@ -229,11 +205,6 @@ F 3 "" H 7350 1300 50  0000 C CNN
 	1    7350 1300
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7350 1050 7350 1200
-Wire Wire Line
-	7350 1500 7350 1400
-Connection ~ 7350 1100
 $Comp
 L RVAR R8
 U 1 1 570DA278
@@ -267,8 +238,6 @@ F 3 "" H 8900 1650 60  0000 C CNN
 	1    8900 1650
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8900 1950 8900 2100
 $Comp
 L GND-RESCUE-Design #PWR05
 U 1 1 570DCAC8
@@ -282,9 +251,6 @@ F 3 "" H 8900 2600 60  0000 C CNN
 $EndComp
 Text GLabel 9150 2050 2    60   Output ~ 0
 IAT_OUT
-Wire Wire Line
-	9150 2050 8900 2050
-Connection ~ 8900 2050
 Text Notes 8450 1500 0    60   ~ 0
 Intake temperature sensor\nvoltage divider
 $Comp
@@ -331,11 +297,8 @@ F 3 "" H 900 1250 50  0000 C CNN
 	1    900  1250
 	1    0    0    -1  
 $EndComp
-Connection ~ 900  1100
 Text GLabel 1100 1100 2    60   Output ~ 0
 VRS_TH
-Wire Wire Line
-	1100 1100 900  1100
 $Comp
 L GND-RESCUE-Design #PWR06
 U 1 1 570FFE0E
@@ -371,7 +334,6 @@ F 3 "" H 3000 1400 50  0000 C CNN
 	1    3000 1400
 	0    1    1    0   
 $EndComp
-Connection ~ 3000 1250
 $Comp
 L GND-RESCUE-Design #PWR07
 U 1 1 57101C04
@@ -398,12 +360,6 @@ Text GLabel 1200 1650 0    60   Input ~ 0
 VRS1_LOW
 Text GLabel 1200 1800 0    60   Input ~ 0
 VRS0_LOW
-Wire Wire Line
-	1200 1650 1500 1650
-Wire Wire Line
-	1500 1650 1500 1850
-Wire Wire Line
-	1500 1800 1200 1800
 $Comp
 L GND-RESCUE-Design #PWR09
 U 1 1 5710466B
@@ -415,11 +371,8 @@ F 3 "" H 1500 1850 60  0000 C CNN
 	1    1500 1850
 	1    0    0    -1  
 $EndComp
-Connection ~ 1500 1800
 Text GLabel 2800 1250 0    60   Input ~ 0
 VRS0_HIGH
-Wire Wire Line
-	2800 1250 3750 1250
 $Comp
 L GND-RESCUE-Design #PWR010
 U 1 1 57109002
@@ -453,13 +406,6 @@ F 3 "" H 4350 1200 50  0000 C CNN
 	1    4350 1200
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3950 1050 3950 950 
-Wire Wire Line
-	3950 950  4350 950 
-Wire Wire Line
-	4350 950  4350 1050
-Connection ~ 3950 950 
 $Comp
 L SR1100 D4
 U 1 1 5710CDF9
@@ -495,7 +441,6 @@ F 3 "" H 3000 2350 50  0000 C CNN
 	1    3000 2350
 	0    1    1    0   
 $EndComp
-Connection ~ 3000 2200
 $Comp
 L GND-RESCUE-Design #PWR012
 U 1 1 5710CE0E
@@ -520,8 +465,6 @@ F 3 "" H 3000 1900 60  0000 C CNN
 $EndComp
 Text GLabel 2800 2200 0    60   Input ~ 0
 VRS1_HIGH
-Wire Wire Line
-	2800 2200 3750 2200
 $Comp
 L GND-RESCUE-Design #PWR014
 U 1 1 5710CE1C
@@ -555,13 +498,6 @@ F 3 "" H 4350 2150 50  0000 C CNN
 	1    4350 2150
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3950 2000 3950 1900
-Wire Wire Line
-	3950 1900 4350 1900
-Wire Wire Line
-	4350 1900 4350 2000
-Connection ~ 3950 1900
 $Comp
 L +BATT #PWR016
 U 1 1 5710DF5F
@@ -575,14 +511,8 @@ F 3 "" H 900 800 60  0000 C CNN
 $EndComp
 Text GLabel 4550 1350 2    60   Output ~ 0
 VRS0_OUT
-Wire Wire Line
-	4550 1350 4350 1350
-Connection ~ 4350 1350
 Text GLabel 4600 2300 2    60   Output ~ 0
 VRS1_OUT
-Wire Wire Line
-	4350 2300 4600 2300
-Connection ~ 4350 2300
 $Comp
 L +BATT #PWR017
 U 1 1 571183A3
@@ -653,7 +583,6 @@ F 3 "" H 6750 2500 50  0000 C CNN
 $EndComp
 Text GLabel 6450 2200 0    60   Input ~ 0
 VRS_OUT
-Connection ~ 6750 2200
 $Comp
 L +5V #PWR?
 U 1 1 57184620
@@ -679,12 +608,12 @@ $EndComp
 $Comp
 L ZENERsmall D?
 U 1 1 5718A5FC
-P 2750 5400
-F 0 "D?" H 2750 5500 50  0000 C CNN
-F 1 "5.1V" H 2750 5300 50  0000 C CNN
-F 2 "" H 2750 5400 50  0000 C CNN
-F 3 "" H 2750 5400 50  0000 C CNN
-	1    2750 5400
+P 4750 6600
+F 0 "D?" H 4750 6700 50  0000 C CNN
+F 1 "5.1V" H 4750 6500 50  0000 C CNN
+F 2 "" H 4750 6600 50  0000 C CNN
+F 3 "" H 4750 6600 50  0000 C CNN
+	1    4750 6600
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -698,6 +627,200 @@ F 3 "" H 6200 1200 50  0000 C CNN
 	1    6200 1200
 	0    1    1    0   
 $EndComp
+$Comp
+L LM393 U?
+U 1 1 571EEE41
+P 3450 5300
+F 0 "U?" H 3600 5450 50  0000 C CNN
+F 1 "LM393" H 3700 5150 50  0000 C CNN
+F 2 "" H 3450 5300 50  0000 C CNN
+F 3 "" H 3450 5300 50  0000 C CNN
+	1    3450 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 571EEF43
+P 3350 4550
+F 0 "#PWR?" H 3350 4400 50  0001 C CNN
+F 1 "+5V" H 3350 4690 50  0000 C CNN
+F 2 "" H 3350 4550 50  0000 C CNN
+F 3 "" H 3350 4550 50  0000 C CNN
+	1    3350 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 571EEFA8
+P 3350 5600
+F 0 "#PWR?" H 3350 5350 50  0001 C CNN
+F 1 "GND" H 3350 5450 50  0000 C CNN
+F 2 "" H 3350 5600 50  0000 C CNN
+F 3 "" H 3350 5600 50  0000 C CNN
+	1    3350 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 571EF00D
+P 3100 4750
+F 0 "#PWR?" H 3100 4500 50  0001 C CNN
+F 1 "GND" H 3100 4600 50  0000 C CNN
+F 2 "" H 3100 4750 50  0000 C CNN
+F 3 "" H 3100 4750 50  0000 C CNN
+	1    3100 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C_Small C?
+U 1 1 571EF1D1
+P 3100 4650
+F 0 "C?" H 3110 4720 50  0000 L CNN
+F 1 "0.1u" H 3110 4570 50  0000 L CNN
+F 2 "" H 3100 4650 50  0000 C CNN
+F 3 "" H 3100 4650 50  0000 C CNN
+	1    3100 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 571EF7E4
+P 1600 5100
+F 0 "R?" V 1680 5100 50  0000 C CNN
+F 1 "1k" V 1600 5100 50  0000 C CNN
+F 2 "" V 1530 5100 50  0000 C CNN
+F 3 "" H 1600 5100 50  0000 C CNN
+	1    1600 5100
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 571EF910
+P 2000 5550
+F 0 "R?" V 2080 5550 50  0000 C CNN
+F 1 "1k" V 2000 5550 50  0000 C CNN
+F 2 "" V 1930 5550 50  0000 C CNN
+F 3 "" H 2000 5550 50  0000 C CNN
+	1    2000 5550
+	-1   0    0    1   
+$EndComp
+$Comp
+L SR1100 D?
+U 1 1 571F01EB
+P 2000 5250
+F 0 "D?" H 2000 5350 50  0000 C CNN
+F 1 "SR1100" H 2000 5150 50  0000 C CNN
+F 2 "" H 2000 5250 50  0000 C CNN
+F 3 "" H 2000 5250 50  0000 C CNN
+	1    2000 5250
+	0    1    1    0   
+$EndComp
+$Comp
+L SR1100 D?
+U 1 1 571F0279
+P 2200 5250
+F 0 "D?" H 2200 5350 50  0000 C CNN
+F 1 "SR1100" H 2200 5150 50  0000 C CNN
+F 2 "" H 2200 5250 50  0000 C CNN
+F 3 "" H 2200 5250 50  0000 C CNN
+	1    2200 5250
+	0    -1   -1   0   
+$EndComp
+Text GLabel 1300 5100 0    60   Input ~ 0
+VRS0_IN
+$Comp
+L GND #PWR?
+U 1 1 571F0666
+P 2000 5700
+F 0 "#PWR?" H 2000 5450 50  0001 C CNN
+F 1 "GND" H 2000 5550 50  0000 C CNN
+F 2 "" H 2000 5700 50  0000 C CNN
+F 3 "" H 2000 5700 50  0000 C CNN
+	1    2000 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L C_Small C?
+U 1 1 571F0984
+P 3000 5300
+F 0 "C?" H 3010 5370 50  0000 L CNN
+F 1 "C_Small" H 3010 5220 50  0000 L CNN
+F 2 "" H 3000 5300 50  0000 C CNN
+F 3 "" H 3000 5300 50  0000 C CNN
+	1    3000 5300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 4050 2500 4250
+Wire Wire Line
+	2200 4200 3400 4200
+Connection ~ 2500 4200
+Wire Wire Line
+	3400 4200 3400 4100
+Wire Wire Line
+	3400 3650 3400 3800
+Wire Wire Line
+	2500 3600 2500 3700
+Connection ~ 2500 3650
+Wire Wire Line
+	2200 3900 1800 3900
+Connection ~ 2200 3900
+Wire Wire Line
+	3400 3650 2500 3650
+Wire Wire Line
+	6550 1400 6550 1500
+Wire Wire Line
+	6200 1500 7350 1500
+Wire Wire Line
+	6950 1400 6950 1600
+Connection ~ 6950 1500
+Wire Wire Line
+	7350 1050 7350 1200
+Wire Wire Line
+	7350 1500 7350 1400
+Connection ~ 7350 1100
+Wire Wire Line
+	8900 1950 8900 2100
+Wire Wire Line
+	9150 2050 8900 2050
+Connection ~ 8900 2050
+Connection ~ 900  1100
+Wire Wire Line
+	1100 1100 900  1100
+Connection ~ 3000 1250
+Wire Wire Line
+	1200 1650 1500 1650
+Wire Wire Line
+	1500 1650 1500 1850
+Wire Wire Line
+	1500 1800 1200 1800
+Connection ~ 1500 1800
+Wire Wire Line
+	2800 1250 3750 1250
+Wire Wire Line
+	3950 1050 3950 950 
+Wire Wire Line
+	3950 950  4350 950 
+Wire Wire Line
+	4350 950  4350 1050
+Connection ~ 3950 950 
+Connection ~ 3000 2200
+Wire Wire Line
+	2800 2200 3750 2200
+Wire Wire Line
+	3950 2000 3950 1900
+Wire Wire Line
+	3950 1900 4350 1900
+Wire Wire Line
+	4350 1900 4350 2000
+Connection ~ 3950 1900
+Wire Wire Line
+	4550 1350 4350 1350
+Connection ~ 4350 1350
+Wire Wire Line
+	4350 2300 4600 2300
+Connection ~ 4350 2300
+Connection ~ 6750 2200
 Wire Wire Line
 	6200 1500 6200 1300
 Connection ~ 6550 1500
@@ -707,4 +830,68 @@ Wire Wire Line
 	6550 1100 6550 1200
 Connection ~ 6550 1100
 Connection ~ 6200 1100
+Wire Wire Line
+	3350 4550 3350 5000
+Connection ~ 3350 4550
+Wire Wire Line
+	1750 5100 3000 5100
+Connection ~ 2000 5400
+Connection ~ 2000 5100
+Wire Wire Line
+	3000 5200 3150 5200
+Wire Wire Line
+	3100 4550 3950 4550
+$Comp
+L R R?
+U 1 1 571F173D
+P 3950 5000
+F 0 "R?" V 4030 5000 50  0000 C CNN
+F 1 "1k" V 3950 5000 50  0000 C CNN
+F 2 "" V 3880 5000 50  0000 C CNN
+F 3 "" H 3950 5000 50  0000 C CNN
+	1    3950 5000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 4550 3950 4850
+Wire Wire Line
+	3950 5150 3950 6000
+Wire Wire Line
+	3750 5300 4200 5300
+Text Notes 2500 5250 0    60   ~ 0
+Filter cap
+$Comp
+L R R?
+U 1 1 571F1CD6
+P 3350 6000
+F 0 "R?" V 3430 6000 50  0000 C CNN
+F 1 "20k" V 3350 6000 50  0000 C CNN
+F 2 "" V 3280 6000 50  0000 C CNN
+F 3 "" H 3350 6000 50  0000 C CNN
+	1    3350 6000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2450 6000 3200 6000
+Wire Wire Line
+	3950 6000 3500 6000
+Connection ~ 3950 5300
+Wire Wire Line
+	1450 5100 1300 5100
+Text GLabel 4200 5300 2    60   Output ~ 0
+VRS0_OUT
+Wire Wire Line
+	3000 5100 3000 5200
+Text Notes 2600 5950 0    60   ~ 0
+Need to check!
+Text Notes 1500 4750 0    60   ~ 0
+New VRS conditioning circuit
+Wire Wire Line
+	2450 5100 2450 6000
+Connection ~ 2450 5100
+Wire Wire Line
+	3150 5400 2000 5400
+Connection ~ 3000 5400
+Connection ~ 2200 5400
+Connection ~ 3000 5200
 $EndSCHEMATC
