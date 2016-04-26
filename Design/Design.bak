@@ -742,12 +742,12 @@ $EndComp
 $Comp
 L C_Small C?
 U 1 1 571F0984
-P 2600 5300
-F 0 "C?" H 2610 5370 50  0000 L CNN
-F 1 "C_Small" H 2610 5220 50  0000 L CNN
-F 2 "" H 2600 5300 50  0000 C CNN
-F 3 "" H 2600 5300 50  0000 C CNN
-	1    2600 5300
+P 3000 5300
+F 0 "C?" H 3010 5370 50  0000 L CNN
+F 1 "C_Small" H 3010 5220 50  0000 L CNN
+F 2 "" H 3000 5300 50  0000 C CNN
+F 3 "" H 3000 5300 50  0000 C CNN
+	1    3000 5300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -835,16 +835,10 @@ Wire Wire Line
 Connection ~ 3350 4550
 Wire Wire Line
 	1750 5100 3000 5100
-Wire Wire Line
-	2000 5400 3150 5400
 Connection ~ 2000 5400
 Connection ~ 2000 5100
-Connection ~ 2600 5400
-Wire Wire Line
-	2600 5100 2600 5200
 Wire Wire Line
 	3000 5200 3150 5200
-Connection ~ 2600 5100
 Wire Wire Line
 	3100 4550 3950 4550
 $Comp
@@ -864,7 +858,7 @@ Wire Wire Line
 	3950 5150 3950 6000
 Wire Wire Line
 	3750 5300 4200 5300
-Text Notes 2450 5050 0    60   ~ 0
+Text Notes 2500 5250 0    60   ~ 0
 Filter cap
 $Comp
 L R R?
@@ -895,4 +889,9 @@ New VRS conditioning circuit
 Wire Wire Line
 	2450 5100 2450 6000
 Connection ~ 2450 5100
+Wire Wire Line
+	3150 5400 2000 5400
+Connection ~ 3000 5400
+Connection ~ 2200 5400
+Connection ~ 3000 5200
 $EndSCHEMATC

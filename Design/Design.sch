@@ -86,6 +86,25 @@ LIBS:ESD_Protection
 LIBS:Altera
 LIBS:microchip_dspic33dsc
 LIBS:pspice
+LIBS:phoenix
+LIBS:cvra
+LIBS:_wireless
+LIBS:_transceiver
+LIBS:_stm32
+LIBS:_sensors
+LIBS:_power
+LIBS:_motor_drivers
+LIBS:_linear-regulators
+LIBS:_ic
+LIBS:_div
+LIBS:_connectors
+LIBS:_charge-pump-regulators
+LIBS:_audio
+LIBS:_antenna
+LIBS:National
+LIBS:Mec
+LIBS:IRF
+LIBS:Comp2014
 LIBS:logo
 LIBS:Design-cache
 EELAYER 25 0
@@ -571,7 +590,7 @@ F 3 "" H 6600 2200 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L GND #PWR019
+L GND-RESCUE-Design #PWR019
 U 1 1 57118D68
 P 6750 2500
 F 0 "#PWR019" H 6750 2250 50  0001 C CNN
@@ -650,7 +669,7 @@ F 3 "" H 3350 4550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 571EEFA8
 P 3350 5600
 F 0 "#PWR?" H 3350 5350 50  0001 C CNN
@@ -661,7 +680,7 @@ F 3 "" H 3350 5600 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 571EF00D
 P 3100 4750
 F 0 "#PWR?" H 3100 4500 50  0001 C CNN
@@ -729,7 +748,7 @@ $EndComp
 Text GLabel 1300 5100 0    60   Input ~ 0
 VRS0_IN
 $Comp
-L GND #PWR?
+L GND-RESCUE-Design #PWR?
 U 1 1 571F0666
 P 2000 5700
 F 0 "#PWR?" H 2000 5450 50  0001 C CNN
@@ -894,4 +913,5 @@ Wire Wire Line
 Connection ~ 3000 5400
 Connection ~ 2200 5400
 Connection ~ 3000 5200
+Connection ~ 2200 5100
 $EndSCHEMATC
