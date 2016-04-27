@@ -41,42 +41,33 @@ uint16_t ignitionAngles[] = {90, 270, 540, 360};
 uint8_t ignitionTeeth[] = {3, 9, 18, 12};
 volatile uint16_t prevCrankEvent = 0;
 volatile uint16_t ticksPerRotation = 0;
-volatile uint8_t cycleCrankEvents = 0;
-volatile uint8_t syncCrankEvents = 0;
 volatile uint8_t crankEventsArr[5];
-volatile uint8_t crankEvents = 0;
 volatile uint8_t crankEventsArri = 0;
+
+volatile int16_t dwellAt = 0;
+volatile int16_t fireAt = 0;
+
+volatile uint16_t syncCrankEvents = 0;
+volatile uint16_t crankEvents = 0;
+
+typedef enum {
+	SYNC = 0,
+	COIL0_DWELL,
+	COIL0_FIRE,
+	DONE,
+}ECU_state;
+
+volatile ECU_state currentState = DONE;
+
 
 
 ISR(TIMER0_OVF_vect) {
-//	running = 0;
+	running = 0;
 }
 
 volatile uint32_t ref = 0;
 
-// Execution timer interrupt with resolution of
-// 10th of millisecond (100us)
-ISR(TIMER0_COMPA_vect) {
 
-//	cycleTime++;
-//	uint32_t angle = 90;
-//	ref = (( (uint32_t)ticksPerRotation/25)*angle)/90;
-
-	PORTB &=~(1<<5);
-	TIMSK0 &= ~(1<<OCIE0A);
-
-
-
-}
-
-
-ISR(TIMER1_COMPB_vect) {
-	/*
-	now = TCNT1L + ( TCNT1H<<8 );
-	nextEventAt = now + ( OCR1AL + (OCR1AH<<8) );
-	PORTB ^=(1<<5);
-	*/
-}
 
 
 uint16_t getNowTicks() {
@@ -90,59 +81,102 @@ inline uint16_t convertToT(uint16_t in) {
 }
 
 
-// Crank events on the RISING edge
+// Crank events on either! EDGE
+volatile uint8_t PINB_prev =0;
+volatile uint32_t crankTicks = 0;
+volatile uint32_t crankTime = 0;
 ISR(PCINT0_vect) {
-	uint16_t now;
-	uint16_t diff;
-	// Checking if I am on the rising edge of PB0
-	if(PINB & (1<<0)) {
+	// Change on PB0
+	if( (PINB ^ PINB_prev) & (1<<0) ) {
 		crankEvents++;
-		cycleCrankEvents++;
 		syncCrankEvents++;
-		now = getNowTicks();
-		diff = (now - prevCrankEvent);
-		ticksPerRotation = diff*12;
-		rpm = 60000/((2*ticksPerRotation)/125);
-		prevCrankEvent = now;
-
-
-
-		// Cylinder 1 dwell 1 tooth before?
-		if(cycleCrankEvents == 3) {
-			PORTB |=(1<<5);
-			TCNT0 = 0;
-			OCR0A = 100;	// 2ms
-			TIMSK0 |= (1<<OCIE0A);
-
-		}
-
-
+		running = 1;
+		crankTicks = TCNT0;
+		crankTime = (crankTicks *100000)/15625;
+		TCNT0 = 0;
 	}
+	PINB_prev = PINB;
+}
+
+ISR(TIMER2_COMPA_vect) {
+	PORTB &= ~(1<<5);
+	TIMSK2 = 0;	// turn off the interrupt
+	TCCR2B = 0;
+}
+
+void timer2_start(uint16_t countToMs) {
+	TIMSK2 |= (1<<OCIE2A);
+	OCR2A = countToMs*15;
+	TCNT2 = 0;
+	TCCR2B = (1<<CS22) | (1<<CS21) | (1<<CS20);	// /1024
+}
+
+ISR(TIMER1_COMPA_vect) {
+	// Transitions
+	switch(currentState) {
+		case SYNC:
+			currentState = COIL0_DWELL;
+		break;
+
+		case COIL0_DWELL:
+			currentState = COIL0_FIRE;
+		break;
+
+		default:
+		case COIL0_FIRE:
+			//TIMSK1 = 0;	// turn off the interrupt
+			//TCCR1B = 0;	// turn off he clock source
+			return;
+	}
+
+	switch(currentState) {
+		case COIL0_DWELL:
+			OCR1AH = fireAt>>8;
+			OCR1AL = fireAt & 0xff;
+			PORTB |= (1<<5);	// write one to start dwelling
+		break;
+
+		case COIL0_FIRE:
+			PORTB &= ~(1<<5);	// write zero to fire
+		break;
+	}
+
+}
+
+
+void timer1_start(uint16_t countTo) {
+	TCCR1A = 0;	// normal mode
+	// high BEFORE low on write
+	TCNT1H = 0;
+	TCNT1L = 0;
+	OCR1AH = countTo>>8;
+	OCR1AL = countTo & 0xff;
+	// start the timer!
+	TCCR1B = (1<<WGM12) | (1<<CS12) | (1<<CS10);	// ctc, /1024
+	TIMSK1 = (1<<OCIE1A);
 }
 
 // Cam events
 // Port D interrupt handler
+volatile uint8_t PIND_prev = 0;
 ISR(PCINT2_vect) {
-	// Checking if I am on the falling edge PD2
-	// Falling edge would be the zero-crossing
+	if( (PIND ^ PIND_prev) & (1<<2) ) {
 
-	if(!(PIND & (1<<2))) {
-		crankEventsArr[crankEventsArri] = syncCrankEvents;
-		crankEventsArri=(crankEventsArri+1)%5;
-		switch(syncCrankEvents) {
-			case 10:
-			break;
-			case 2:
-			break;
-			case 12:
-				running = 1;
-				cycleTime = 0;
-				cycleCrankEvents = 0;
+		// Falling edge on PD2 - cam signal
+		if(!( PIND & (1<<2) )) {
+			if(syncCrankEvents == 24) {
+				// SYNC JUST STARTED xD
+				crankEvents = 0;
 
-			break;
+				currentState = SYNC;
+				timer1_start( dwellAt);
+
+
+			}
+			syncCrankEvents = 0;
 		}
-		syncCrankEvents = 0;
 	}
+	PIND_prev= PIND;
 }
 
 int main() {
@@ -151,6 +185,8 @@ int main() {
 
 
 	cli();
+
+	// OUtput pin for testing
 	DDRB |= (1<<5);
 	PORTB &= ~(1<<5);
 
@@ -160,9 +196,6 @@ int main() {
 	TCCR0B = (1<<CS02) ;//| (1<<CS00);
 */
 
-	// Setting coil pins
-	DDRB |= (1<<1);	// PB1 COIL1
-	PORTB &= ~(1<<1);	// set 0
 
 
 
@@ -174,28 +207,36 @@ int main() {
 	TCNT0 = 0;
 */
 
+	// Pin on crank events: PB0
+	DDRB &= ~(1<<0);	// input on PB0
+	PCMSK0 |= (1<<PCINT0);	// interrupt on PB0
+	PCICR |= (1<<PCIE0); // interrupt on port B
+	PINB_prev = PINB;	// read the values
+
+
 
 	// Pin on cam events PD2
 	DDRD &= ~(1<<2);	// input on PD2
 	PCMSK2 |= (1<<PCINT18);	// interrupt on PD2
 	PCICR |= (1<<PCIE2);	// interrupt enable on port D
+	PIND_prev = PIND;
 
-	// Pin on crank events: PB0
-	DDRB &= ~(1<<0);	// input on PB0
-	PCMSK0 |= (1<<PCINT0);	// interrupt on PB0
-	PCICR |= (1<<PCIE0); // interrupt on port B
 
 	// 16 bit timer 1 on 100us - main time measurement timer
-	TCCR1A = 0;	// normal mode
-	TIMSK1 = (1<<TOIE1) ;	// on overflow and compare
-	TCCR1B =  (1<<CS12);	// /256
+//	TCCR1A = 0;	// normal mode
+//	TIMSK1 = (1<<TOIE1) ;	// on overflow and compare
+//	TCCR1B =  (1<<CS12);	// /256
 
-	// Timer 0 for 10th of ms resolution execution
-	TCCR0A = (1<<WGM01);	// normal mode, CTC
-	TCCR0B = (1<<CS02);	// /256
+	// Timer 0 to measure inter-teeth crank time
+	TCCR0A =0;	// normal mode
+	TCCR0B = (1<<CS02) | (1<<CS00);	// /256
 	TCNT0 = 0;
-	OCR0A = 5;
-	TIMSK0 = (1<<TOIE0);	// compare and overflow
+	TIMSK0 = (1<<TOIE0);	// overflow
+
+	// Timer 2 for execution of instantaneous tasks
+	TCCR2A = 0;	// normal / ctc
+	TCCR2B = 0;
+//	TCCR2B = (1<<CS22) | (1<<CS21) | (1<<CS20);	// /1024
 
 	sei();
 
@@ -204,35 +245,16 @@ int main() {
 	ADC_Init();
 
 
+
 	while(1) {
 
-		meas = ADC_Convert(1);
+		// Figure out the fires
+		fireAt = 50;	// 90 degrees
 
-//		if(running) {
-
-			sprintf(out, "Meas: %d\n", meas);
-			USART_Print(out);
-
-			sprintf(out, "Cycle ms/10s: %d\n", 2*convertToT(ticksPerRotation));
-			USART_Print(out);
-
-			sprintf(out, "Rotation ticks: %d\n", ticksPerRotation);
-			USART_Print(out);
-
-			sprintf(out, "RPM: %d\n", rpm);
-			USART_Print(out);
-
-			sprintf(out, "Ticks per degree: %d\n", ticksPerDegree);
-			USART_Print(out);
-
-			sprintf(out, "ref: %d\n", ref);
-			USART_Print(out);
+		// Figure out the dwells from fires
+		dwellAt = fireAt -15;	// 30 ~2ms
 
 
-			for(int i=0; i<5; i++) {
-				sprintf(out, "T: %d\n", crankEventsArr[i]);
-				USART_Print(out);
-			}
-//		}
+
 	}
 }

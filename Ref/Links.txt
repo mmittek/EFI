@@ -3,3 +3,5 @@ Ignition coils dwell time and more: http://www.dtec.net.au/Ignition%20Coil%20Dwe
 Principles of tuning EFIs http://www.megamanual.com/begintuning.htm
 
 Nice explanation video https://www.youtube.com/watch?v=lcwrLTaYJ_o
+
+Nice sensor overview: http://www.daytona-twintec.com/tech_sensors.html 
