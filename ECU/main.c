@@ -38,14 +38,13 @@ volatile int16_t cycleAngle =0;
 
 
 uint16_t ignitionAngles[] = {90, 270, 540, 360};
+
 uint8_t ignitionTeeth[] = {3, 9, 18, 12};
 volatile uint16_t prevCrankEvent = 0;
 volatile uint16_t ticksPerRotation = 0;
 volatile uint8_t crankEventsArr[5];
 volatile uint8_t crankEventsArri = 0;
 
-volatile int16_t dwellAt = 0;
-volatile int16_t fireAt = 0;
 
 volatile uint16_t syncCrankEvents = 0;
 volatile uint16_t crankEvents = 0;
@@ -54,6 +53,12 @@ typedef enum {
 	SYNC = 0,
 	COIL0_DWELL,
 	COIL0_FIRE,
+	COIL1_DWELL,
+	COIL1_FIRE,
+	COIL2_DWELL,
+	COIL2_FIRE,
+	COIL3_DWELL,
+	COIL3_FIRE,
 	DONE,
 }ECU_state;
 
@@ -88,12 +93,16 @@ volatile uint32_t crankTime = 0;
 ISR(PCINT0_vect) {
 	// Change on PB0
 	if( (PINB ^ PINB_prev) & (1<<0) ) {
-		crankEvents++;
-		syncCrankEvents++;
-		running = 1;
-		crankTicks = TCNT0;
-		crankTime = (crankTicks *100000)/15625;
-		TCNT0 = 0;
+
+		// falling edge only!
+		if(!(PINB & (1<<0))) {
+			crankEvents++;
+			syncCrankEvents++;
+			running = 1;
+			crankTicks = TCNT0;
+			TCNT0 = 0;
+			crankTime = (crankTicks *100000)/15625;
+		}
 	}
 	PINB_prev = PINB;
 }
@@ -111,49 +120,95 @@ void timer2_start(uint16_t countToMs) {
 	TCCR2B = (1<<CS22) | (1<<CS21) | (1<<CS20);	// /1024
 }
 
-ISR(TIMER1_COMPA_vect) {
-	// Transitions
-	switch(currentState) {
-		case SYNC:
-			currentState = COIL0_DWELL;
-		break;
-
-		case COIL0_DWELL:
-			currentState = COIL0_FIRE;
-		break;
-
-		default:
-		case COIL0_FIRE:
-			//TIMSK1 = 0;	// turn off the interrupt
-			//TCCR1B = 0;	// turn off he clock source
-			return;
-	}
-
-	switch(currentState) {
-		case COIL0_DWELL:
-			OCR1AH = fireAt>>8;
-			OCR1AL = fireAt & 0xff;
-			PORTB |= (1<<5);	// write one to start dwelling
-		break;
-
-		case COIL0_FIRE:
-			PORTB &= ~(1<<5);	// write zero to fire
-		break;
-	}
-
-}
-
-
-void timer1_start(uint16_t countTo) {
-	TCCR1A = 0;	// normal mode
-	// high BEFORE low on write
+void timer1_countTo(uint16_t countTo) {
 	TCNT1H = 0;
 	TCNT1L = 0;
 	OCR1AH = countTo>>8;
 	OCR1AL = countTo & 0xff;
+	TIMSK1 |= (1<<OCIE1A);
+}
+
+void timer1_stop() {
+	TCCR1B = 0;
+	TIMSK1 = 0;
+}
+
+
+#define COIL0_DWELL 	1
+#define COIL0_FIRE 		2
+#define COIL1_DWELL		3
+#define COIL1_FIRE		4
+#define COIL2_DWELL		5
+#define COIL2_FIRE		6
+#define COIL3_DWELL		7
+#define COIL3_FIRE		8
+volatile uint16_t now;
+volatile uint16_t COIL0_dwellAt=0;
+volatile uint16_t COIL0_fireAt=0;
+volatile uint16_t COIL1_dwellAt=0;
+volatile uint16_t COIL1_fireAt=0;
+volatile uint16_t COIL2_dwellAt=0;
+volatile uint16_t COIL2_fireAt=0;
+volatile uint16_t COIL3_dwellAt=0;
+volatile uint16_t COIL3_fireAt=0;
+
+ISR(TIMER1_COMPA_vect) {
+	now =OCR1AL;
+	now |= OCR1AH<<8;
+
+	currentState++;
+	if(currentState == COIL0_DWELL) {
+//	if(now == COIL0_fireAt) {
+		PORTB |= (1<<5);	// dwell start
+		timer1_countTo( COIL0_fireAt-COIL0_dwellAt );
+		return;
+	}
+	if(currentState ==COIL0_FIRE) {
+		PORTB &= ~(1<<5);	// dwell stop - FIRE!
+		timer1_countTo( COIL1_dwellAt-COIL0_fireAt );
+		return;
+	}
+	if(currentState == COIL1_DWELL) {
+		PORTB |= (1<<5);	// dwell start
+		timer1_countTo( COIL1_fireAt-COIL1_dwellAt );
+		return;
+	}
+	if(currentState == COIL1_FIRE) {
+		PORTB &= ~(1<<5);	// FIRE!
+		timer1_countTo( COIL2_dwellAt-COIL1_fireAt );
+		return;
+	}
+	if(currentState == COIL2_DWELL) {
+		PORTB |= (1<<5);	// dwell start
+		timer1_countTo( COIL2_fireAt-COIL2_dwellAt );
+		return;
+	}
+	if(currentState == COIL2_FIRE) {
+		PORTB &= ~(1<<5);	// dwell stop - FIRE!
+		timer1_countTo( COIL3_fireAt-COIL2_fireAt );
+	}
+	if(currentState == COIL3_DWELL) {
+		PORTB |= (1<<5);	// dwell start
+		timer1_countTo( COIL3_fireAt-COIL3_dwellAt );
+		return;
+	}
+	if(currentState == COIL3_FIRE) {
+		PORTB &= ~(1<<5);	// dwell stop - FIRE!
+		timer1_stop();
+	}
+}
+
+
+
+
+void timer1_start() {
+	TCCR1A = 0;	// normal mode
+	// high BEFORE low on write
+	TCNT1H = 0;
+	TCNT1L = 0;
 	// start the timer!
-	TCCR1B = (1<<WGM12) | (1<<CS12) | (1<<CS10);	// ctc, /1024
 	TIMSK1 = (1<<OCIE1A);
+	TCCR1B = (1<<WGM12) | (1<<CS12) | (1<<CS10);	// ctc, /1024
 }
 
 // Cam events
@@ -164,15 +219,20 @@ ISR(PCINT2_vect) {
 
 		// Falling edge on PD2 - cam signal
 		if(!( PIND & (1<<2) )) {
-			if(syncCrankEvents == 24) {
+			if(syncCrankEvents == 12) {
 				// SYNC JUST STARTED xD
 				crankEvents = 0;
 
-				currentState = SYNC;
-				timer1_start( dwellAt);
+				currentState = 0;
+				timer1_stop();
+				// Count to the first event
+				timer1_countTo( COIL0_dwellAt );	// another tooth for some reason
+				timer1_start();
 
 
 			}
+			crankEventsArr[crankEventsArri] = syncCrankEvents;
+			crankEventsArri = (crankEventsArri+1)%5;
 			syncCrankEvents = 0;
 		}
 	}
@@ -245,16 +305,34 @@ int main() {
 	ADC_Init();
 
 
-
+	uint16_t coilDwellTimeTicks = 7;
 	while(1) {
 
-		// Figure out the fires
-		fireAt = 50;	// 90 degrees
+		// Figure out the ignition TIMING for FIRE
+		for(int i=0; i<4; i++) {
+//			uint16_t ignitionAngles[] = {90, 270, 630, 450};
+		}
 
-		// Figure out the dwells from fires
-		dwellAt = fireAt -15;	// 30 ~2ms
+//		cli();
+			COIL0_fireAt = (crankTicks*3);	// 90 degrees
+			COIL0_dwellAt = COIL0_fireAt-coilDwellTimeTicks;	// 30 ~2ms
+			COIL1_fireAt = (crankTicks*9);	// 270 degrees
+			COIL1_dwellAt = COIL1_fireAt-coilDwellTimeTicks;	// 30 ~2ms
+			COIL2_fireAt = (crankTicks*15);	// 450 degrees
+			COIL2_dwellAt = COIL2_fireAt-coilDwellTimeTicks;	// 30 ~2ms
+			COIL3_fireAt = (crankTicks*21);	// 630 degrees
+			COIL3_dwellAt = COIL3_fireAt-coilDwellTimeTicks;	// 30 ~2ms
+//		sei();
 
+		sprintf(out, "Crank ticks: %d\n",crankTicks );
+		USART_Print(out);
 
+		USART_Print("Crank events: \n");
+		for(int i=0; i<5; i++) {
+			sprintf(out, "%d\n",crankEventsArr[i] );
+			USART_Print(out);
+
+		}
 
 	}
 }
