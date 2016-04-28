@@ -142,60 +142,78 @@ void timer1_stop() {
 #define COIL2_FIRE		6
 #define COIL3_DWELL		7
 #define COIL3_FIRE		8
-volatile uint16_t now;
-volatile uint16_t COIL0_dwellAt=0;
-volatile uint16_t COIL0_fireAt=0;
-volatile uint16_t COIL1_dwellAt=0;
-volatile uint16_t COIL1_fireAt=0;
-volatile uint16_t COIL2_dwellAt=0;
-volatile uint16_t COIL2_fireAt=0;
-volatile uint16_t COIL3_dwellAt=0;
-volatile uint16_t COIL3_fireAt=0;
+
+
+
+
+typedef struct {
+	uint16_t at;
+	uint8_t action;
+	uint8_t done;
+}myEvent_t;
+
+myEvent_t myEvents[8];
+volatile uint8_t currentEventIdx = 0;
+
+uint8_t findFirstEvent() {
+	uint16_t min = 65535;
+	uint8_t result = 255;
+	for(int i=0; i<8; i++) {
+		if(myEvents[i].done == 0) {
+			if( myEvents[i].at < min ) {
+				result = i;
+				min = myEvents[i].at;
+			}
+		}
+	}
+	return result;
+}
+
+void undoAllEvents() {
+	for(int i=0; i<8; i++) {
+		myEvents[i].done = 0;
+	}
+}
+
+void executeEventAction(uint8_t action) {
+	switch(action) {
+		case COIL0_DWELL:
+			PORTB |= (1<<5);	// dwell start
+		break;
+		case COIL0_FIRE:
+			PORTB &= ~(1<<5);	// dwell start
+		break;
+		case COIL1_DWELL:
+			PORTB |= (1<<5);	// dwell start
+		break;
+		case COIL1_FIRE:
+			PORTB &= ~(1<<5);	// dwell start
+		break;
+		case COIL2_DWELL:
+			PORTB |= (1<<5);	// dwell start
+		break;
+		case COIL2_FIRE:
+			PORTB &= ~(1<<5);	// dwell start
+		break;
+		case COIL3_DWELL:
+			PORTB |= (1<<5);	// dwell start
+		break;
+		case COIL3_FIRE:
+			PORTB &= ~(1<<5);	// dwell start
+		break;
+	}
+}
+
 
 ISR(TIMER1_COMPA_vect) {
-	now =OCR1AL;
-	now |= OCR1AH<<8;
-
-	currentState++;
-	if(currentState == COIL0_DWELL) {
-//	if(now == COIL0_fireAt) {
-		PORTB |= (1<<5);	// dwell start
-		timer1_countTo( COIL0_fireAt-COIL0_dwellAt );
-		return;
-	}
-	if(currentState ==COIL0_FIRE) {
-		PORTB &= ~(1<<5);	// dwell stop - FIRE!
-		timer1_countTo( COIL1_dwellAt-COIL0_fireAt );
-		return;
-	}
-	if(currentState == COIL1_DWELL) {
-		PORTB |= (1<<5);	// dwell start
-		timer1_countTo( COIL1_fireAt-COIL1_dwellAt );
-		return;
-	}
-	if(currentState == COIL1_FIRE) {
-		PORTB &= ~(1<<5);	// FIRE!
-		timer1_countTo( COIL2_dwellAt-COIL1_fireAt );
-		return;
-	}
-	if(currentState == COIL2_DWELL) {
-		PORTB |= (1<<5);	// dwell start
-		timer1_countTo( COIL2_fireAt-COIL2_dwellAt );
-		return;
-	}
-	if(currentState == COIL2_FIRE) {
-		PORTB &= ~(1<<5);	// dwell stop - FIRE!
-		timer1_countTo( COIL3_fireAt-COIL2_fireAt );
-	}
-	if(currentState == COIL3_DWELL) {
-		PORTB |= (1<<5);	// dwell start
-		timer1_countTo( COIL3_fireAt-COIL3_dwellAt );
-		return;
-	}
-	if(currentState == COIL3_FIRE) {
-		PORTB &= ~(1<<5);	// dwell stop - FIRE!
-		timer1_stop();
-	}
+	uint16_t dt;
+	uint8_t nextEvent;
+	myEvents[currentEventIdx].done = 1;
+	nextEvent = findFirstEvent();
+	dt = myEvents[nextEvent].at-myEvents[currentEventIdx].at;
+	timer1_countTo( dt );
+	executeEventAction(myEvents[currentEventIdx].action);
+	currentEventIdx = nextEvent;
 }
 
 
@@ -225,8 +243,11 @@ ISR(PCINT2_vect) {
 
 				currentState = 0;
 				timer1_stop();
+				undoAllEvents();
 				// Count to the first event
-				timer1_countTo( COIL0_dwellAt );	// another tooth for some reason
+				currentEventIdx = findFirstEvent();
+				timer1_countTo( myEvents[currentEventIdx].at );
+//				timer1_countTo( COIL0_dwellAt );	// another tooth for some reason
 				timer1_start();
 
 
@@ -308,21 +329,26 @@ int main() {
 	uint16_t coilDwellTimeTicks = 7;
 	while(1) {
 
-		// Figure out the ignition TIMING for FIRE
-		for(int i=0; i<4; i++) {
-//			uint16_t ignitionAngles[] = {90, 270, 630, 450};
+		myEvents[0].action = COIL0_FIRE;
+		myEvents[1].action = COIL1_FIRE;
+		myEvents[2].action = COIL2_FIRE;
+		myEvents[3].action = COIL3_FIRE;
+
+		myEvents[4].action = COIL0_DWELL;
+		myEvents[5].action = COIL1_DWELL;
+		myEvents[6].action = COIL2_DWELL;
+		myEvents[7].action = COIL3_DWELL;
+
+		myEvents[0].at = (crankTicks*3);	// 90 degrees
+		myEvents[1].at = (crankTicks*9);	// 270 degrees
+		myEvents[2].at = (crankTicks*21);	// 630 degrees
+		myEvents[3].at = (crankTicks*15);	// 450 degrees
+
+		for(int i=4; i<8; i++) {
+			myEvents[i].at = myEvents[i-4].at - coilDwellTimeTicks;
 		}
 
-//		cli();
-			COIL0_fireAt = (crankTicks*3);	// 90 degrees
-			COIL0_dwellAt = COIL0_fireAt-coilDwellTimeTicks;	// 30 ~2ms
-			COIL1_fireAt = (crankTicks*9);	// 270 degrees
-			COIL1_dwellAt = COIL1_fireAt-coilDwellTimeTicks;	// 30 ~2ms
-			COIL2_fireAt = (crankTicks*15);	// 450 degrees
-			COIL2_dwellAt = COIL2_fireAt-coilDwellTimeTicks;	// 30 ~2ms
-			COIL3_fireAt = (crankTicks*21);	// 630 degrees
-			COIL3_dwellAt = COIL3_fireAt-coilDwellTimeTicks;	// 30 ~2ms
-//		sei();
+
 
 		sprintf(out, "Crank ticks: %d\n",crankTicks );
 		USART_Print(out);
