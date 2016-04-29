@@ -9,11 +9,10 @@
 
 #include "ADC.h"
 #include "USART.h"
+float req_FUEL = 17.983;
 
 uint32_t ticks = 0;
-
 uint16_t meas;
-
 volatile uint16_t ticksPerDegree = 0;
 volatile uint16_t nextEventAt = 0;
 volatile uint16_t now = 0;
@@ -36,12 +35,8 @@ ISR(TIMER1_OVF_vect) {
 }
 
 volatile uint16_t cycleTime = 0;
-
 volatile int16_t cycleAngle =0;
-
-
 uint16_t ignitionAngles[] = {90, 270, 540, 360};
-
 uint8_t ignitionTeeth[] = {3, 9, 18, 12};
 volatile uint16_t prevCrankEvent = 0;
 volatile uint16_t ticksPerRotation = 0;
@@ -82,24 +77,13 @@ volatile uint8_t started = 0;
 ISR(TIMER0_OVF_vect) {
 	TCNT0H++;
 	started = 0;
-//	running = 0;
-//	allOff();
 }
 
-volatile uint32_t ref = 0;
 
 
 
 
-uint16_t getNowTicks() {
-	uint16_t now = TCNT1L;
-	now |=  ( TCNT1H<<8 );
-	return now;
-}
 
-inline uint16_t convertToT(uint16_t in) {
-	return (in/25)<<2;
-}
 
 
 // Crank events on either! EDGE
@@ -112,14 +96,122 @@ volatile uint32_t crankTicksSum = 0;
 
 int32_t errSum = 0;
 
+volatile uint16_t degPeriod = 1;
+
+void timer1_countTo(uint16_t countTo) {
+	TCNT1H = 0;
+	TCNT1L = 0;
+	OCR1AH = countTo>>8;
+	OCR1AL = countTo & 0xff;
+	TIMSK1 |= (1<<OCIE1A);
+}
+
+volatile uint16_t cycleDegrees = 0;
+
+void timer1_start() {
+	TCCR1A = 0;	// normal mode
+	// high BEFORE low on write
+	TCNT1H = 0;
+	TCNT1L = 0;
+	// start the timer!
+	TCCR1B = (1<<WGM12) | (1<<CS11) | (1<<CS10);	// ctc, /64
+}
+
+volatile uint16_t coilDwellDegrees = 15;
+
+volatile uint16_t injOpenDegrees = 1;
+volatile uint16_t injOpen10thMs = 90;
+volatile uint16_t advance = 13;
+
+ISR(TIMER1_COMPA_vect) {
+	PORTD ^= (1<<7);
+	cycleDegrees++;
+	timer1_countTo(degPeriod);
+	timer1_start();
+
+		// IGNITION
+		if(cycleDegrees == 90-advance-coilDwellDegrees) {	// dwell 1 start
+				PORTB |= (1<<2);
+		}
+		if(cycleDegrees == 90-advance) {		// fire 1!
+				PORTB &= ~(1<<2);
+
+		}
+
+		if(cycleDegrees== 270-advance-coilDwellDegrees){	// dwell 2 start
+			PORTB |= (1<<3);
+		}
+		if(cycleDegrees == 270-advance) {	// fire 2
+			PORTB &= ~(1<<3);
+		}
+
+		if(cycleDegrees == 630-advance-coilDwellDegrees) {	// dwell 3
+			PORTB |= (1<<4);
+		}
+		if(cycleDegrees ==  630-advance) {	// fire 3
+			PORTB &= ~(1<<4);
+		}
+
+		if( cycleDegrees == 450-advance-coilDwellDegrees) {
+			PORTB |= (1<<5);
+		}
+		if (cycleDegrees == 450-advance) {	// fire4
+			PORTB &= ~(1<<5);
+		}
+
+
+		// INJECTION
+		if(cycleDegrees == 450-injOpenDegrees) {	// open em up!
+			PORTB |= (1<<1);
+		}
+		if(cycleDegrees == 450) {	//close' em'
+			PORTB &= ~(1<<1);
+		}
+
+		if(cycleDegrees == 630-injOpenDegrees) {	// open em up!
+			PORTB |= (1<<1);
+		}
+		if(cycleDegrees == 630) {	//close' em'
+			PORTB &= ~(1<<1);
+		}
+
+		if(cycleDegrees == 270-injOpenDegrees) {	// open em up!
+			PORTB |= (1<<1);
+		}
+		if(cycleDegrees == 270) {	//close' em'
+			PORTB &= ~(1<<1);
+		}
+
+		if(cycleDegrees == 90-injOpenDegrees) {	// open em up!
+			PORTB |= (1<<1);
+		}
+		if(cycleDegrees == 90) {	//close' em'
+			PORTB &= ~(1<<1);
+		}
+
+}
+
+
+
+
+
+uint16_t reading = 0;
 ISR(PCINT0_vect) {
-	uint16_t reading = 0;
 	int32_t err = 0;
 
-	// Change on PB0
-	if( (PINB ^ PINB_prev) & (1<<0) ) {
+	// ONLY FALLING EDGE!
+	if(( (PINB ^ PINB_prev) & (1<<0) ) && ( !(PINB & (1<<0)) )){
 
 		reading = TCNT0 + (TCNT0H<<8);
+
+		degPeriod = reading/30;
+
+
+		coilDwellDegrees = 500/degPeriod;	// 500 corresponds to 2ms
+
+		injOpenDegrees = (req_FUEL*63)/degPeriod;
+
+
 		TCNT0 = 0;
 		TCNT0H = 0;
 		crankTicksSum += reading;
@@ -135,9 +227,11 @@ ISR(PCINT0_vect) {
 		running = 1;
 		crankEvents++;
 		cycleCrankEvents++;
+//		cycleDegrees = cycleCrankEvents*30;
 
+
+		/*
 		if(!started) {
-
 			switch(cycleCrankEvents) {
 				case 3:		// initially (4)
 					PORTB |= (1<<2);
@@ -166,37 +260,29 @@ ISR(PCINT0_vect) {
 				// 28: 421.3
 				// 29: 439.7
 
-				case 5:				// works fine!
+				case 3:				// works fine!
 					PORTB &= ~(1<<2);
 				break;
 
-				case 17:			// fine for now?
+				case 8:			// fine for now?
 					PORTB &= ~(1<<3);
 				break;
 
 
-				case 41:
+				case 20:
 					PORTB &= ~(1<<4);
 				break;
 
-				case 29:			// works fine!
+				case 14:			// works fine!
 					PORTB &= ~(1<<5);
 				break;
 			}
-	//		myEvents[0].at = (crankTicks*6);	// 90 degrees
-	//		myEvents[1].at = (crankTicks*18);	// 270 degrees
-	//		myEvents[2].at = (crankTicks*42);	// 630 degrees
-	//		myEvents[3].at = (crankTicks*30);	// 450 degrees
 		}
-
+*/
 
 		if((crankEvents %CRANK_SIGNAL_AVG_WINDOW) == 0) {
 			crankTicks = crankTicksSum/CRANK_SIGNAL_AVG_WINDOW;
 			crankTicksSum = 0;
-		}
-		// ARBITRARILY
-		if(crankTicks <= 10) {
-			//started = 1;
 		}
 
 
@@ -208,205 +294,42 @@ ISR(PCINT0_vect) {
 }
 
 ISR(TIMER2_COMPA_vect) {
-	PORTB &= ~(1<<5);
+//	PORTB &= ~(1<<5);
 	TIMSK2 = 0;	// turn off the interrupt
 	TCCR2B = 0;
 }
 
 void timer2_start(uint16_t countToMs) {
 	TIMSK2 |= (1<<OCIE2A);
-	OCR2A = countToMs*15;
+	OCR2A = countToMs*15;	// only for 1024
 	TCNT2 = 0;
 	TCCR2B = (1<<CS22) | (1<<CS21) | (1<<CS20);	// /1024
 }
 
-void timer1_countTo(uint16_t countTo) {
-	TCNT1H = 0;
-	TCNT1L = 0;
-	OCR1AH = countTo>>8;
-	OCR1AL = countTo & 0xff;
-	TIMSK1 |= (1<<OCIE1A);
-}
 
 
 
-#define COIL0_DWELL 	1
-#define COIL0_FIRE 		2
-#define COIL1_DWELL		3
-#define COIL1_FIRE		4
-#define COIL2_DWELL		5
-#define COIL2_FIRE		6
-#define COIL3_DWELL		7
-#define COIL3_FIRE		8
-#define INJ_OPEN		9
-#define INJ_CLOSE		10
-#define DONE 			11
-
-
-
-
-typedef struct {
-	uint16_t at;
-	uint8_t action;
-	uint8_t done;
-}myEvent_t;
-
-#define NUMEVENTS 17
-myEvent_t myEvents[NUMEVENTS];
-volatile uint8_t currentEventIdx = 0;
-
-
-
-uint8_t findFirstEvent() {
-	uint16_t min = 65535;
-	uint8_t result = 255;
-	for(int i=0; i<NUMEVENTS; i++) {
-		if(myEvents[i].done == 0) {
-			if( myEvents[i].at < min ) {
-				result = i;
-				min = myEvents[i].at;
-			}
-		}
-	}
-	return result;
-}
-
-void undoAllEvents() {
-	for(int i=0; i<NUMEVENTS; i++) {
-		myEvents[i].done = 0;
-	}
-}
-
-void executeEventAction(uint8_t action) {
-
-/*
-	if(started) {
-		switch(action) {
-			case COIL0_DWELL:
-				PORTB |= (1<<2);	// dwell start
-			break;
-			case COIL0_FIRE:
-				PORTB &= ~(1<<2);	// dwell stop FIRE
-			break;
-			case COIL1_DWELL:
-				PORTB |= (1<<3);	// dwell start
-			break;
-			case COIL1_FIRE:
-				PORTB &= ~(1<<3);	// dwell start
-			break;
-			case COIL2_DWELL:
-				PORTB |= (1<<4);	// dwell start
-			break;
-			case COIL2_FIRE:
-				PORTB &= ~(1<<4);	// dwell start
-			break;
-			case COIL3_DWELL:
-				PORTB |= (1<<5);	// dwell start
-			break;
-			case COIL3_FIRE:
-				PORTB &= ~(1<<5);	// dwell start
-			break;
-		}
-	}
-*/
-
-	switch(action) {
-
-		case INJ_OPEN:
-			PORTB |= (1<<1);	// PB1
-		break;
-
-		case INJ_CLOSE:
-			PORTB &= ~(1<<1);	// PB1
-		break;
-
-		case DONE:
-	//		allOff();
-		break;
-	}
-}
-
-
-ISR(TIMER1_COMPA_vect) {
-	uint16_t dt;
-	uint8_t nextEvent;
-	myEvents[currentEventIdx].done = 1;
-	nextEvent = findFirstEvent();
-	dt = myEvents[nextEvent].at-myEvents[currentEventIdx].at;
-	timer1_countTo( dt );
-	executeEventAction(myEvents[currentEventIdx].action);
-	currentEventIdx = nextEvent;
-}
-
-
-
-
-void timer1_start() {
-	TCCR1A = 0;	// normal mode
-	// high BEFORE low on write
-	TCNT1H = 0;
-	TCNT1L = 0;
-	// start the timer!
-//	TIMSK1 = (1<<OCIE1A);
-	TCCR1B = (1<<WGM12) | (1<<CS12) | (1<<CS10);	// ctc, /1024
-}
-
-
-uint16_t coilDwellTimeTicks = 45;	// 45 ~ 3ms
-float req_FUEL = 4.495;
-volatile float inj_pw = 4.495;
 float enrich_MAP = 1;
 float enrich_TPS = 1;
 float enrich_ECT = 1;
+// 250 ticks/ms
+// ticks/degree
+// deg/ms - 250/degPeriod
 
 
-void reschedule() {
-	myEvents[0].at = (crankTicks*6);	// 90 degrees
-	myEvents[1].at = (crankTicks*18);	// 270 degrees
-	myEvents[2].at = (crankTicks*42);	// 630 degrees
-	myEvents[3].at = (crankTicks*30);	// 450 degrees
-
-	// DONE!
-	myEvents[NUMEVENTS-1].at = (crankTicks*48);	// 720 degrees
-
-	// 13 degrees advance
-	for(int i=0; i<4; i++) {
-		myEvents[i].at -= (13*crankTicks)/15;
-	}
-
-	for(int i=4; i<8; i++) {
-		myEvents[i].at = myEvents[i-4].at - coilDwellTimeTicks;
-	}
-
-	// INJECTION PULSE 8-11 ON
-	// INJECTOR PULSE 12-15 OFF
-
-	for(int i=8; i<=11; i++) {
-		myEvents[i].at = myEvents[i-8].at+1;	// copy the ignition
-		myEvents[i+4].at = myEvents[i].at + inj_pw*15.0f;	// add 5ms
-	}
-
-}
 
 // Cam events
 // Port D interrupt handler
 volatile uint8_t PIND_prev = 0;
 ISR(PCINT2_vect) {
 	if( (PIND ^ PIND_prev) & (1<<2) ) {
-		// Falling edge on PD2 - cam signal
+		// FALLING edge on PD2 - cam signal
 		if(!( PIND & (1<<2) )) {
-			if(syncCrankEvents == 24) {
+			if(syncCrankEvents == 12) {
 				crankEvents=0;	// restart cycle
-				timer1_stop();
-				timer1_start();
+				cycleDegrees = 0;
 				cycleCrankEvents = 0;
-				reschedule();
-				undoAllEvents();
-				currentEventIdx = findFirstEvent();
-				timer1_countTo( myEvents[currentEventIdx].at );
 			}
-			crankEventsArr[crankEventsArri] = syncCrankEvents;
-			crankEventsArri = (crankEventsArri+1)%5;
 			syncCrankEvents = 0;
 		}
 	}
@@ -454,7 +377,7 @@ int main() {
 
 	// PD7 diode output
 	DDRD |= (1<<7);	// PD7
-	PORTD &= ~(1<<7);
+	PORTD |= (1<<7);
 
 	// MAP on PC0
 	DDRC &= ~(1<<0);	// input on PC0
@@ -505,11 +428,17 @@ int main() {
 //	TIMSK1 = (1<<TOIE1) ;	// on overflow and compare
 //	TCCR1B =  (1<<CS12);	// /256
 
+
 	// Timer 0 to measure inter-teeth crank time
 	TCCR0A =0;	// normal mode
-	TCCR0B = (1<<CS02) | (1<<CS00);	// /256
+	TCCR0B = (1<<CS01) | (1<<CS00);	// /64
 	TCNT0 = 0;
 	TIMSK0 = (1<<TOIE0);	// overflow
+
+
+	timer1_countTo(degPeriod);
+	timer1_start();
+
 
 	// Timer 2 for execution of instantaneous tasks
 	TCCR2A = 0;	// normal / ctc
@@ -522,38 +451,30 @@ int main() {
 	USART_Init();
 	ADC_Init();
 
-
-
-
-	myEvents[0].action = COIL0_FIRE;
-	myEvents[1].action = COIL1_FIRE;
-	myEvents[2].action = COIL2_FIRE;
-	myEvents[3].action = COIL3_FIRE;
-
-	myEvents[4].action = COIL0_DWELL;
-	myEvents[5].action = COIL1_DWELL;
-	myEvents[6].action = COIL2_DWELL;
-	myEvents[7].action = COIL3_DWELL;
-
-	myEvents[8].action = INJ_OPEN;
-	myEvents[9].action = INJ_OPEN;
-	myEvents[10].action = INJ_OPEN;
-	myEvents[11].action = INJ_OPEN;
-
-	myEvents[12].action = INJ_CLOSE;
-	myEvents[13].action = INJ_CLOSE;
-	myEvents[14].action = INJ_CLOSE;
-	myEvents[15].action = INJ_CLOSE;
-
-	myEvents[NUMEVENTS-1].action = DONE;
-
 	while(1) {
+//		  MAP_kpa = 36.06f*5.1f*(((float)ADC_Convert(0))/1023.0f) - 0.2645f;
+//		  enrich_MAP =  MAP_kpa/102.0f;
 
-		if(started) {
-			PORTD &= ~(1<<7);
-		} else {
-			PORTD |= (1<<7);
-		}
+//		  injOpen10thMs = req_FUEL*5.0f*enrich_MAP;	// x10/2
+
+		  /*
+			sprintf(out, "MAP %.2f kpa, ", MAP_kpa );
+			USART_Print(out);
+
+			sprintf(out, "Enrich MAP %.2f, ", enrich_MAP );
+			USART_Print(out);
+
+			sprintf(out, "Inj_pw %d /10ms, ", injOpen10thMs );
+			USART_Print(out);
+
+			USART_Print("\n");
+			*/
+
+
+		  /*
+
+		// Reading the sensors
+
 			IAT_raw = ADC_Convert( 3 );
 		  IAT_R = 1000.0f*IAT_raw/(1024.0f-IAT_raw);
 		  IAT_tempF = 1047.0*pow( IAT_R, -0.1693 ) - 222.7;
@@ -565,16 +486,18 @@ int main() {
 		  ECT_tempF = 143.7f*exp(-0.0002789f*ECT_R) + 155.8f*exp( -0.003714f*ECT_R );
 
 
-		  MAP_kpa = 36.06f*5.1f*(((float)ADC_Convert(0))/1023.0f) - 0.2645f;
-		  TPS_perc = 100.0f*((float)ADC_Convert(1)-TPS_min)/(TPS_max-TPS_min);
-		  if(TPS_perc <0) TPS_perc = 0;
-		  if(TPS_perc >100) TPS_perc = 100;
-
-		  enrich_MAP =  MAP_kpa/102.0f;
 		  enrich_TPS = 0.005f*TPS_perc+0.5f;
 		  enrich_ECT = ECT_tempF*-0.0102273 + 3.0f;
 
-		  inj_pw = 0.7f*req_FUEL* enrich_MAP *enrich_TPS*enrich_ECT ;
+//		  inj_pw = 0.7f*req_FUEL* enrich_MAP *enrich_TPS*enrich_ECT ;
+
+		  inj_pw = req_FUEL;
+
+		  sprintf(out, "Reading: %d\n", reading);
+		  USART_Print(out);
+
+		  sprintf(out, "Deg period: %d\n", degPeriod);
+		  USART_Print(out);
 
 
 		sprintf(out, "ECT %.2f F, raw: %.2f, R: %.2f, ", ECT_tempF, ECT_raw, ECT_R );
@@ -584,14 +507,11 @@ int main() {
 		USART_Print(out);
 
 
-		sprintf(out, "MAP %.2f kpa, ", MAP_kpa );
-		USART_Print(out);
+
 
 		sprintf(out, "TPS %.2f perc, ", TPS_perc );
 		USART_Print(out);
 
-		sprintf(out, "Enrich MAP %.2f, ", enrich_MAP );
-		USART_Print(out);
 
 		sprintf(out, "Enrich TPS %.2f, ", enrich_TPS );
 		USART_Print(out);
@@ -600,12 +520,10 @@ int main() {
 		USART_Print(out);
 
 
-		sprintf(out, "Inj_pw %.2f ms, ", inj_pw );
-		USART_Print(out);
 
 		sprintf(out, "Crank ticks: %d\n",crankTicks );
 		USART_Print(out);
-
+*/
 
 	}
 }
