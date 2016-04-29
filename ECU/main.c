@@ -4,6 +4,8 @@
 
 #include <avr/interrupt.h>
 #include <string.h>
+#include <stdio.h>
+#include <math.h>
 
 #include "ADC.h"
 #include "USART.h"
@@ -17,6 +19,7 @@ volatile uint16_t nextEventAt = 0;
 volatile uint16_t now = 0;
 volatile uint16_t rpm = 0;
 volatile uint8_t running = 0;
+volatile uint16_t cycleCrankEvents = 0;
 
 
 ISR(TIMER1_OVF_vect) {
@@ -131,36 +134,53 @@ ISR(PCINT0_vect) {
 		syncCrankEvents++;
 		running = 1;
 		crankEvents++;
+		cycleCrankEvents++;
 
 		if(!started) {
 
-			switch(crankEvents) {
-				case 4:
-					PORTB |= (1<<2);	// dwell stop FIRE
+			switch(cycleCrankEvents) {
+				case 3:		// initially (4)
+					PORTB |= (1<<2);
 				break;
-				case 16:
-					PORTB |= (1<<3);	// dwell stop FIRE
+
+				case 15:	// dwell 2 start (initially 16)
+					PORTB |= (1<<3);
 				break;
-				case 40:
-					PORTB |= (1<<4);	// dwell stop FIRE
+
+				case 38:	// dwell 3 start (initially 40)
+					PORTB |= (1<<4);
 				break;
-				case 28:
-					PORTB |= (1<<5);	// dwell stop FIRE
+
+				case 27:	// initially (28)
+					PORTB |= (1<<5);
+				break;
+
+				// 4 on 61.3 deg.
+				// 5: 81.8 deg
+				// 6: 102.2
+				// 16:242.6
+				// 17: 262.5
+				// 18: 270.6
+				// 40: 600.6, 598.2
+				// 41: 621.2
+				// 28: 421.3
+				// 29: 439.7
+
+				case 5:				// works fine!
+					PORTB &= ~(1<<2);
+				break;
+
+				case 17:			// fine for now?
+					PORTB &= ~(1<<3);
 				break;
 
 
-
-				case 5:
-					PORTB &= ~(1<<2);	// dwell stop FIRE
-				break;
-				case 17:
-					PORTB &= ~(1<<3);	// dwell stop FIRE
-				break;
 				case 41:
-					PORTB &= ~(1<<4);	// dwell stop FIRE
+					PORTB &= ~(1<<4);
 				break;
-				case 29:
-					PORTB &= ~(1<<5);	// dwell stop FIRE
+
+				case 29:			// works fine!
+					PORTB &= ~(1<<5);
 				break;
 			}
 	//		myEvents[0].at = (crankTicks*6);	// 90 degrees
@@ -259,7 +279,7 @@ void undoAllEvents() {
 
 void executeEventAction(uint8_t action) {
 
-
+/*
 	if(started) {
 		switch(action) {
 			case COIL0_DWELL:
@@ -288,7 +308,7 @@ void executeEventAction(uint8_t action) {
 			break;
 		}
 	}
-
+*/
 
 	switch(action) {
 
@@ -301,7 +321,7 @@ void executeEventAction(uint8_t action) {
 		break;
 
 		case DONE:
-			allOff();
+	//		allOff();
 		break;
 	}
 }
@@ -333,8 +353,11 @@ void timer1_start() {
 
 
 uint16_t coilDwellTimeTicks = 45;	// 45 ~ 3ms
-uint16_t req_FUEL = 2;
-uint16_t enrich_MAP = 100;
+float req_FUEL = 4.495;
+volatile float inj_pw = 4.495;
+float enrich_MAP = 1;
+float enrich_TPS = 1;
+float enrich_ECT = 1;
 
 
 void reschedule() {
@@ -360,7 +383,7 @@ void reschedule() {
 
 	for(int i=8; i<=11; i++) {
 		myEvents[i].at = myEvents[i-8].at+1;	// copy the ignition
-		myEvents[i+4].at = myEvents[i].at + req_FUEL *15;	// add 5ms
+		myEvents[i+4].at = myEvents[i].at + inj_pw*15.0f;	// add 5ms
 	}
 
 }
@@ -376,6 +399,7 @@ ISR(PCINT2_vect) {
 				crankEvents=0;	// restart cycle
 				timer1_stop();
 				timer1_start();
+				cycleCrankEvents = 0;
 				reschedule();
 				undoAllEvents();
 				currentEventIdx = findFirstEvent();
@@ -390,9 +414,22 @@ ISR(PCINT2_vect) {
 }
 
 
-float MAP_volts = 0;
-int MAP_kpa = 0;
-uint16_t MAP_raw;
+float MAP_kpa = 0;
+float TPS_perc = 0;
+float TPS_min = 90;
+float TPS_max = 900;
+
+float ECT_tempF = 0;
+float ECT_R = 0;
+float ECT_raw = 0;
+
+float IAT_raw = 0;
+float IAT_tempC = 0;
+float IAT_tempF = 0;
+float IAT_R = 0;
+
+
+
 
 int main() {
 	char out[32];
@@ -421,6 +458,15 @@ int main() {
 
 	// MAP on PC0
 	DDRC &= ~(1<<0);	// input on PC0
+
+	// TPS on PC1
+	DDRC &= ~(1<<1);	// input on PC1
+
+	// ECT on PC2
+	DDRC &= ~(1<<2);	// input on PC2
+
+	// IAT on PC3
+	DDRC &= ~(1<<3);	// input on PC3
 
 /*
 	TCCR0A = 0;
@@ -508,18 +554,53 @@ int main() {
 		} else {
 			PORTD |= (1<<7);
 		}
-
-		MAP_raw = ADC_Convert(0);	// ADC0
-		  MAP_volts = 5.1f*((float)MAP_raw)/1023.0f;
-		  //MAP_kpa =  8+ 40.0f*5.1f*((float)MAP_raw)/1023.0f;
-		  MAP_kpa = 36.06f*5.1f*(((float)MAP_raw)/1023.0f) - 0.2645f;
-
-		 // enrich_MAP = 100*(105/(105-MAP_kpa));
-
-		//reschedule();
+			IAT_raw = ADC_Convert( 3 );
+		  IAT_R = 1000.0f*IAT_raw/(1024.0f-IAT_raw);
+		  IAT_tempF = 1047.0*pow( IAT_R, -0.1693 ) - 222.7;
+		  IAT_tempC = (IAT_tempF-32.0)/1.8;
 
 
-		sprintf(out, "MAP raw: %d, %d kpa\n",MAP_raw, MAP_kpa );
+		ECT_raw = ADC_Convert( 2 );
+		  ECT_R = 1000.0f*ECT_raw/(1024.0f-ECT_raw);
+		  ECT_tempF = 143.7f*exp(-0.0002789f*ECT_R) + 155.8f*exp( -0.003714f*ECT_R );
+
+
+		  MAP_kpa = 36.06f*5.1f*(((float)ADC_Convert(0))/1023.0f) - 0.2645f;
+		  TPS_perc = 100.0f*((float)ADC_Convert(1)-TPS_min)/(TPS_max-TPS_min);
+		  if(TPS_perc <0) TPS_perc = 0;
+		  if(TPS_perc >100) TPS_perc = 100;
+
+		  enrich_MAP =  MAP_kpa/102.0f;
+		  enrich_TPS = 0.005f*TPS_perc+0.5f;
+		  enrich_ECT = ECT_tempF*-0.0102273 + 3.0f;
+
+		  inj_pw = 0.7f*req_FUEL* enrich_MAP *enrich_TPS*enrich_ECT ;
+
+
+		sprintf(out, "ECT %.2f F, raw: %.2f, R: %.2f, ", ECT_tempF, ECT_raw, ECT_R );
+		USART_Print(out);
+
+		sprintf(out, "IAT %.2f F, raw: %.2f, R: %.2f, ", IAT_tempF, IAT_raw, IAT_R );
+		USART_Print(out);
+
+
+		sprintf(out, "MAP %.2f kpa, ", MAP_kpa );
+		USART_Print(out);
+
+		sprintf(out, "TPS %.2f perc, ", TPS_perc );
+		USART_Print(out);
+
+		sprintf(out, "Enrich MAP %.2f, ", enrich_MAP );
+		USART_Print(out);
+
+		sprintf(out, "Enrich TPS %.2f, ", enrich_TPS );
+		USART_Print(out);
+
+		sprintf(out, "Enrich ECT %.2f, ", enrich_ECT );
+		USART_Print(out);
+
+
+		sprintf(out, "Inj_pw %.2f ms, ", inj_pw );
 		USART_Print(out);
 
 		sprintf(out, "Crank ticks: %d\n",crankTicks );

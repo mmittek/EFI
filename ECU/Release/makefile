@@ -49,7 +49,7 @@ all: ECU.elf secondary-outputs
 ECU.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,ECU.map -mmcu=atmega328p -o "ECU.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,ECU.map -Wl,-u,vfprintf -lprintf_flt -mmcu=atmega328p -o "ECU.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
