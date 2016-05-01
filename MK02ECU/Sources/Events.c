@@ -1,5 +1,5 @@
 /* ###################################################################
-**     Filename    : Events.c
+ **     Filename    : Events.c
 **     Project     : MK02ECU
 **     Processor   : MK02FN128VLF10
 **     Component   : Events
@@ -54,8 +54,9 @@ void PIT0_IRQHandler(void)
   /* Clear interrupt flag.*/
   PIT_HAL_ClearIntFlag(g_pitBase[pitTimer1_IDX], pitTimer1_CHANNEL);
   /* Write your code here ... */
-//	GPIO_DRV_TogglePinOutput( PTE24 );
+	GPIO_DRV_TogglePinOutput( PTE24 );
   ECU_Timer_Event();
+//  printf("TRIANGLES APPLES AND ORANGES!\n");
 
 }
 #else

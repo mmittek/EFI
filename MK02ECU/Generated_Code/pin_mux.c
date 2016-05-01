@@ -7,7 +7,7 @@
 **     Version     : Component 1.2.0, Driver 1.4, CPU db: 3.00.000
 **     Repository  : KSDK 1.3.0
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-04-19, 21:08, # CodeGen: 29
+**     Date/Time   : 2016-04-30, 17:56, # CodeGen: 34
 **     Abstract    :
 **
 **     Settings    :
@@ -772,9 +772,9 @@ void init_gpio_pins(uint32_t instance)
       break;
     case PORTE_IDX:                     /* PORTE_IDX */
       /* Affects PORTE_PCR24 register */
-      PORT_HAL_SetSlewRateMode(PORTE,24UL,kPortFastSlewRate);
       PORT_HAL_SetOpenDrainCmd(PORTE,24UL,false);
       PORT_HAL_SetMuxMode(PORTE,24UL,kPortMuxAsGpio);
+      PORT_HAL_SetSlewRateMode(PORTE,24UL,kPortSlowSlewRate);
       break;
     default:
       break;

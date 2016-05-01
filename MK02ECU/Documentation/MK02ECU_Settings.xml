@@ -7,7 +7,7 @@
     <Properties>
       <Component_name v="Cpu" />
       <CPU_type v="MK02FN128VLH10" />
-      <fsl_clock_manager v="" />
+      <fsl_clock_manager v="clockMan1" />
       <group name="Watchdog settings">
         <Watchdog_disable v="yes" />
       </group>
@@ -28,45 +28,29 @@
         <Default_memory_for_interrupts v="INTERNAL RAM" />
         <Default_memory_for_code v="INTERNAL RAM" />
         <Default_memory_for_data v="INTERNAL RAM" />
-        <list name="ROM/RAM Areas" v="5">
+        <list name="ROM/RAM Areas" v="3">
           <group name="MemoryArea0">
             <boolgroup name="ROM/RAM Area" v="Enabled">
               <Name v="m_interrupts" />
               <Qualifier v="RX" />
-              <Address v="0" />
+              <Address v="536862720" />
               <Size v="1024" />
             </boolgroup>
           </group>
           <group name="MemoryArea1">
             <boolgroup name="ROM/RAM Area" v="Enabled">
-              <Name v="m_interrupts_ram" />
-              <Qualifier v="RW" />
-              <Address v="536862720" />
-              <Size v="1024" />
+              <Name v="m_text" />
+              <Qualifier v="RX" />
+              <Address v="536870912" />
+              <Size v="8192" />
             </boolgroup>
           </group>
           <group name="MemoryArea2">
-            <boolgroup name="ROM/RAM Area" v="Enabled">
-              <Name v="m_text" />
-              <Qualifier v="RX" />
-              <Address v="1040" />
-              <Size v="130032" />
-            </boolgroup>
-          </group>
-          <group name="MemoryArea3">
             <boolgroup name="ROM/RAM Area" v="Enabled">
               <Name v="m_data" />
               <Qualifier v="RW" />
               <Address v="536863744" />
               <Size v="7168" />
-            </boolgroup>
-          </group>
-          <group name="MemoryArea4">
-            <boolgroup name="ROM/RAM Area" v="Enabled">
-              <Name v="m_data_2" />
-              <Qualifier v="RW" />
-              <Address v="536870912" />
-              <Size v="8192" />
             </boolgroup>
           </group>
         </list>
@@ -93,8 +77,8 @@
     <CompilerProperties>
       <Compiler v="GNU C Compiler" />
       <boolgroup name="Generate linker file" v="yes">
-        <Stack_size v="1024" />
-        <Heap_size v="0" />
+        <Stack_size v="2048" />
+        <Heap_size v="2048" />
         <Set_memory_segments_to_default v="Click to set default &amp;gt;" />
         <Vector_table_copy_in_RAM v="yes" />
         <Default_memory_for_interrupts v="INTERNAL FLASH" />

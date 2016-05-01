@@ -7,7 +7,7 @@
 **     Version     : Component 1.3.0, Driver 01.00, CPU db: 3.00.000
 **     Repository  : KSDK 1.3.0
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2016-04-19, 21:08, # CodeGen: 29
+**     Date/Time   : 2016-04-30, 17:56, # CodeGen: 34
 **
 **     Copyright : 1997 - 2015 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -89,9 +89,9 @@ const gpio_output_pin_user_config_t gpio_OutConfig0[] = {
   {
     .pinName = PTE24,
     .config.outputLogic = 0,
-    .config.slewRate = kPortFastSlewRate,
+    .config.slewRate = kPortSlowSlewRate,
     .config.isOpenDrainEnabled = false,
-    .config.driveStrength = kPortHighDriveStrength,
+    .config.driveStrength = kPortLowDriveStrength,
   },
   {
     .pinName = COIL1,

@@ -9,7 +9,7 @@
 
 #include "ADC.h"
 #include "USART.h"
-float req_FUEL = 17.983;
+float req_FUEL = 45;	// 4.5ms
 
 uint32_t ticks = 0;
 uint16_t meas;
@@ -19,7 +19,6 @@ volatile uint16_t now = 0;
 volatile uint16_t rpm = 0;
 volatile uint8_t running = 0;
 volatile uint16_t cycleCrankEvents = 0;
-
 
 ISR(TIMER1_OVF_vect) {
 	// Restart the cycle  high before low on write
@@ -86,7 +85,6 @@ ISR(TIMER0_OVF_vect) {
 
 
 
-// Crank events on either! EDGE
 volatile uint8_t PINB_prev =0;
 volatile uint32_t crankTicks = 0;
 volatile uint32_t crankTime = 0;
@@ -160,34 +158,15 @@ ISR(TIMER1_COMPA_vect) {
 		}
 
 
-		// INJECTION
-		if(cycleDegrees == 450-injOpenDegrees) {	// open em up!
+		// INJECTION - ONLY 1 squirt!
+		if(cycleDegrees == 90) {	// open em up!
 			PORTB |= (1<<1);
 		}
-		if(cycleDegrees == 450) {	//close' em'
+		if(cycleDegrees == 90+injOpenDegrees) {	//close' em'
 			PORTB &= ~(1<<1);
 		}
 
-		if(cycleDegrees == 630-injOpenDegrees) {	// open em up!
-			PORTB |= (1<<1);
-		}
-		if(cycleDegrees == 630) {	//close' em'
-			PORTB &= ~(1<<1);
-		}
 
-		if(cycleDegrees == 270-injOpenDegrees) {	// open em up!
-			PORTB |= (1<<1);
-		}
-		if(cycleDegrees == 270) {	//close' em'
-			PORTB &= ~(1<<1);
-		}
-
-		if(cycleDegrees == 90-injOpenDegrees) {	// open em up!
-			PORTB |= (1<<1);
-		}
-		if(cycleDegrees == 90) {	//close' em'
-			PORTB &= ~(1<<1);
-		}
 
 }
 
@@ -209,7 +188,7 @@ ISR(PCINT0_vect) {
 
 		coilDwellDegrees = 500/degPeriod;	// 500 corresponds to 2ms
 
-		injOpenDegrees = (req_FUEL*63)/degPeriod;
+		injOpenDegrees = (injOpen10thMs*25)/degPeriod;	// fuel pw in 10ms
 
 
 		TCNT0 = 0;
@@ -451,24 +430,33 @@ int main() {
 	USART_Init();
 	ADC_Init();
 
+
+	uint16_t meas = 0;
 	while(1) {
-//		  MAP_kpa = 36.06f*5.1f*(((float)ADC_Convert(0))/1023.0f) - 0.2645f;
+		meas = ADC_Convert(0);
+
+//		  MAP_kpa = 36.06f*5.1f*(((float)ADC_Measurements[0])/1023.0f) - 0.2645f;
 //		  enrich_MAP =  MAP_kpa/102.0f;
 
 //		  injOpen10thMs = req_FUEL*5.0f*enrich_MAP;	// x10/2
 
-		  /*
+			sprintf(out, "ADC meas %d, ", meas );
+			USART_Print(out);
+
 			sprintf(out, "MAP %.2f kpa, ", MAP_kpa );
 			USART_Print(out);
 
 			sprintf(out, "Enrich MAP %.2f, ", enrich_MAP );
 			USART_Print(out);
 
+			sprintf(out, "Inj_open deg %d, ", injOpenDegrees );
+			USART_Print(out);
+
 			sprintf(out, "Inj_pw %d /10ms, ", injOpen10thMs );
 			USART_Print(out);
 
 			USART_Print("\n");
-			*/
+
 
 
 		  /*

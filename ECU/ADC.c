@@ -4,10 +4,13 @@
 volatile uint8_t ADC_ConversionDone = 0;
 volatile uint16_t ADC_Measurement = 0;
 
+
 ISR(ADC_vect) {
-	ADC_Measurement = ADCL;
-	ADC_Measurement += (ADCH<<8);
+	cli();
+	ADC_Measurement =   ADCL;
+	ADC_Measurement |= (ADCH<<8);
 	ADC_ConversionDone = 1;
+	sei();
 }
 
 void ADC_Init() {
